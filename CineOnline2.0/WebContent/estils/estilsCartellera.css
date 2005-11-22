@@ -1,0 +1,99 @@
+#caixa_cartellera {
+	display:block;
+	position: relative;
+	width: 471px;
+	background: #ffffff;
+	border: thick ridge #C0C0C0;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	text-align:left;
+}
+
+
+#titol_cartellera {
+	position: relative;
+	width: 100%;
+	background: #000000;
+	border: thick ridge #ffffff;
+	border-width: 0 0 0 0px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+}
+
+#col_cartellera {
+	position: relative;
+	float: left;
+	width: 157px;
+	border: thick solid #000000;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	text-align: center;
+}
+
+#nom_sala {
+	background: #DCDBD9;
+	color: black;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+}
+
+#pelicula_cartellera {
+	position: relative;
+	border: thick solid #ffffff;
+	background: #2F82F2;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	color: white;
+	font-weight: bold;	
+}
+
+#horari_cartellera {
+	position: relative;
+	border: thick solid #2F82F2;
+	background: #FFFFFF;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 151px;
+	margin-bottom: 3px;	
+	margin-left: 2px;	
+	/* i.e. */
+	_margin-left: 0px;	
+	text-align: center;
+	vertical-align: center;
+}
+
+a.horari:link {
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	color: #2F82F2;
+	text-decoration: none;
+}
+a.horari:visited {
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	color: #2F82F2;
+	text-decoration: none;
+}
+a.horari:hover {
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	color: #C0C0C0;
+	text-decoration: none;
+}

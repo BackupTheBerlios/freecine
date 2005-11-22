@@ -1,0 +1,67 @@
+<span class="txt_titol">			
+	Entrades online
+	<br /><br />
+	Recori prendre els codis per obtenir les entrades a taquilla!!
+</span>
+<br /><br />
+<span class="txt">			
+	<%
+	String tipusVenda = request.getParameter("tipus_venda");
+	String numEntrades_str = request.getParameter("num_entrades");
+	int numEntrades = 0;
+	if (numEntrades_str != null)
+	{
+		numEntrades = Integer.valueOf(numEntrades_str).intValue();
+	}
+	if (tipusVenda != null)
+	{
+		%>
+		Nº entrades: <%= numEntrades %>
+		<br /><br />
+		Import: <%= numEntrades * 5.50 %> euros
+		<br /><br />
+		Els codis claus són els següents:
+		<ul type="square">
+			<%
+			int i;
+			for (i=1; i <= numEntrades; i++)
+			{
+			%>
+				<li>jdkl-sa75-84kj
+			<%
+			}
+			%>			
+		</ul>
+		<%
+	 	if (tipusVenda.compareTo("compra")==0)
+		{
+		%>
+			La compra s'ha efectuat correctament.					
+		<%
+		}
+		else
+		{
+			if (tipusVenda.compareTo("reserva")==0)
+			{
+		%>
+			La reserva s'ha efectuat correctament.
+			<br /><br />
+			No descuidi presentar els codis claus a taquilla mitja hora abans de l'inici de la sessió. En cas contrari seràn cancel·lades.
+		<%
+			}
+		}
+		%>			
+			<br /><br />
+			<center>
+			<form name="frmvendacartellera" action="index.jsp" method="post">
+				<input type="Submit" name="opcio_menu" class="boto_venda" value="inici" />
+			</form>
+			</center>
+		<%
+	}
+	%>
+</span>
+
+
+
+
