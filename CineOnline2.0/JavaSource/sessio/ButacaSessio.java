@@ -16,15 +16,15 @@ import sala.Butaca;
  */
 
 public class ButacaSessio extends Butaca{
-	private final int NO_DISPONIBLE = 0;
-	private final int DISPONIBLE = 1;
+	private final int NO_OPERATIVA= 0;
+	private final int LLIURE = 1;
 	private final int RESERVADA = 2;	
-	private final int COMPRADA = 3;
+	private final int PAGADA =3;
 	
 	private int estat;
 	
 	public ButacaSessio(){
-		this.estat=1;
+		this.estat=LLIURE;
 	}
 	
 	public ButacaSessio(int numButaca, int numFila, int numColumna, boolean operativa){
