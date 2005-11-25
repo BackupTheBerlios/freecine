@@ -1,0 +1,84 @@
+/* RESERVADA */
+
+#butaca_reservada {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 15px;
+	height: 10px;
+}
+
+
+#butaca_reservada a:link, #butaca_reservada a:visited {
+	border: thick solid #C0C0C0;
+	background: orange;
+	border-width: 0 0 0 0px;
+}
+
+#butaca_reservada a:hover {
+	border: thick solid #C0C0C0;
+	background: orange;
+	border-width: 0 0 0 0px;
+}
+
+
+/* OCUPADA */
+
+#butaca_ocupada {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 15px;
+	height: 10px;
+}
+
+#butaca_ocupada a:link, #butaca_ocupada a:visited {
+	border: thick solid #C0C0C0;
+	background: red;
+	border-width: 0 0 0 0px;
+}
+
+#butaca_ocupada a:hover {
+	border: thick solid #C0C0C0;
+	background: red;
+	border-width: 0 0 0 0px;
+}
+
+/* NO OPERATIVA */
+
+#butaca_no_operativa {
+	visible: false;
+	width: 15px;
+	height: 10px;
+}
+
+/* DISPONIBLE */
+
+#butaca_disponible {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 15px;
+	height: 10px;
+}
+
+#butaca_disponible a:link, #butaca_disponible a:visited {
+	border: thick solid #C0C0C0;
+	background: #F0F0F0;
+	border-width: 0 0 0 0px;
+}
+
+#butaca_disponible a:hover {
+	border: thick solid #C0C0C0;
+	background: black;
+	border-width: 0 0 0 0px;
+}
