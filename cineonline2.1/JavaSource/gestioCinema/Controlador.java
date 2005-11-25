@@ -27,10 +27,15 @@ public class Controlador {
 		 * usuari i password
 		 */
 		
+		
+		
 		usuari="postgres";
 		password="s0lar1s";
 		driverBBDD="org.postgresql.Driver";
 		url="jdbc:postgresql://127.0.0.1/cineonline";
+		
+		
+		
 		try{
 			Class.forName(driverBBDD);
 			conn = DriverManager.getConnection(url, usuari, password);
