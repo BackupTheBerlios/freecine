@@ -1,5 +1,5 @@
 <span class="txt_titol">			
-	Entrades online
+	Tiket d'entrades
 </span>
 <br /><br />
 <span class="txt">			
@@ -24,20 +24,13 @@
 			<br /><br />
 			Import a pagar : <%= numEntrades * 5.50 %> euros
 			<br /><br />
-			Introdueix les dades bancàries corresponents.
-			<br /><br />
-			<form name="frmvendacartellera" action="index.jsp" method="post">				
+			<center>
+			<form name="frmvendacartellera" action="default.jsp" method="post">
 				<input type="hidden" name="tipus_venda" value="<%= tipusVenda %>" />
 				<input type="hidden" name="num_entrades" value="<%= numEntrades %>" />
-				<input type="text" name="entitat" value="" class="caixa_text" size="4" maxlength="4"/>
-				<input type="text" name="oficina" value="" class="caixa_text" size="4" maxlength="4" />
-				<input type="text" name="control" value="" class="caixa_text" size="2" maxlength="2" />
-				<input type="text" name="num_compte" value="" class="caixa_text" size="13" maxlength="11"/>
-				<br /><br />
-				<center>
-					<input type="Submit" name="opcio_menu" class="boto_venda" value="comprar" />
-				</center>
+				<input type="Submit" name="opcio_menu" class="boto_venda" value="comprar" />
 			</form>
+			</center>
 		<%
 		}
 		else
@@ -52,10 +45,14 @@
 			Nº entrades: <%= numEntrades %>
 			<br /><br />
 			Import a pagar a taquilla : <%= numEntrades * 5.50 %> euros
-			<br /><br />				
+			<br /><br />
+		Els codi clau és el següent:
+		<ul type="square">
+				<li />jdkl-sa75-84kj
+		</ul>				
 			</ul>
 			<center>
-			<form name="frmticketacabar" action="index.jsp" method="post">
+			<form name="frmticketacabar" action="default.jsp" method="post">
 				<input type="hidden" name="tipus_venda" value="<%= tipusVenda %>" />
 				<input type="hidden" name="num_entrades" value="<%= numEntrades %>" />
 				<input type="Submit" name="opcio_menu" class="boto_venda" value="reservar" />

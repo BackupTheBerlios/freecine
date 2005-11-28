@@ -1,7 +1,7 @@
 <span class="txt_titol">			
 	Entrades online
 	<br /><br />
-	Recori prendre els codis per obtenir les entrades a taquilla!!
+	Recori prendre el codi clau per obtenir les entrades a taquilla!!
 </span>
 <br /><br />
 <span class="txt">			
@@ -20,22 +20,21 @@
 		<br /><br />
 		Import: <%= numEntrades * 5.50 %> euros
 		<br /><br />
-		Els codis claus són els següents:
+		Els codi clau és el següent:
 		<ul type="square">
-			<%
-			int i;
-			for (i=1; i <= numEntrades; i++)
-			{
-			%>
-				<li>jdkl-sa75-84kj
-			<%
-			}
-			%>			
+				<li />jdkl-sa75-84kj
 		</ul>
 		<%
 	 	if (tipusVenda.compareTo("compra")==0)
 		{
+	 		String entitat = request.getParameter("entitat");
+	 		String oficina = request.getParameter("oficina");
+	 		String control = request.getParameter("control");
+	 		String num_compte = request.getParameter("num_compte");
+	 		String cc = entitat + "-" + oficina + "-" + control + "-" + num_compte;
 		%>
+			Número de compte corrent: <%= cc %>
+			<br /><br />
 			La compra s'ha efectuat correctament.					
 		<%
 		}
@@ -46,7 +45,7 @@
 		%>
 			La reserva s'ha efectuat correctament.
 			<br /><br />
-			No descuidi presentar els codis claus a taquilla mitja hora abans de l'inici de la sessió. En cas contrari seràn cancel·lades.
+			No descuidi presentar el codi clau a taquilla mitja hora abans de l'inici de la sessió. En cas contrari la reserva serà cancel·lada.
 		<%
 			}
 		}

@@ -89,8 +89,6 @@
 					<input type="Hidden" name="nom_sala" value="SALA 2" />
 					<input type="Hidden" name="idsala" value="2" />
 					<input type="Hidden" name="data" value="11/11/2005" />
-					<input type="Submit" name="venda" value="15:10" class="boto_horari" />
-					<input type="Submit" name="venda" value="18:15" class="boto_horari" />
 					<input type="Submit" name="venda" value="20:20" class="boto_horari" />
 					<input type="Submit" name="venda" value="22:30" class="boto_horari" />
 					<input type="Hidden" name="idsessio" value="1" />
@@ -107,9 +105,7 @@
 					<input type="Hidden" name="idsala" value="2" />
 					<input type="Hidden" name="data" value="11/11/2005" />
 					<input type="Submit" name="venda" value="15:10" class="boto_horari" />
-					<input type="Submit" name="venda" value="18:15" class="boto_horari" />
-					<input type="Submit" name="venda" value="20:20" class="boto_horari" />
-					<input type="Submit" name="venda" value="22:30" class="boto_horari" />
+					<input type="Submit" name="venda" value="18:15" class="boto_horari" />				
 					<input type="Hidden" name="idsessio" value="1" />
 				</form>
 			</div>			

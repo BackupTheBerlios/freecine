@@ -11,13 +11,13 @@
 		String vendaPage = request.getParameter("venda");
 		if (vendaPage != null)
 		{
-			nomPagina = "venda.jsp";
+			nomPage = "venda.jsp";
+			nomPagina = nomPage;
 		}
 		
 		if ((nomPage != null)&&(nomPage.compareTo("sortir")!=0))
 		{	
-		%>
-			
+		%>			
 			<jsp:include page="esquelet_adm/menu.jsp"/>		
 		<%
 		}
@@ -69,13 +69,16 @@
 									}
 									else
 									{
-										if((nomPage.compareTo("reservar")==0)||(nomPage.compareTo("comprar")==0))
+										if(nomPage.compareTo("continuar")==0)
 										{
-											nomPagina = "finalitzar.jsp";
+											nomPagina = "ticket.jsp";
 										}
 										else
 										{
-											nomPagina = "login.jsp";
+											if((nomPage.compareTo("reservar")==0)||(nomPage.compareTo("comprar")==0))
+											{
+												nomPagina = "finalitzar.jsp";
+											}
 										}
 									}
 								}
@@ -89,7 +92,6 @@
 		{
 			nomPagina = "login.jsp";
 		}
-		
 		
 
 		
