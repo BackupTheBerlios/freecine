@@ -33,7 +33,7 @@ public class Pelicula {
 	private String urlWeb;
 	private String urlImatge;
 
-	private Vector campsPelicula;
+	private static Vector campsPelicula;
 	private Vector valorsPelicula;
 	
 	/*SQL*/
@@ -58,7 +58,8 @@ public class Pelicula {
 		urlImatge = "";
 	}
 	
-	public Pelicula(
+/*Amb EJB el constructor a de ser buit de parametres*/
+/*	public Pelicula(
 			int id_new,
 			String titol_new,
 			String titoloriginal_new,
@@ -94,7 +95,7 @@ public class Pelicula {
 		this.sinopsis=sinopsis_new;
 		this.urlWeb=urlWeb_new;
 		this.urlImatge=urlImatge_new;
-	}
+	}*/
 		
 	public void setAll(int id_new,
 			String titol_new,
@@ -277,7 +278,7 @@ public class Pelicula {
 		return false;
 	}
 	
-	public Vector getCamps(){
+	public static Vector getCamps(){
 		campsPelicula = new Vector();
 		campsPelicula.add("id");
 		campsPelicula.add("titol");
@@ -319,6 +320,11 @@ public class Pelicula {
 		valorsPelicula.add(urlImatge);	
 		return valorsPelicula;
 	}
+
+	public void setAll(Vector rs){
+
+	}
+
 	
 	public String sqlInsert(){
 		return null;
@@ -332,7 +338,11 @@ public class Pelicula {
 		return null;
 	}
 	
-	public String sqlSelect(){
+	public static String sqlSelect(){
 		return null;
+	}
+	
+	public String toString(){
+		return ""+getValors();
 	}
 }
