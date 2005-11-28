@@ -1,36 +1,42 @@
-<span class="txt_titol">			
-	Butaques de la sala
-</span>
-<br /><br />
-<span class="txt">
-	<form name="frm" action="accions.jsp" method="post">
-	<input type="Hidden" name="numButaca" value="">
-	número fila
-	<input type="Text" name="nomSala" value="" maxlength="3" class="caixa_text" />
-	<br /><br />
-	número columna
-	<input type="Text" name="numButaques" value="" maxlength="3" class="caixa_text" />
-	<br /><br />
-	opetativa
-	<input type="Checkbox" name="operativa" value="" class="caixa_text" />
-	<br /><br />
-		<input type="Submit" name="opcio_accio" class="boto_accio" value="modificar" />
-	</form>
-	<table border="2">
-		<%
-		int numMaxColumnes = 10;
-		int numMaxFiles = 20;
-		String butaquesTaula = "";
-		for (int i=0; i<numMaxFiles;i++)
-		{
+<%
+	int numMaxColumnes = 9;
+	int numMaxFiles = 19;
+	String butaquesTaula = "<table>";
+	String tipusButaca = "butaca_disponible";
+	//String llista_butaques[];
+	
+	int i, j;
+	for (i=0; i< numMaxFiles;i++)
+	{
 		butaquesTaula+= "<tr>";
-			for (int j=0;j<numMaxColumnes;j++)
+		for (j=0;j< numMaxColumnes;j++)
+		{
+			if (j == numMaxColumnes/2)
 			{
-			butaquesTaula+= "<td><a href='butaques_sessio.jsp' title='(" + i + "," + j + ")'>|_|</a></td>";
+				tipusButaca = "butaca_no_operativa";
 			}
-		butaquesTaula+= "</tr>";
+			else
+			{
+				tipusButaca = "butaca_disponible";
+			}
+			if (i== numMaxFiles/2)
+			{
+				tipusButaca = "butaca_no_operativa";
+			}
+			
+			if ((i==3) && (j<=3))
+			{
+				tipusButaca = "butaca_reservada";
+			}
+			
+			if ((i==15) && (j>4))
+			{
+				tipusButaca = "butaca_ocupada";
+			}
+			butaquesTaula+= "<td><div id='"+tipusButaca+"'><a href=javascript:alert('afegintotrient') id='"+ tipusButaca + "' title='(fil " + (i+1) +",col " + (j+1) + ")'></a></div></td>";
 		}
-		 %>
-		 <%= butaquesTaula %>
-	</table>
-</span>
+		butaquesTaula+= "</tr>";
+	}
+	butaquesTaula+= "</table>";
+%>
+<%= butaquesTaula %>

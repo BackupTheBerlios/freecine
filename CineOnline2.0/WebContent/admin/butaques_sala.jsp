@@ -1,11 +1,11 @@
 <!-- 
 <span class="txt_titol">			
-	Butaques de sessio
+	Butaques de la sala
 </span>
 <br /><br />
 <span class="txt">
 	<form name="frm" action="accions.jsp" method="post">
-	<input type="Hidden" name="numButaca" value="" />
+	<input type="Hidden" name="numButaca" value="">
 	número fila
 	<input type="Text" name="nomSala" value="" maxlength="3" class="caixa_text" />
 	<br /><br />
@@ -13,16 +13,9 @@
 	<input type="Text" name="numButaques" value="" maxlength="3" class="caixa_text" />
 	<br /><br />
 	opetativa
-	<input type="Checkbox" name="operativa" value="" disabled class="caixa_text" />
+	<input type="Checkbox" name="operativa" value="" class="caixa_text" />
 	<br /><br />
-	estat
-	<select name="estat" class="caixa_text">
-		<option value="1" />Disponible
-		<option value="2" />Comprada
-		<option value="3" />Reservada
-	</select>
-	<br /><br />
-		<input type="Submit" name="opcio_accio" value="modificar" class="boto_accio" />
+		<input type="Submit" name="opcio_accio" class="boto_accio" value="modificar" />
 	</form>
 	<table border="2">
 		<%

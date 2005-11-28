@@ -27,7 +27,14 @@
 		<%
 	 	if (tipusVenda.compareTo("compra")==0)
 		{
+	 		String entitat = request.getParameter("entitat");
+	 		String oficina = request.getParameter("oficina");
+	 		String control = request.getParameter("control");
+	 		String num_compte = request.getParameter("num_compte");
+	 		String cc = entitat + "-" + oficina + "-" + control + "-" + num_compte;
 		%>
+			Número de compte corrent: <%= cc %>
+			<br /><br />
 			La compra s'ha efectuat correctament.					
 		<%
 		}

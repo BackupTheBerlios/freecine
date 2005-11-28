@@ -1,19 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 <%
+String tipusObjecte = request.getParameter("opcio_menu");
+if (tipusObjecte != null)
+{
+	if (tipusObjecte.compareTo("Pel·lícules")==0)
+	{
+
+	}
+	else
+	{
+		if (tipusObjecte.compareTo("Sales")==0)
+		{
+			
+		}
+		else
+		{
+			if (tipusObjecte.compareTo("Sessions")==0)
+			{
+				
+			}
+			else
+			{
+				
+			}
+			
+		}
+	}
+	%>
+	<br>
+	L'objecte a tractar és : <%=  tipusObjecte %>
+<%
+}
+else
+{
+%>
+<br>
+No ha arribat cap objecte
+<%
+}
+
 String accio = request.getParameter("opcio_accio");	
 if (accio != null)
 {
 	if (accio.compareTo("afegir")==0)
 	{
-		
+
 	}
 	else
 	{
@@ -35,14 +65,31 @@ if (accio != null)
 		}
 	}
 %>
-ha arribat a accions: <%=  accio %>
+<br>
+L'acció a fer és accions: <%=  accio %>
 <%
 }
 else
 {
 %>
-no ha arribat res
+<br>
+No ha arribat cap acció
 <%
-}%>
-</body>
-</html>
+}
+
+String id = request.getParameter("id");	
+if (id != null)
+{
+%>
+<br>
+L'id del objecte és: <%=  id %>
+<%
+}
+else
+{
+%>
+<br>
+No ha arribat cap id
+<%
+}
+%>

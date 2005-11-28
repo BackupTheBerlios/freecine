@@ -1,13 +1,24 @@
 <span class="txt_titol">			
-	Películes
+	Pel·lícules
 </span>
 <br /><br />
 <span class="txt">
 
-<form name="frmadmpelicules" action="accions.jsp" method="post">
-<input type="Hidden" name="id" class="caixa_text" value="" />
+<jsp:include page="accions.jsp"/>
+
+<form name="frmadmpelicules" action="default.jsp" method="post">
+<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
 <div id="caixa_pelicules">
 <div id="columna1">
+	<%
+		String id = request.getParameter("id");	
+		String idtxt = "";
+		if (id != null)
+		{
+			idtxt = id;
+		}
+	%>
+	<input type="Hidden" name="id" class="caixa_text" value="<%= idtxt %>" />
 	títol
 	<input type="Text" name="titol" class="caixa_text" value="" />
 	<br /><br />
@@ -55,11 +66,24 @@
 	<input type="File" name="imatge" class="caixa_text"  value="" />
 </div>
 </div>
+<%
+	String idPelicula = request.getParameter("id");
+	if ((idPelicula == null) || (idPelicula == ""))
+	{
+%>
 <input type="Submit" name="opcio_accio" value="afegir" class="boto_accio" /> 
-<input type="Submit" name="opcio_accio" value="modificar" class="boto_accio" />
-<input type="Submit" name="opcio_accio" value="eliminar" class="boto_accio" />
+<%
+	}
+	else
+	{
+%>
+		<input type="Submit" name="opcio_accio" value="modificar" class="boto_accio" />
+		<input type="Submit" name="opcio_accio" value="eliminar" class="boto_accio" />
+<%
+	}
+%>
 </form>
-<table border="2">
+<table>
 	<tr>
 		<td></td>
 		<td><strong>títol</strong></td>
@@ -68,14 +92,34 @@
 		<td><strong>director</strong></td>
 		<td><strong>any</strong></td>
 	</tr>
+	<form name="frmadmpelicules" action="default.jsp" method="post">
 	<tr>
-		<td><a href="" class="web">Triar</a></td>
+		<td>
+			<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
+			<input type="Hidden" name="id" class="caixa_text" value="1" />
+			<input type="Submit" name="opcio_accio" value=">" class="boto_horari" />
+		</td>
 		<td>match point</td>
 		<td>match point</td>
 		<td>U.S.A</td>
 		<td>Woody Allen</td>
 		<td>2005</td>
 	</tr>
+	</form>
+	<form name="frmadmpelicules" action="default.jsp" method="post">
+	<tr class="parell">
+		<td>
+			<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
+			<input type="Hidden" name="id" class="caixa_text" value="2" />
+			<input type="Submit" name="opcio_accio" value=">" class="boto_horari" />
+		</td>
+		<td>match point dsfds sdgfdsfd sfds f</td>
+		<td>match point  dsfdsf </td>
+		<td>U.S.A sdfs</td>
+		<td>Woody Allen dsf fsdfs </td>
+		<td>2005</td>
+	</tr>
+	</form>
 </table>
 
 
