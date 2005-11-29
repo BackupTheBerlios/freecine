@@ -11,6 +11,37 @@
 		<servlet-name>GetCatalegPeliculesServlet</servlet-name>
 		<servlet-class>servlets.gestioCinema.gestioPelicules.GetCatalegPeliculesServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>Obte tots els detalls de la pelicula</description>
+		<display-name>GetDetallPeliculaServlet</display-name>
+		<servlet-name>GetDetallPeliculaServlet</servlet-name>
+		<servlet-class>servlets.gestioCinema.gestioPelicules.GetDetallPeliculaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>Obte tots els detalls de la pelicula per modificar</description>
+		<display-name>GetModifcarPeliculaServlet</display-name>
+		<servlet-name>GetModficarPeliculaServlet</servlet-name>
+		<servlet-class>servlets.gestioCinema.gestioPelicules.GetModificarPeliculaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>Obte tots els detalls de la pelicula per confirmar l'eliminació</description>
+		<display-name>GetEliminarPeliculaServlet</display-name>
+		<servlet-name>GetEliminarPeliculaServlet</servlet-name>
+		<servlet-class>servlets.gestioCinema.gestioPelicules.GetEliminarServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>Modifica tots els detalls d'una pelicula</description>
+		<display-name>ModificarPeliculaServlet</display-name>
+		<servlet-name>ModificarPeliculaServlet</servlet-name>
+		<servlet-class>	servlets.gestioCinema.gestioPelicules.ModificarPeliculaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>Elimina la pelicula amb el id</description>
+		<display-name>EliminarPeliculaServlet</display-name>
+		<servlet-name>EliminarPeliculaServlet</servlet-name>
+		<servlet-class>servlets.gestioCinema.gestioPelicules.EliminarPeliculaServlet</servlet-class>
+	</servlet>
+	
 
 
 	<!-- SERVLETS MAPPING PELICULES-->
@@ -18,10 +49,30 @@
 		<servlet-name>GetCatalegPeliculesServlet</servlet-name>
 		<url-pattern>/GetCatalegPeliculesServlet</url-pattern>
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>GetDetallPeliculaServlet</servlet-name>
+		<url-pattern>/GetDetallPeliculaServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetModificarPeliculaServlet</servlet-name>
+		<url-pattern>/GetModificarPeliculaServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetEliminarPeliculaServlet</servlet-name>
+		<url-pattern>/GetEliminarPeliculaServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModificarPeliculaServlet</servlet-name>
+		<url-pattern>/ModificarPeliculaServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EliminarPeliculaServlet</servlet-name>
+		<url-pattern>/EliminarPeliculaServlet</url-pattern>
+	</servlet-mapping>
+	
 
 
 	<welcome-file-list>
-		<welcome-file>intranet/index.jsp </welcome-file>
+		<welcome-file>index.jsp </welcome-file>
 	</welcome-file-list>
 </web-app>

@@ -12,19 +12,26 @@
 
 <table>
 	
-	<% 	Vector catalegPelicules = (Vector) session.getAttribute("catalegPelicules");
-		Iterator itPelicules = catalegPelicules.iterator();
-		while(itPelicules.hasNext()){
+	<% 	
+		Vector catalegPelicules = (Vector) session.getAttribute("catalegPelicules");
+		if(catalegPelicules!=null){
+			Iterator itPelicules = catalegPelicules.iterator();
+			while(itPelicules.hasNext()){
 			Pelicula pelicula = (Pelicula)itPelicules.next();
-		%>
+	%>
 		<tr>
 			<td><%=pelicula.getTitol()%> </td>
 			<td><%=pelicula.getDirector()%></td>
 			<td><%=pelicula.getDurada()%></td>
 			<td><%=pelicula.getEdatRecomenada()%></td>
-			<td><a href="./getPeliculaServlet?id="+<%=pelicula.getId()%>>vereu detall</a></td>
+			<td><a href="./GetDetallPeliculaServlet?id="+<%=pelicula.getId()%>>vereu detalls</a></td>
+			<td><a href="./GetModificarPeliculaServlet?id="+<%=pelicula.getId()%>>modificar</a></td>
+			<td><a href="./GetEliminarPeliculaServlet?id="+<%=pelicula.getId()%>>eliminar</a></td>
 		</tr>
-		<%}%>
+	<%
+			}
+		}
+	%>
 </table>
 </body>
 </html>
