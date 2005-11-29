@@ -1,0 +1,165 @@
+body {
+background-color: #ffffff;
+/*#DCDBD9;*/
+border: 1px ridge #7B7B7B;
+margin: 0 0 0 0px;
+padding: 0 0 0 0px;
+width: 800px;
+min-height: 600px;
+_height: 600px;
+}
+
+table {
+	background-color :#7B7B7B;
+	margin: 0 0 0 0px;
+	border: 0px;
+}
+
+tr {
+	background-color :#FFFFFF;
+}
+
+td {
+	text-align : center;
+	text-decoration : none;
+	vertical-align : baseline;
+}
+.parell {
+		background-color :#CDBCEC;
+	}
+	
+.titol_cinenline {
+font-family: verdana,arial,sans-serif;
+font-size: 35px;
+}
+
+.titol_o {
+font-family: verdana,arial,sans-serif;
+color:#2F82F2;
+}
+
+.txt_autors {
+font-family: verdana,arial,sans-serif;
+font-size: 10px;
+panose-1: 2 4 5 2 5 4 5 9 3 3;
+}
+
+.txt_titol {
+font-family: verdana,arial,sans-serif;
+font-size: 12px;
+font-weight:bold;
+}
+
+.txt {
+font-family: verdana,arial,sans-serif;
+font-size: 10px;
+}
+
+.caixa_text{
+	background-color : #5D4981;
+	border : thick double #C0C0C0;
+	border-right-width : 1px;
+	border-top-width : 1px;
+	border-left-width : 1px;
+	border-bottom-width : 1px;
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	font-weight : none;
+	color : white;
+	text-decoration : none;
+	text-transform : lowercase;
+	vertical-align : middle;
+}
+
+a.menudret:link {
+	background-color : #5D4981;
+	background-position : center;
+	border : thick none #C0C0C0;
+	border-right-width : 2px;
+	border-top-width : 2px;
+	border-left-width : 2px;
+	border-bottom-width : 2px;
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	font-weight : bold;
+	color : white;
+	height : 30px;
+	text-align : center;
+	text-decoration : none;
+	text-transform : uppercase;
+	vertical-align : top;
+	width : 150px;
+}
+a.menudret:visited {
+background-color : #5D4981;
+	background-position : center;
+	border : thick none #C0C0C0;
+	border-right-width : 2px;
+	border-top-width : 2px;
+	border-left-width : 2px;
+	border-bottom-width : 2px;
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	font-weight : bold;
+	color : white;
+	height : 30px;
+	text-align : center;
+	text-decoration : none;
+	text-transform : uppercase;
+	vertical-align : top;
+	width : 150px;
+}
+a.menudret:hover {
+background-color : #000000;
+	background-position : center;
+	border : thick none #C0C0C0;
+	border-right-width : 2px;
+	border-top-width : 2px;
+	border-left-width : 2px;
+	border-bottom-width : 2px;
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	font-weight : bold;
+	color : white;
+	height : 30px;
+	text-align : center;
+	text-decoration : none;
+	text-transform : uppercase;
+	vertical-align : top;
+	width : 150px;
+}
+
+
+a.web:link {
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	color : #5D4981;
+	text-decoration : none;
+}
+a.web:visited {
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	color : #5D4981;
+	text-decoration : none;
+}
+a.web:hover {
+	font-family : verdana, monospace;
+	font-size : 10px;
+	font-style : normal;
+	font-variant : normal;
+	color : #C0C0C0;
+	text-decoration : none;
+}
+
