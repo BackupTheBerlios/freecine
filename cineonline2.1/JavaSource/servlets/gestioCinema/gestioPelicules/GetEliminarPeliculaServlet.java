@@ -2,9 +2,9 @@ package servlets.gestioCinema.gestioPelicules;
 
 import gestioCinema.ControladorException;
 import gestioCinema.gestioPelicules.ControladorPelicules;
+import gestioCinema.gestioPelicules.Pelicula;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class for Servlet: GetDetallPeliculaServlet
  *
  */
- public class GetCatalegPeliculesServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
+ public class GetEliminarPeliculaServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
     /**
 	 * 
 	 */
@@ -23,18 +23,20 @@ import javax.servlet.http.HttpServletResponse;
 	private String urlExit="/jspIvan/catalegPelicules.jsp";
 	private String urlError="/jspIvan/catalegPelicules.jsp";
 
-
-	public GetCatalegPeliculesServlet() {
+	public GetEliminarPeliculaServlet() {
 		super();
 	}   	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}  	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ControladorPelicules ctrlPelicules;
-		 
+		String id = request.getParameter("id");
 		try {
 			ctrlPelicules = new ControladorPelicules();
-			Vector catalegPelicules = ctrlPelicules.getPelicules();		
-			request.getSession().setAttribute("catalegPelicules", catalegPelicules);		
+			Pelicula pelicula = ctrlPelicules.getPelicula(Integer.parseInt(id));		
+			request.getSession().setAttribute("pelicula", pelicula);		
 			
 		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlExit);
 		    rd.forward(request, response);
@@ -43,11 +45,5 @@ import javax.servlet.http.HttpServletResponse;
 		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
 		    rd.forward(request, response);
 		}
-	}  	
-	
-	  	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}   	  	    
 }
-

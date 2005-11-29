@@ -134,7 +134,45 @@ public class Controlador {
 		
 	}
 	
+	public void cerrarBDD()throws ControladorException{
+		/*
+		 * Tenca la conexió de la base de dades
+		 */
+		try{
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.err.println("[Controlador]:[cerrarBDD] -> Error close");
+			e.printStackTrace();
+		}catch(Exception e1){
+			System.err.println("[Controlador]:[cerrarBDD] -> Error close");
+			e1.printStackTrace();
+		}
+		
+	}
 	
+	public Vector toVector(ResultSet rs) throws ControladorException{
+		/*
+		 * Converteix un ResultSet a Vector de Vectors
+		 */
+		Vector rows = new Vector();
+		try{
+			while (rs.next()) {
+				Vector newRow = new Vector();
+				for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+					newRow.addElement(rs.getObject(i));
+				}
+				rows.addElement(newRow);
+			}
+			return rows;
+			
+		}catch(SQLException e){
+			System.err.println("[Controlador]:[toVector]");
+			e.printStackTrace();
+			throw new ControladorException("[Controlador]:[toVector]");
+		}
+	}
 	public Vector selectVector(String query) throws ControladorException{
 		/*
 		 * Realitza un query concreta
@@ -182,43 +220,13 @@ public class Controlador {
 		}
 	}
 	
-	public void cerrarBDD()throws ControladorException{
-		/*
-		 * Tenca la conexió de la base de dades
-		 */
-		try{
-			rs.close();
-			stmt.close();
-			conn.close();
-		}catch(SQLException e){
-			System.err.println("[Controlador]:[cerrarBDD] -> Error close");
-			e.printStackTrace();
-		}catch(Exception e1){
-			System.err.println("[Controlador]:[cerrarBDD] -> Error close");
-			e1.printStackTrace();
-		}
-		
-	}
-	
-	public Vector toVector(ResultSet rs) throws ControladorException{
-		/*
-		 * Converteix un ResultSet a Vector de Vectors
-		 */
-		Vector rows = new Vector();
-		try{
-			while (rs.next()) {
-				Vector newRow = new Vector();
-				for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-					newRow.addElement(rs.getObject(i));
-				}
-				rows.addElement(newRow);
-			}
-			return rows;
+	public Vector execute(String query) throws ControladorException{
+		if(query.toLowerCase().startsWith("select")){
+			return selectVector(query);
 			
-		}catch(SQLException e){
-			System.err.println("[Controlador]:[toVector]");
-			e.printStackTrace();
-			throw new ControladorException("[Controlador]:[toVector]");
+		}else{
+			update(query);
+			return new Vector();
 		}
 	}
 }

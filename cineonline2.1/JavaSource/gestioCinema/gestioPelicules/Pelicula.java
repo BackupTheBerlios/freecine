@@ -6,6 +6,7 @@
  */
 package gestioCinema.gestioPelicules;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -331,7 +332,23 @@ public class Pelicula {
 	}
 	
 	public String sqlUpdate(){
-		return null;
+		Iterator itCamps = getCamps().iterator();
+		Iterator itValors = getValors().iterator();
+		String values = "";
+		
+		if(itCamps.hasNext() && itValors.hasNext()){
+			/*Treiem el id perque la base de dades s'encarrega*/
+			itCamps.next();
+			itValors.next();
+		}
+		
+		while(itCamps.hasNext() && itValors.hasNext()){
+			values = values + itCamps.next() +" = "+itValors.next();
+			if(itValors.hasNext()){
+				values = values +", ";
+			}
+		}
+		return values;
 	}
 	
 	public String sqlDelete(){

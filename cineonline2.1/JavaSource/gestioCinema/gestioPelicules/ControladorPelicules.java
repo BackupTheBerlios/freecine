@@ -49,26 +49,28 @@ public class ControladorPelicules extends Controlador{
 
 	public Vector getPelicules() throws ControladorException{
 		ResultSet rsPelicules;
-		String camps = Pelicula.getCamps().toString();
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
+		String query = "SELECT  " +
+							"titol, " +
+							"titol_original, " +
+							"durada, " +
+							"nacionalitat, " +
+							"edat_recomanada, " +
+							"tius_color, " +
+							"tipus_so, " +
+							"genere, " +
+							"director, " +
+							"guionista, " +
+							"productor, " +
+							"actors, " +
+							"sinopsis, " +
+							"url_web, " +
+							"url_imatge " +
+						"FROM Pelicula";
 		
-		/*rsPelicules = selectRS("SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula");*/
-		rsPelicules = selectRS(	"SELECT  " +
-								"titol, " +
-								"titol_original, " +
-								"durada, " +
-								"nacionalitat, " +
-								"edat_recomanada, " +
-								"tius_color, " +
-								"tipus_so, " +
-								"genere, " +
-								"director, " +
-								"guionista, " +
-								"productor, " +
-								"actors, " +
-								"sinopsis, " +
-								"url_web, " +
-								"url_imatge " +
-								"FROM Pelicula");
+		/*rsPelicules = selectRS(query);*/
+		rsPelicules = selectRS(query);
 		
 		try {
 			return toVectorPelicules(rsPelicules);
@@ -78,4 +80,42 @@ public class ControladorPelicules extends Controlador{
 		}
 	}
 
+	public Pelicula getPelicula(int id) throws ControladorException{
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula WHERE id="+id;";*/
+		
+		String query ="SELECT  " +
+						"titol, " +
+						"titol_original, " +
+						"durada, " +
+						"nacionalitat, " +
+						"edat_recomanada, " +
+						"tius_color, " +
+						"tipus_so, " +
+						"genere, " +
+						"director, " +
+						"guionista, " +
+						"productor, " +
+						"actors, " +
+						"sinopsis, " +
+						"url_web, " +
+						"url_imatge " +
+					" FROM Pelicula" +
+					" WHERE id="+id;
+							
+		Pelicula pelicula;
+
+		pelicula = (Pelicula) (selectVector(query)).firstElement();
+		return pelicula;
+	}
+
+	public void eliminarPelicula(int id) throws ControladorException {
+		String query ="DELETE FROM PELICULA WHERE id="+id;
+		update(query);
+	}
+	
+	public void modificarPelicula(Pelicula pelicula) throws ControladorException {
+		String query ="UPDATE PELICULA SET "+pelicula.sqlUpdate()+" WHERE id = "+pelicula.getId();
+		update(query);
+	}
 }
