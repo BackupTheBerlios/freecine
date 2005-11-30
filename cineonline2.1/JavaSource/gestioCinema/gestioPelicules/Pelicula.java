@@ -18,7 +18,7 @@ import java.util.Vector;
 public class Pelicula {
 	private int id;
 	private String titol;
-	private String titoloriginal;
+	private String titolOriginal;
 	private int anny;
 	private int durada;
 	private String nacionalitat;
@@ -42,7 +42,7 @@ public class Pelicula {
 	public Pelicula() {
 		id = -1;
 		titol = "";
-		titoloriginal = "";
+		titolOriginal = "";
 		anny = -1;
 		durada = -1;
 		nacionalitat = "";
@@ -63,7 +63,7 @@ public class Pelicula {
 /*	public Pelicula(
 			int id_new,
 			String titol_new,
-			String titoloriginal_new,
+			String titolOriginal_new,
 			int anny_new,
 			int durada_new,
 			String nacionalitat_new,
@@ -81,7 +81,7 @@ public class Pelicula {
 		
 		this.id=id_new;
 		this.titol=titol_new;
-		this.titoloriginal=titoloriginal_new;
+		this.titolOriginal=titolOriginal_new;
 		this.anny=anny_new;
 		this.durada=durada_new;
 		this.nacionalitat=nacionalitat_new;
@@ -100,7 +100,7 @@ public class Pelicula {
 		
 	public void setAll(int id_new,
 			String titol_new,
-			String titoloriginal_new,
+			String titolOriginal_new,
 			int anny_new,
 			int durada_new,
 			String nacionalitat_new,
@@ -118,7 +118,7 @@ public class Pelicula {
 		
 		this.id=id_new;
 		this.titol=titol_new;
-		this.titoloriginal=titoloriginal_new;
+		this.titolOriginal=titolOriginal_new;
 		this.anny=anny_new;
 		this.durada=durada_new;
 		this.nacionalitat=nacionalitat_new;
@@ -247,12 +247,12 @@ public class Pelicula {
 		this.titol = titol;
 	}
 
-	public String getTitoloriginal() {
-		return titoloriginal;
+	public String gettitolOriginal() {
+		return titolOriginal;
 	}
 
-	public void setTitoloriginal(String titoloriginal) {
-		this.titoloriginal = titoloriginal;
+	public void settitolOriginal(String titolOriginal) {
+		this.titolOriginal = titolOriginal;
 	}
 
 	public String getUrlImatge() {
@@ -304,7 +304,7 @@ public class Pelicula {
 		valorsPelicula = new Vector();
 		valorsPelicula.add(""+id);
 		valorsPelicula.add(titol);
-		valorsPelicula.add(titoloriginal);
+		valorsPelicula.add(titolOriginal);
 		valorsPelicula.add(""+anny);
 		valorsPelicula.add(""+durada);
 		valorsPelicula.add(nacionalitat);
