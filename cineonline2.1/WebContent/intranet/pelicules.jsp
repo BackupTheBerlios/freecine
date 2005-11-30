@@ -1,9 +1,63 @@
-<span class="txt_titol">			
-	Pel·lícules
-</span>
-<br /><br />
-<span class="txt">
+<%@ page import="java.util.Vector" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="gestioCinema.gestioPelicules.Pelicula" %>
+<jsp:include page="esquelet_adm/header.jsp"/>
+	<div id="top">
+		<jsp:include page="esquelet_adm/top.jsp"/>		
+	</div>
+	<div id="left">
+		<jsp:include page="esquelet_adm/menu.jsp"/>
+	</div>
+	<div id="center">
+		<span class="txt_titol">			
+			Pel·lícules
+		</span>
+		<br /><br />
+		<span class="txt">
+			<table border="2">
+				<tr>
+					<td></td>
+					<td><strong>títol</strong></td>
+					<td><strong>títol original</strong></td>
+					<td><strong>nacionalitat</strong></td>
+					<td><strong>director</strong></td>
+					<td><strong>any</strong></td>
+				</tr>
 
+				<% 
+				Vector llista = new Vector();	
+				llista = (Vector) session.getAttribute("llistaPelicules");
+
+				if(llista!=null)
+				{
+					Iterator it = llista.iterator();
+					while(it.hasNext())
+					{
+						Pelicula pelicula = (Pelicula)it.next();
+				%>
+				<tr>
+					<td></td>
+					<td><%=pelicula.getTitol()%></td>
+					<td><%=pelicula.getTitolOriginal()%></td>
+					<td><%=pelicula.getNacionalitat()%></td>
+					<td><%=pelicula.getDirector()%></td>
+					<td><%=pelicula.getAnny()%></td>
+				</tr>
+				<%
+					}
+				}
+				%>
+			</table>
+		</span>	
+	</div>
+	<div id="right">
+			<jsp:include page="esquelet_adm/navegadreta.jsp"/>
+	</div>	
+<jsp:include page="esquelet_adm/footer.jsp"/>
+
+
+
+<!--
 <jsp:include page="accions.jsp"/>
 
 <form name="frmadmpelicules" action="default.jsp" method="post">
@@ -82,46 +136,4 @@
 <%
 	}
 %>
-</form>
-<table>
-	<tr>
-		<td></td>
-		<td><strong>títol</strong></td>
-		<td><strong>títol original</strong></td>
-		<td><strong>nacionalitat</strong></td>
-		<td><strong>director</strong></td>
-		<td><strong>any</strong></td>
-	</tr>
-	<form name="frmadmpelicules" action="default.jsp" method="post">
-	<tr>
-		<td>
-			<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
-			<input type="Hidden" name="id" class="caixa_text" value="1" />
-			<input type="Submit" name="opcio_accio" value=">" class="boto_horari" />
-		</td>
-		<td>match point</td>
-		<td>match point</td>
-		<td>U.S.A</td>
-		<td>Woody Allen</td>
-		<td>2005</td>
-	</tr>
-	</form>
-	<form name="frmadmpelicules" action="default.jsp" method="post">
-	<tr class="parell">
-		<td>
-			<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
-			<input type="Hidden" name="id" class="caixa_text" value="2" />
-			<input type="Submit" name="opcio_accio" value=">" class="boto_horari" />
-		</td>
-		<td>match point dsfds sdgfdsfd sfds f</td>
-		<td>match point  dsfdsf </td>
-		<td>U.S.A sdfs</td>
-		<td>Woody Allen dsf fsdfs </td>
-		<td>2005</td>
-	</tr>
-	</form>
-</table>
-
-
-</span>
-<br /><br />
+</form>-->
