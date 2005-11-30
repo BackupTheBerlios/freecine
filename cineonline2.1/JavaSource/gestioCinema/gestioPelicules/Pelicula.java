@@ -247,11 +247,11 @@ public class Pelicula {
 		this.titol = titol;
 	}
 
-	public String gettitolOriginal() {
+	public String getTitolOriginal() {
 		return titolOriginal;
 	}
 
-	public void settitolOriginal(String titolOriginal) {
+	public void setTitolOriginal(String titolOriginal) {
 		this.titolOriginal = titolOriginal;
 	}
 
