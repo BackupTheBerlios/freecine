@@ -59,45 +59,6 @@ public class Pelicula {
 		urlImatge = "";
 	}
 	
-/*Amb EJB el constructor a de ser buit de parametres*/
-/*	public Pelicula(
-			int id_new,
-			String titol_new,
-			String titolOriginal_new,
-			int anny_new,
-			int durada_new,
-			String nacionalitat_new,
-			int edatRecomenada_new,
-			String tipusColor_new,
-			String tipusSo_new,
-			String genere_new,
-			String director_new,
-			String guionista_new,
-			String productor_new,
-			String actors_new,
-			String sinopsis_new,
-			String urlWeb_new,
-			String urlImatge_new) {
-		
-		this.id=id_new;
-		this.titol=titol_new;
-		this.titolOriginal=titolOriginal_new;
-		this.anny=anny_new;
-		this.durada=durada_new;
-		this.nacionalitat=nacionalitat_new;
-		this.edatRecomenada=edatRecomenada_new;
-		this.tipusColor=tipusColor_new;
-		this.tipusSo=tipusSo_new;
-		this.genere=genere_new;
-		this.director=director_new;
-		this.guionista=guionista_new;
-		this.productor=productor_new;
-		this.actors=actors_new;
-		this.sinopsis=sinopsis_new;
-		this.urlWeb=urlWeb_new;
-		this.urlImatge=urlImatge_new;
-	}*/
-		
 	public void setAll(int id_new,
 			String titol_new,
 			String titolOriginal_new,

@@ -12,10 +12,6 @@ public class ControladorPelicules extends Controlador{
 		super();
 	}
 	
-	public void afegirPelicula(Pelicula pelicula){
-		
-	}
-	
 	public Vector toVectorPelicules(ResultSet rs) throws SQLException {
 		/*
 		 * Converteix un ResultSet a Vector de Pelicules
@@ -108,6 +104,8 @@ public class ControladorPelicules extends Controlador{
 		pelicula = (Pelicula) (selectVector(query)).firstElement();
 		return pelicula;
 	}
+	
+	
 
 	public void eliminarPelicula(int id) throws ControladorException {
 		String query ="DELETE FROM PELICULA WHERE id="+id;
@@ -117,5 +115,9 @@ public class ControladorPelicules extends Controlador{
 	public void modificarPelicula(Pelicula pelicula) throws ControladorException {
 		String query ="UPDATE PELICULA SET "+pelicula.sqlUpdate()+" WHERE id = "+pelicula.getId();
 		update(query);
+	}
+	
+	public void afegirPelicula(Pelicula pelicula){
+		
 	}
 }

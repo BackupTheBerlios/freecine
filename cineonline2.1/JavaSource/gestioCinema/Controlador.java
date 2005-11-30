@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.Vector;
 
 public class Controlador {
-	private String driverBBDD;
-	private String url;
-	private String usuari;
-	private String password;
-	
+	private final String DRIVERBBDD = "postgres";
+	private final String URL = "s0lar1s";
+	private final String USUARI = "org.postgresql.Driver";;
+	private final String PASSWORD ="s0lar1s";	
+
 	private Connection conn;
 	private Statement stmt;
 	private ResultSet rs;
@@ -27,114 +27,22 @@ public class Controlador {
 		 * usuari i password
 		 */
 		
-		usuari="postgres";
-		password="s0lar1s";
-		driverBBDD="org.postgresql.Driver";
-		url="jdbc:postgresql://127.0.0.1/cineonline";
-		
 		try{
-			Class.forName(driverBBDD);
-			conn = DriverManager.getConnection(url, usuari, password);
+			Class.forName(DRIVERBBDD);
+			conn = DriverManager.getConnection(URL, USUARI, PASSWORD);
 			stmt = conn.createStatement();
 		}catch(ClassNotFoundException e){
-			System.err.println("[Controlador]: configurar -> Error: "+url+", "+usuari+"\n"+e.getMessage());
+			System.err.println("[Controlador]: configurar -> Error: "+URL+", "+USUARI+"\n"+e.getMessage());
 			e.printStackTrace();
-			throw new ControladorException("[Controlador]: configurar -> Error Class: "+url+", "+usuari+"\n"+e.getMessage());
+			throw new ControladorException("[Controlador]: configurar -> Error Class: "+URL+", "+USUARI+"\n"+e.getMessage());
 		}catch(SQLException e1){
-			System.err.println("[Controlador]: configurar -> Error: "+url+", "+usuari+"\n"+e1.getMessage());
+			System.err.println("[Controlador]: configurar -> Error: "+URL+", "+USUARI+"\n"+e1.getMessage());
 			e1.printStackTrace();
-			throw new ControladorException("[Controlador]: configurar -> Error SQL: "+url+", "+usuari+"\n"+e1.getMessage());
+			throw new ControladorException("[Controlador]: configurar -> Error SQL: "+URL+", "+USUARI+"\n"+e1.getMessage());
 		}
 	}
 	
-	public Controlador(String driverBBD){
-		/* 
-		 * Constructor amb driver, després cal configurar
-		 * per utilitzar l'accés a les bases de dades
-		 */
-		this.driverBBDD = driverBBD;
-	}
-	
-	public Controlador(String driverBBD,String url) {
-		/*
-		 * Constructor amb driver i la seba ubicacio.
-		 * S'utilitza quan la base de dades no necessita
-		 * usuari i password.
-		 * */
-		try{
-			Class.forName(driverBBD);
-			conn = DriverManager.getConnection(url);
-			stmt = conn.createStatement();
-		}catch(ClassNotFoundException e){
-			System.err.println("[Controlador]:[configurar] -> Error:"+url+"\n"+e.getMessage());
-			e.printStackTrace();
-		}catch(SQLException e1){
-			System.err.println("[Controlador]:[configurar] -> Error:"+url+"\n"+e1.getMessage());
-			e1.printStackTrace();
-		}
-	}
-	
-	public Controlador(String driverBBD,String url,String usuario, String password){
-		/*
-		 * Constructor amb driver, ubicacio.
-		 * S'utilitza quan la base de dades necessita
-		 * usuari i password
-		 */
-		try{
-			Class.forName(driverBBD);
-			conn = DriverManager.getConnection(url, usuario, password);
-			stmt = conn.createStatement();
-		}catch(ClassNotFoundException e){
-			System.err.println("[Controlador]:[configurar] -> Error: "+url+", "+usuario+"\n"+e.getMessage());
-			e.printStackTrace();
-		}catch(SQLException e1){
-			System.err.println("[Controlador]:[configurar] -> Error: "+url+", "+usuario+"\n"+e1.getMessage());
-			e1.printStackTrace();
-		}
-	}
-	
-	public void configurar(String url){
-		/*
-		 * En el cas de que només li haguem passat el
-		 * driver i després el volem configurar sense
-		 * que la base de dades necessiti
-		 * nom usuari i contrasenya
-		 */
-		try{
-			Class.forName(driverBBDD);
-			conn = DriverManager.getConnection(url);
-			stmt = conn.createStatement();
-		}catch(ClassNotFoundException e){
-			System.err.println("[Controlador]:[configurar] -> Error: "+url+"\n"+e.getMessage());
-			e.printStackTrace();
-		}catch(SQLException e1){
-			System.err.println("[Controlador]:[configurar] -> Error: "+url+"\n"+e1.getMessage());
-			e1.printStackTrace();
-		}
-	}
-	
-	public void configurar(String url, String usuario, String password){
-		/*
-		 * En el cas de que només li haguem passat el
-		 * driver i després el volem configurar quan
-		 * la base de dades necessiti nom usuari i 
-		 * contrasenya
-		 */
-		try{
-			Class.forName(driverBBDD);
-			conn = DriverManager.getConnection(url, usuario, password);
-			stmt = conn.createStatement();
-		}catch(ClassNotFoundException e){
-			System.err.println("[Controlador]:[configurar] -> "+url+", "+usuario+"\n"+e.getMessage());
-			e.printStackTrace();
-		}catch(SQLException e1){
-			System.err.println("[Controlador]:[configurar] -> "+url+", "+usuario+"\n"+e1.getMessage());
-			e1.printStackTrace();
-		}
-		
-	}
-	
-	public void cerrarBDD()throws ControladorException{
+	public void cerrarBBDD()throws ControladorException{
 		/*
 		 * Tenca la conexió de la base de dades
 		 */
