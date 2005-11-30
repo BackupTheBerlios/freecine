@@ -57,6 +57,13 @@ import javax.servlet.http.HttpServletResponse;
 	}   	 
 
 	private void llistarPeliculesAction() throws ServletException, IOException{
+		/*
+		 * Crida al controlador de pelicules la funcio getPelicules
+		 * on obté un vector de pelicules.
+		 * Posa el vector de pelicules en un atribut de sessio
+		 * Per que la jsp l'agafi session.getAttribute("llistaPelicules")
+		 * i agafi les dades que vulgui de la pelicula
+		 */
 		urlExit="intranet/pelicules.jsp";
 		
 		try {
@@ -74,6 +81,11 @@ import javax.servlet.http.HttpServletResponse;
 	}
 	
 	private void detallPeliculaAction() throws ServletException, IOException{
+		/*
+		 * Mitjançant la id de la pelicula cridem la funcio 
+		 * getPelicula i aquest ens retorna el objecte de la pelicula
+		 * El posem a sessio amb l'atribut de 'pelicula' 
+		 */
 		urlExit="intranet/fitxa-pelicula.jsp";
 		int idPelicula = Integer.parseInt(request.getParameter("idPelicula"));
 		try {
@@ -91,11 +103,32 @@ import javax.servlet.http.HttpServletResponse;
 	}
 	
 	private void afegirPeliculaAction() throws ServletException, IOException{
+		/*
+		 * Afagar les dades de la pelicula, les posa en Pelicula
+		 * Comprova que el format de dades sigui correcte
+		 * Executa al controlador de pelicula afegirPelciual i li pasa
+		 * com a parametre la pelicula
+		 */
+		urlExit="intranet/fitxa-pelicula.jsp";
 	}
 	
 	private void eliminarPeliculaAction() throws ServletException, IOException{
+		/*
+		 * Mitjançant la id de la pelicula cridem la funcio 
+		 * eliminarPelicula i aquest ens retorna el objecte de la pelicula
+		 * I anem a l'accio per anar a pelicules.
+		 */
+		
+		llistarPeliculesAction();
 	}
 
 	private void modificarPeliculaAction() throws ServletException, IOException{
+		/*
+		 * Afagar les dades de la pelicula, les posa en Pelicula
+		 * Comprova que el format de dades sigui correcte
+		 * Executa al controlador de pelicula modificarPelciual i li pasa
+		 * com a parametre la pelicula i li retorna el mateix objecte actualitzat
+		 */
+		urlExit="intranet/fitxa-pelicula.jsp";
 	}
 }
