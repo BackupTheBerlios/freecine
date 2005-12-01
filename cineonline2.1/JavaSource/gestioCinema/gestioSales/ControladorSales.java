@@ -21,8 +21,8 @@ import java.util.Vector;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class ControladorSalas extends Controlador{
-	public ControladorSalas() throws ControladorException {
+public class ControladorSales extends Controlador{
+	public ControladorSales() throws ControladorException {
 		super();
 	}
 	
