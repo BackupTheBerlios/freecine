@@ -12,16 +12,29 @@
 		<servlet-class>servlets.GestioPeliculesServlet</servlet-class>
 	</servlet>
 	
+	<!-- SERVLETS SALES-->
+	<servlet>
+		<description>Fa de controlador de la gestio de les sales</description>
+		<display-name>GestioSalesServlet</display-name>
+		<servlet-name>GestioSalesServlet</servlet-name>
+		<servlet-class>servlets.GestioSalesServlet</servlet-class>
+	</servlet>
+	
 
 	<!-- SERVLETS MAPPING PELICULES-->
 	<servlet-mapping>
 		<servlet-name>GestioPeliculesServlet</servlet-name>
 		<url-pattern>/GestioPeliculesServlet</url-pattern>
 	</servlet-mapping>
-	
 
+	<!-- SERVLETS MAPPING SALES-->
+	<servlet-mapping>
+		<servlet-name>GestioSalesServlet</servlet-name>
+		<url-pattern>/GestioSalesServlet</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
+		<welcome-file>intranet/index.jsp </welcome-file>
 		<welcome-file>extranet/index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
