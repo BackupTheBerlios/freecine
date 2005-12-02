@@ -2,7 +2,6 @@ package gestioCinema.gestioSessions;
 import gestioCinema.gestioPelicules.Pelicula;
 import gestioCinema.gestioSales.Sala;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 public class Sessio {

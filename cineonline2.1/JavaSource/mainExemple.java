@@ -1,8 +1,7 @@
-import java.sql.SQLException;
+
 import java.util.Iterator;
 import java.util.Vector;
 
-import javax.swing.text.StyledEditorKit.ItalicAction;
 
 import gestioCinema.Controlador;
 import gestioCinema.ControladorException;

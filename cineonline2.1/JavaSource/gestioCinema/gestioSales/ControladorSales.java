@@ -8,11 +8,9 @@ package gestioCinema.gestioSales;
 
 import gestioCinema.Controlador;
 import gestioCinema.ControladorException;
-import gestioCinema.gestioPelicules.Pelicula;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Vector;
 
 /**
