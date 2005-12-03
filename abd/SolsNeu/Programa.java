@@ -28,10 +28,16 @@ public class Programa {
 		
 		String url = "jdbc:postgresql://127.0.0.1/abd";
 		
+			
+		System.setProperty("java.net.preferIPv4Stack","true");
+		System.setProperty("java.net.preferIPv6Addresses","false");
+		
 		
 		// Nombre de usuario
 		String user = "victor";
-		String pwd = "254ff452";
+		String pwd = "";
+		
+		//System.out.println(System.getProperty("user.name"));
 		
 		
 		System.out.println("Cargando driver...");
