@@ -10,6 +10,6 @@ package SolsNeu;
  * @email victorbcn@gmail.com
  *
  */
-public class controlador {
+public class Controlador {
 
 }
