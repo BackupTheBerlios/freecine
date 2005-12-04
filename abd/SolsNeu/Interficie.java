@@ -1,12 +1,12 @@
-package SolsNeu;
-
-
 /**
  * @author victor
  * @fecha 03-dic-2005
  * @email victorbcn@gmail.com
  *
  */
+
+package SolsNeu;
+
 public class Interficie {
 	
 	private Controlador contr;
@@ -31,7 +31,6 @@ public class Interficie {
 		System.out.println("Bienvenidos a SolsNeu v"+version);
 		user = SimpleInput.getString("Usuario: ");
 		pwd = SimpleInput.getString("Password");
-		
 		contr.login(user,pwd);
 		
 	}

@@ -1,14 +1,14 @@
-package SolsNeu;
-
 /**
  * @author victor
  * @fecha 03-dic-2005
  * @email victorbcn@gmail.com
  *
  */
+
+package SolsNeu;
+
 public class Controlador {
-	
-	
+		
 	private static Interficie ui;
 	private static AccessoDatos bd;
 	private static boolean salida = false;
@@ -20,9 +20,8 @@ public class Controlador {
 	
 	
 	public static void main(String[] args) {
-		
-		
-		// Hay que pasarle como argumento nuestro objeto controlador?
+			
+		// new Controlador() o this?
 		ui = new Interficie(new Controlador());
 		ui.login();
 		
@@ -38,13 +37,10 @@ public class Controlador {
 	 * Función salir del Programa
 	 */
 	public void salir(){
-		
 		bd.cerrarConexion();
 		salida = true;
 	}
-	
-	
-	
+		
 	/**
 	 * Función que crea un nuevo objeto del tipo AccessoDatos.
 	 * 
@@ -52,25 +48,36 @@ public class Controlador {
 	 * @param pwd  Password de user.
 	 */
 	public void login(String user, String pwd) {
-		
 		bd = new AccessoDatos(user,pwd, this);
-		
-		
 	}
 	
 	public void consultaDatosPersonales(){
+		
+		String res;
+		res = bd.datosCliente();
+		ui.imprimirResultado(res);		
 		
 	}
 	
 	public void consultaFacturas(){
 		
+		String res;
+		
 	}
 	
 	public void queTengoAlquilado(){
 		
+		String res;
+		res = bd.productosAlquiladosCliente();
+		ui.imprimirResultado(res);
+		
 	}
 	
 	public void productosDisponibles(){
+		
+		String res;
+		res = bd.productosDisponibles();
+		ui.imprimirResultado(res);
 		
 	}
 	
