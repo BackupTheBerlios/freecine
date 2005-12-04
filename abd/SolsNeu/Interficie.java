@@ -1,7 +1,3 @@
-/*
- * Created on 03-dic-2005
- *
- */
 package SolsNeu;
 
 
@@ -17,7 +13,7 @@ public class Interficie {
 	private static String user;
 	private static String pwd;
 	//private static String opcion;
-	private static final String version = "2005.12.03";
+	private static final String version = "2005.12.04";
 	
 	
 	/* Constructor de Clase Interficie */
@@ -40,6 +36,12 @@ public class Interficie {
 		
 	}
 	
+	public void imprimirResultado(String res) {
+		
+		System.out.println(res);
+		SimpleInput.getString("Aprieta una tecla para volver");
+	}
+	
 	public void menu_client() {
 		
 		String opcion;
@@ -56,16 +58,17 @@ public class Interficie {
 		System.out.println();
 		opcion = SimpleInput.getString("Qué opción eliges?");
 		
-		if (opcion.equals("a")) {			
+		if (opcion.equals("a")) {
+			contr.consultaDatosPersonales();
 		}
 		else if (opcion.equals("b")) {
-			
+			contr.consultaFacturas();
 		}
 		else if (opcion.equals("c")) {
-			
+			contr.queTengoAlquilado();
 		}
 		else if (opcion.equals("d")) {
-			
+			contr.productosDisponibles();
 		}
 		else if (opcion.equals("q")) {
 			

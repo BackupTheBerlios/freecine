@@ -58,7 +58,21 @@ public class Controlador {
 		
 	}
 	
+	public void consultaDatosPersonales(){
+		
+	}
 	
+	public void consultaFacturas(){
+		
+	}
+	
+	public void queTengoAlquilado(){
+		
+	}
+	
+	public void productosDisponibles(){
+		
+	}
 	
 	
 	
