@@ -289,7 +289,34 @@ public class Pelicula {
 
 	
 	public String sqlInsert(){
-		return null;
+		Iterator itCamps = getCamps().iterator();
+		Iterator itValors = getValors().iterator();
+		String values = "(";
+		
+		if(itCamps.hasNext() && itValors.hasNext()){
+			/*Treiem el id perque la base de dades s'encarrega*/
+			itCamps.next();
+			itValors.next();
+		}
+		
+		
+		while(itCamps.hasNext()){
+			values = values +", "+itCamps.next();
+			if(itValors.hasNext()){
+				values = values +", "+itCamps.next();
+			}
+		}
+		
+		values = values+") VALUES (";
+		
+		while(itValors.hasNext()){
+			if(itValors.hasNext()){
+				values = values +", "+itValors.next();
+			}
+		}
+		values = values+")";
+		
+		return values;
 	}
 	
 	public String sqlUpdate(){
@@ -316,9 +343,6 @@ public class Pelicula {
 		return null;
 	}
 	
-	public static String sqlSelect(){
-		return null;
-	}
 	
 	public String toString(){
 		return ""+getValors();
