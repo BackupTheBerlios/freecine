@@ -64,7 +64,36 @@ public class ControladorSales extends Controlador{
 	}
 	
 	public Vector getSales() throws ControladorException{
-		return null;
+		ResultSet rsSales;
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
+		String query = "SELECT  " +
+							"titol, " +
+							"titol_original, " +
+							"durada, " +
+							"nacionalitat, " +
+							"edat_recomanada, " +
+							"tius_color, " +
+							"tipus_so, " +
+							"genere, " +
+							"director, " +
+							"guionista, " +
+							"productor, " +
+							"actors, " +
+							"sinopsis, " +
+							"url_web, " +
+							"url_imatge " +
+						"FROM Pelicula";
+		
+		/*rsSales = selectRS(query);*/
+		rsSales = selectRS(query);
+		
+		try {
+			return toVectorSales(rsSales);
+		} catch (SQLException e) {
+			System.err.println("[ControladorSales]:[toVectorSales] Error SQL:"+e.getMessage());
+			throw new ControladorException("[ControladorSales]:[toVectorSales] Error SQL: "+e.getMessage());
+		}
 	}
 	
 	public Sala getSala(int idSala) throws ControladorException{
