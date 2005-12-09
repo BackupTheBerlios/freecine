@@ -109,6 +109,39 @@ public class ControladorPelicules extends Controlador{
 		
 	}
 	
+	public Pelicula getPeliculaPerTitol(String titol) throws ControladorException{
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula WHERE titol="+titol;";*/
+		try {
+			String query ="SELECT  " +
+							"titol, " +
+							"titol_original, " +
+							"durada, " +
+							"nacionalitat, " +
+							"edat_recomanada, " +
+							"tius_color, " +
+							"tipus_so, " +
+							"genere, " +
+							"director, " +
+							"guionista, " +
+							"productor, " +
+							"actors, " +
+							"sinopsis, " +
+							"url_web, " +
+							"url_imatge " +
+						" FROM Pelicula" +
+						" WHERE titol="+titol;
+								
+			Pelicula pelicula;
+		
+			pelicula = (Pelicula) (toVectorPelicules(selectRS(query))).firstElement();
+			return pelicula;
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
+		}
+	}
+	
 	
 
 	public void eliminarPelicula(int id) throws ControladorException {
