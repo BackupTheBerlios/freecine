@@ -7,6 +7,6 @@
 <title>Menú Gestió Pel·lícules</title>
 </head>
 <body>
-<a href="../GetCatalegPeliculesServlet">Catàleg de Pel·lícules </a>
+<a href="../GestioPeliculaServlet?accio=llistaPelicules">Catàleg de Pel·lícules </a>
 </body>
 </html>
