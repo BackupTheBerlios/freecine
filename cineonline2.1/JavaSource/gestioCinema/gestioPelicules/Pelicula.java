@@ -282,11 +282,6 @@ public class Pelicula {
 		valorsPelicula.add(urlImatge);	
 		return valorsPelicula;
 	}
-
-	public void setAll(Vector rs){
-
-	}
-
 	
 	public String sqlInsert(){
 		Iterator itCamps = getCamps().iterator();
@@ -325,7 +320,7 @@ public class Pelicula {
 		String values = "";
 		
 		if(itCamps.hasNext() && itValors.hasNext()){
-			/*Treiem el id perque la base de dades s'encarrega*/
+			/*Treiem el id perque el id no es pot modificar*/
 			itCamps.next();
 			itValors.next();
 		}
@@ -338,11 +333,6 @@ public class Pelicula {
 		}
 		return values;
 	}
-	
-	public String sqlDelete(){
-		return null;
-	}
-	
 	
 	public String toString(){
 		return ""+getValors();
