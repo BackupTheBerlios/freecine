@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.Vector;
 
 public class Controlador {
-	private final String DRIVERBBDD = "postgres";
-	private final String URL = "s0lar1s";
-	private final String USUARI = "org.postgresql.Driver";;
+	private final String DRIVERBBDD = "org.postgresql.Driver";;
+	private final String URL = "jdbc:postgressql//localhost:8080/bbddCineOnline";
+	private final String USUARI = "postgres";
 	private final String PASSWORD ="s0lar1s";	
 
 	private Connection conn;
