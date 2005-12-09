@@ -100,6 +100,10 @@ public class ControladorSales extends Controlador{
 		return null;
 	}
 	
+	public Sala getSalaPerNom(String nom) throws ControladorException{
+		return null;
+	}
+	
 	public void eliminarSala(int id) throws ControladorException{
 	}
 	
