@@ -3,6 +3,7 @@ package servlets;
 import gestioCinema.ControladorException;
 import gestioCinema.gestioPelicules.ControladorPelicules;
 import gestioCinema.gestioPelicules.Pelicula;
+import gestioCinema.gestioSessions.Sessio;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -11,6 +12,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class for Servlet: GestioPeliculesServlet
@@ -110,6 +112,59 @@ import javax.servlet.http.HttpServletResponse;
 		 * com a parametre la pelicula
 		 */
 		urlExit="intranet/fitxa-pelicula.jsp";
+		
+		HttpSession session = request.getSession();
+		Pelicula pelicula = new Pelicula();
+		
+		String titol = request.getParameter("titol");
+		String titolOriginal = request.getParameter("titolOriginal");
+		int anny = Integer.parseInt(request.getParameter("anny"));
+		int durada = Integer.parseInt(request.getParameter("durada"));
+		String nacionalitat = request.getParameter("nacionalitat");
+		int edatRecomenada = Integer.parseInt(request.getParameter("edatRecomenada"));
+		String tipusColor = request.getParameter("tipusColor");
+		String tipusSo = request.getParameter("TipusSo");
+		String genere = request.getParameter("genere");
+		String director = request.getParameter("director");
+		String guionista = request.getParameter("guionista");
+		String productor = request.getParameter("productor");
+		String actors = request.getParameter("actors");
+		String sinopsis = request.getParameter("sinopsis");
+		String urlWeb = request.getParameter("urlWeb");
+		String urlImatge = request.getParameter("urlImatge");
+		pelicula.setAll(
+				-1,
+				titol,
+				titolOriginal,
+				anny,
+				durada,
+				nacionalitat,
+				edatRecomenada,
+				tipusColor,
+				tipusSo,
+				genere,
+				director,
+				guionista,
+				productor,
+				actors,
+				sinopsis,
+				urlWeb,
+				urlImatge);	
+				
+		
+		try {
+			
+			ctrlPelicules.afegirPelicula(pelicula);		
+			request.getSession().setAttribute("pelicula", pelicula);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+
 	}
 	
 	private void eliminarPeliculaAction() throws ServletException, IOException{
