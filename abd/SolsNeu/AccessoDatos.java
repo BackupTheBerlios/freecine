@@ -28,7 +28,7 @@ public class AccessoDatos {
 	 * Constructor de Clase AccessoDatos
 	 * 
 	 * @param u Nombre de usuario
-	 * @param p Contraseña
+	 * @param p Contraseï¿½a
 	 * @param c Objeto Controlador
 	 */
 	public AccessoDatos(String u, String p, Controlador c) {
@@ -49,21 +49,21 @@ public class AccessoDatos {
 		
 		try {
 			con = DriverManager.getConnection(url,user,pwd);
-			System.err.println("BD: Conexión realizada.");
+			System.err.println("BD: Conexiï¿½n realizada.");
 			
 		}catch(Exception e) {
-			System.err.println("BD: Intento de conexión fallido");
+			System.err.println("BD: Intento de conexiï¿½n fallido");
 			System.err.println(e.getMessage());
 		}		
 	}
 	
 	/**
-	 * Función cerrar conexión.
+	 * Funciï¿½n cerrar conexiï¿½n.
 	 *
 	 */
 	public void cerrarConexion() {
 		
-		System.out.println("BD: Cerrando conexión...");		
+		System.out.println("BD: Cerrando conexiï¿½n...");		
 		try{
 			con.close();
 		}catch(Exception e){
@@ -78,7 +78,7 @@ public class AccessoDatos {
 	public int tipoUsuario(){
 		
 		
-		return 1;
+		return 2;
 	}
 	
 	
@@ -87,7 +87,7 @@ public class AccessoDatos {
 		ResultSet res;
 
 		// VISTA: vista_dades_client
-		// ABEL: Aquesta vista encara no funciona bé!!!
+		// ABEL: Aquesta vista encara no funciona bï¿½!!!
 		// query = "select * from vista_dades_client";
 		query = "select * from client where login=CURRENT_USER";
 		res = execQuery(con,query);
@@ -130,6 +130,59 @@ public class AccessoDatos {
 		}
 		return r;
 	}
+	
+	public String facturasCliente(){
+		String r,query;
+		ResultSet res;
+		query = "select * from consulta_factures_client()";
+		res = execQuery(con,query);
+		r ="";		
+		try {
+			while(res.next()){
+								
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\t");
+				r = r.concat(res.getString(5)+"\t");
+				r = r.concat(res.getString(6)+"\t");
+				r = r.concat(res.getString(7)+"\t");
+				r = r.concat(res.getString(8)+"\t");
+				r = r.concat(res.getString(9)+"\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+	}
+	
+	public String productosAlquiladosCliente(){
+		String r,query;
+		ResultSet res;
+		query = "select * from consulta_prod_llogats()";
+		res = execQuery(con,query);
+		r ="";		
+		try {
+			while(res.next()){
+								
+				r = r.concat(res.getString(1)+" | ");
+				r = r.concat(res.getString(2)+" | ");
+				r = r.concat(res.getString(3)+" | ");
+				r = r.concat(res.getString(4)+" | ");
+				r = r.concat(res.getString(5)+" | ");
+				r = r.concat(res.getString(6)+" | ");
+				r = r.concat(res.getString(7)+" | ");
+				r = r.concat(res.getString(8)+" | ");
+				r = r.concat(res.getString(9)+" | ");
+				r = r.concat(res.getString(10)+" | ");
+				r = r.concat(res.getString(11)+"\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+	}
+	
 	
 	public String productosDisponibles(){
 		String r,query;
@@ -176,29 +229,7 @@ public class AccessoDatos {
 	}
 	
 		
-	public String productosAlquiladosCliente(){
-		String r,query;
-		ResultSet res;
-		query = "select * from vista_productes_llogats_client";
-		res = execQuery(con,query);
-		r ="";		
-		try {
-			while(res.next()){
-								
-				r = r.concat(res.getString(1)+" | ");
-				r = r.concat(res.getString(2)+" | ");
-				r = r.concat(res.getString(3)+" | ");
-				r = r.concat(res.getString(4)+" | ");
-				r = r.concat(res.getString(5)+" | ");
-				r = r.concat(res.getString(6)+" | ");
-				r = r.concat(res.getString(7)+" | ");
-				r = r.concat(res.getString(8)+"\n");
-			}
-		} catch (SQLException e) {
-			System.err.println("Fetch failed: "+ e.getMessage());
-		}
-		return r;
-	}
+	
 	
 	// TODO: Abel, s'ha de fer anar aquesta vista, que no funciona.
 	public String morosos(){
@@ -213,8 +244,8 @@ public class AccessoDatos {
 	
 	
 	/*
-	 * NOTA: Només retorna productes esgotats que han tingut unitats disponibles
-	 * TODO: S'hauria de modificar la vista per retornar també productes dels que 
+	 * NOTA: Nomï¿½s retorna productes esgotats que han tingut unitats disponibles
+	 * TODO: S'hauria de modificar la vista per retornar tambï¿½ productes dels que 
 	 * 		mai hem tingut cap unitat.
 	 * 
 	 */
@@ -274,8 +305,8 @@ public class AccessoDatos {
 		query ="select func_actualitza_unitats()";
 		execQuery(con,query);
 		
-		//TODO Se podría mirar que devolviera el número de unidades cambiadas.
-		r = "Se han pasado las unidades del año pasado a alquiler.";
+		//TODO Se podrï¿½a mirar que devolviera el nï¿½mero de unidades cambiadas.
+		r = "Se han pasado las unidades del aï¿½o pasado a alquiler.";
 		return r;
 	}
 	
@@ -295,7 +326,7 @@ public class AccessoDatos {
 		
 		String query ="INSERT INTO client (nif,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte) VALUES('"+nif+"', '"+login+"','"+nom+"','"+cognom1+"','"+cognom2+"','"+ciutat+"','"+carrer+"','"+num+"','"+pis+"',"+telf_contacte+")";
 		
-		//TODO: Añadir el usuario al grupo t_usuario.
+		//TODO: Aï¿½adir el usuario al grupo t_usuario.
 		
 		n = execUpdate(con,query);
 		
@@ -305,14 +336,14 @@ public class AccessoDatos {
 	
 	
 	/**
-	 * @param descr Descripción del producto
+	 * @param descr Descripciï¿½n del producto
 	 * @param model Modelo del producto
 	 * @param marca Marca del producto
 	 * @param mat_prim Materias primas del producto
 	 * @param activitat Actividad del producto
 	 * @param distribuidors Distribuidor al que se compra el producto
 	 * @param p_venda Precio de venta
-	 * @param p_llog_dia Precio de alquiler por día.
+	 * @param p_llog_dia Precio de alquiler por dï¿½a.
 	 */
 	public int nuevoProducto(	String descr, String model, String marca, String mat_prim, String activitat,
 			String distribuidors, int p_venda, int p_llog_dia) {
@@ -325,9 +356,9 @@ public class AccessoDatos {
 	
 	/**
 	 * 
-	 * @param con Conexión con la base de datos. Esta tiene que estar ya establecida y no ser NULL
+	 * @param con Conexiï¿½n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
 	 * @param query Comando SQL que queremos ejecutar
-	 * @return ResultSet que contiene todas las filas con cadauna de sus columnas resultantes de aplicar la instrucción SQL en la Base de datos.
+	 * @return ResultSet que contiene todas las filas con cadauna de sus columnas resultantes de aplicar la instrucciï¿½n SQL en la Base de datos.
 	 * 
 	 * 
 	 */
@@ -345,13 +376,13 @@ public class AccessoDatos {
 		}
 	}
 	
-	// Fin de función execQuery
+	// Fin de funciï¿½n execQuery
 	
 	/**
 	 * 
-	 * @param con Conexión con la base de datos. Esta tiene que estar ya establecida y no ser NULL
+	 * @param con Conexiï¿½n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
 	 * @param query Comando SQL que queremos ejecutar
-	 * @return int número de filas afectadas por el insert, el update o el delete.
+	 * @return int nï¿½mero de filas afectadas por el insert, el update o el delete.
 	 * 
 	 * 
 	 */
@@ -372,7 +403,7 @@ public class AccessoDatos {
 	
 	
 	/**
-	 * @param res ResultSet provinent de l'execució d'una comanda SQL 
+	 * @param res ResultSet provinent de l'execuciï¿½ d'una comanda SQL 
 	 */	
 	static void printResults( ResultSet res) {
 		

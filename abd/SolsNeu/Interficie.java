@@ -57,7 +57,7 @@ public class Interficie {
 		
 		String opcion;
 		
-		System.out.println("Menú de Usuario");
+		System.out.println("Menï¿½ de Usuario");
 		System.out.println();
 		System.out.println("a) Consultar mis datos personales");
 		System.out.println("b) Consultar mis facturas");
@@ -67,7 +67,7 @@ public class Interficie {
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qué opción eliges?");
+		opcion = SimpleInput.getString("Quï¿½ opciï¿½n eliges?");
 		
 		if (opcion.equals("a")) {
 			contr.consultaDatosPersonales();
@@ -90,7 +90,7 @@ public class Interficie {
 		
 		String opcion;
 		
-		System.out.println("Menú de Vendedor");
+		System.out.println("Menï¿½ de Vendedor");
 		System.out.println();
 		System.out.println("a) Consulta de clientes con alquileres retrasados.");
 		System.out.println("b) Consulta de productos sin stock.");
@@ -103,7 +103,7 @@ public class Interficie {
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qué opción eliges?");
+		opcion = SimpleInput.getString("Quï¿½ opciï¿½n eliges?");
 		
 		if (opcion.equals("a")) {
 			contr.morosos();
@@ -135,7 +135,7 @@ public class Interficie {
 		
 		String opcion;
 		
-		System.out.println("Menú de Administrador");
+		System.out.println("Menï¿½ de Administrador");
 		System.out.println();
 		System.out.println("a) Dar de alta NUEVO usuario");
 		System.out.println("b) Dar de alta nuevo producto");
@@ -143,7 +143,7 @@ public class Interficie {
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qué opción eliges?");
+		opcion = SimpleInput.getString("Quï¿½ opciï¿½n eliges?");
 		
 		if (opcion.equals("a")) {
 			this.nuevoUsuario();
@@ -162,7 +162,7 @@ public class Interficie {
 		
 		int id_producte = SimpleInput.getInteger("Id del producto? ");
 		String mida_talla = SimpleInput.getString("Mida o talla del producto?");
-		//TODO: Comprovar que només agafem V o LL
+		//TODO: Comprovar que nomï¿½s agafem V o LL
 		String llog_vend = SimpleInput.getString("Tipo: [V:Venta, LL:Lloguer]");
 		
 		contr.nuevaUnidad(id_producte,mida_talla,llog_vend);
@@ -176,14 +176,14 @@ public class Interficie {
 		int t_usuario = SimpleInput.getInteger("Tipo de usuario [0:Administrador, 1:Trabajador, 2:Cliente]");
 		String nif = SimpleInput.getString("NIF? ");
 		String login = SimpleInput.getString("login? ");
-		String nom = SimpleInput.getString("¿Nombre? ");
+		String nom = SimpleInput.getString("ï¿½Nombre? ");
 		String cognom1 = SimpleInput.getString("Primer apellido? ");
 		String cognom2 = SimpleInput.getString("Segundo apellido? ");
 		String ciutat = SimpleInput.getString("Ciudad ?");
 		String carrer = SimpleInput.getString("Calle? ");
 		String num = SimpleInput.getString("Numero?");
 		String pis = SimpleInput.getString("Piso?");
-		String telf_contacte = SimpleInput.getString("Teléfono? ");
+		String telf_contacte = SimpleInput.getString("Telï¿½fono? ");
 		
 		contr.nuevoUsuario(nif,t_usuario,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte);
 		
@@ -191,7 +191,7 @@ public class Interficie {
 	
 	public void nuevoProducto(){
 		
-		String descr = SimpleInput.getString("Descripción del producto (tipo)? ");
+		String descr = SimpleInput.getString("Descripciï¿½n del producto (tipo)? ");
 		String model = SimpleInput.getString("Model del producto? ");
 		String marca = SimpleInput.getString("Marca del producto? ");
 		String mat_prim = SimpleInput.getString("Materia/s prima/s? ");

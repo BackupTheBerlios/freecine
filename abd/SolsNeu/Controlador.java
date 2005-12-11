@@ -36,7 +36,7 @@ public class Controlador {
 	}
 	
 	/**
-	 * Función salir del Programa
+	 * Funciï¿½n salir del Programa
 	 */
 	public void salir(){
 		bd.cerrarConexion();
@@ -44,7 +44,7 @@ public class Controlador {
 	}
 		
 	/**
-	 * Función que crea un nuevo objeto del tipo AccessoDatos.
+	 * Funciï¿½n que crea un nuevo objeto del tipo AccessoDatos.
 	 * 
 	 * @param user Usuario a Conectarse a la Base de Datos.
 	 * @param pwd  Password de user.
@@ -62,9 +62,9 @@ public class Controlador {
 	}
 	
 	public void consultaFacturas(){
-		//TODO: Abel: acaba vista consultes client
 		String res;
-		
+		res = bd.facturasCliente();
+		ui.imprimirResultado(res);		
 	}
 	
 	public void queTengoAlquilado(){
