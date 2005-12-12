@@ -20,7 +20,9 @@ public class AccessoDatos {
 	private static String pwd;
 	private Controlador contr;
 	private static Connection con;
-	private static String url = "jdbc:postgresql://127.0.0.1/abd";
+	//private static String url = "jdbc:postgresql://127.0.0.1/abd";
+	private static String url = "jdbc:postgresql://161.116.52.21/voc0210";
+	
 	private static String driver = "org.postgresql.Driver";
 	
 	
@@ -78,7 +80,7 @@ public class AccessoDatos {
 	public int tipoUsuario(){
 		
 		
-		return 2;
+		return 0;
 	}
 	
 	
@@ -102,27 +104,17 @@ public class AccessoDatos {
 				System.out.print(res.getString( 2 ));
 				System.out.println(""); */
 				
-				r = r.concat(res.getString(1));
-				r = r.concat(" | ");
-				r = r.concat(res.getString( 2 ));
-				r = r.concat(" | ");
-				r = r.concat(res.getString( 3 ));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(4));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(5));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(6));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(7));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(8));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(9));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(10));
-				r = r.concat(" | ");
-				r = r.concat(res.getString(11));
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\t");
+				r = r.concat(res.getString(5)+"\t");
+				r = r.concat(res.getString(6)+"\t");
+				r = r.concat(res.getString(7)+"\t");
+				r = r.concat(res.getString(8)+"\t");
+				r = r.concat(res.getString(9)+"\t");
+				r = r.concat(res.getString(10)+"\t");
+				r = r.concat(res.getString(11)+"\n");
 			}
 			
 		} catch (SQLException e) {
@@ -165,17 +157,17 @@ public class AccessoDatos {
 		try {
 			while(res.next()){
 								
-				r = r.concat(res.getString(1)+" | ");
-				r = r.concat(res.getString(2)+" | ");
-				r = r.concat(res.getString(3)+" | ");
-				r = r.concat(res.getString(4)+" | ");
-				r = r.concat(res.getString(5)+" | ");
-				r = r.concat(res.getString(6)+" | ");
-				r = r.concat(res.getString(7)+" | ");
-				r = r.concat(res.getString(8)+" | ");
-				r = r.concat(res.getString(9)+" | ");
-				r = r.concat(res.getString(10)+" | ");
-				r = r.concat(res.getString(11)+"\n");
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\t");
+				r = r.concat(res.getString(5)+"\t");
+				r = r.concat(res.getString(6)+"\t");
+				r = r.concat(res.getString(7)+"\t");
+				r = r.concat(res.getString(8)+"\t");
+				r = r.concat(res.getString(9)+"\t");
+				r = r.concat(res.getString(10)+"\t");
+				r = r.concat(res.getString(11)+"\t");
 			}
 		} catch (SQLException e) {
 			System.err.println("Fetch failed: "+ e.getMessage());
@@ -189,16 +181,23 @@ public class AccessoDatos {
 		ResultSet res;
 		query = "select * from vista_productes_disponibles_client";
 		res = execQuery(con,query);
-		r ="";		
+		r ="";
+		r = r.concat("id"+"\t");
+		r = r.concat("Descripcion"+"\t");
+		r = r.concat("Modelo"+"\t\t");
+		r = r.concat("Marca"+"\t\t");
+		r = r.concat("Actividad"+"\t\t");
+		r = r.concat("Precio"+"\t\t");
+		r = r.concat("Precio+IVA"+"\n");
 		try {
 			while(res.next()){
 								
-				r = r.concat(res.getString(1)+" | ");
-				r = r.concat(res.getString(2)+" | ");
-				r = r.concat(res.getString(3)+" | ");
-				r = r.concat(res.getString(4)+" | ");
-				r = r.concat(res.getString(5)+" | ");
-				r = r.concat(res.getString(6)+" | ");
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t\t");
+				r = r.concat(res.getString(3)+"\t\t");
+				r = r.concat(res.getString(4)+"\t\t");
+				r = r.concat(res.getString(5)+"\t\t");
+				r = r.concat(res.getString(6)+"\t\t");
 				r = r.concat(res.getString(7)+"\n");
 			}
 		} catch (SQLException e) {
