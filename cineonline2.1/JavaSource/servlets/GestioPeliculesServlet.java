@@ -41,20 +41,37 @@ import javax.servlet.http.HttpServletResponse;
 		this.request = request;
 		this.response = response;
 		String accio = request.getParameter("accio");
+		System.err.println("yyyyyy"+accio);
 		try {
 			
 			ctrlPelicules = new ControladorPelicules();
 			if(accio.equals("llistarPelicules")) llistarPeliculesAction();
 			else if(accio.equals("detallPelicula")) detallPeliculaAction();
-			else if(accio.equals("afegirPelicula")) afegirPeliculaAction();
-			else if(accio.equals("modificarPelicula")) modificarPeliculaAction();
-			else if(accio.equals("eliminarPelicula")) eliminarPeliculaAction();
+			else if(accio.equals("afegir")) afegirPeliculaAction();
+			else if(accio.equals("novaPelicula")) novaPeliculaAction();
+			else if(accio.equals("modificar")) modificarPeliculaAction();
+			else if(accio.equals("eliminar")) eliminarPeliculaAction();
+			else{
+				rd = getServletContext().getRequestDispatcher(urlError+"?error=Accés Fallit");
+			    rd.forward(request, response);
+			}
+			
 			
 			
 		} catch (ControladorException e) {
 			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
 		}
 	}   	 
+
+	private void novaPeliculaAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_pelicula.jsp";
+
+		request.getSession().removeAttribute("pelicula");		
+		
+	    rd = getServletContext().getRequestDispatcher(urlExit);
+	    rd.forward(request, response);
+		    
+	}
 
 	private void llistarPeliculesAction() throws ServletException, IOException{
 		/*
@@ -64,7 +81,7 @@ import javax.servlet.http.HttpServletResponse;
 		 * Per que la jsp l'agafi session.getAttribute("llistaPelicules")
 		 * i agafi les dades que vulgui de la pelicula
 		 */
-		urlExit="intranet/pelicules.jsp";
+		urlExit="/intranet/pelicules.jsp";
 		
 		try {
 			
@@ -86,11 +103,12 @@ import javax.servlet.http.HttpServletResponse;
 		 * getPelicula i aquest ens retorna el objecte de la pelicula
 		 * El posem a sessio amb l'atribut de 'pelicula' 
 		 */
-		urlExit="intranet/fitxa-pelicula.jsp";
+		urlExit="/intranet/fitxa_pelicula.jsp";
 		int idPelicula = Integer.parseInt(request.getParameter("idPelicula"));
 		try {
 			
-			Pelicula pelicula = ctrlPelicules.getPelicula(idPelicula);		
+			Pelicula pelicula = ctrlPelicules.getPelicula(idPelicula);	
+			System.err.println(pelicula);
 			request.getSession().setAttribute("pelicula", pelicula);		
 			
 		    rd = getServletContext().getRequestDispatcher(urlExit);
@@ -109,19 +127,45 @@ import javax.servlet.http.HttpServletResponse;
 		 * Executa al controlador de pelicula afegirPelciual i li pasa
 		 * com a parametre la pelicula
 		 */
-		urlExit="intranet/fitxa-pelicula.jsp";
+		urlExit="/intranet/fitxa_pelicula.jsp";
 		
 		Pelicula pelicula = new Pelicula();
 		
-		int id = Integer.parseInt(request.getParameter("id"));
-		String titol = request.getParameter("titol");
+		int id = -1;
+		String titol;
+		if(!request.getParameter("titol").equals("")){
+			titol = request.getParameter("titol");
+		}else{
+			titol = "";
+		}
+		
 		String titolOriginal = request.getParameter("titolOriginal");
-		int anny = Integer.parseInt(request.getParameter("anny"));
-		int durada = Integer.parseInt(request.getParameter("durada"));
+		int anny;
+		System.err.println(request.getParameter("anny"));
+		if(!request.getParameter("anny").equals("")){
+			anny = Integer.parseInt(request.getParameter("anny"));	
+		}else{
+			anny = 1850;
+		}
+		
+		int durada;
+		if(!request.getParameter("durada").equals("")){
+			durada = Integer.parseInt(request.getParameter("durada"));	
+		}else{
+			durada = 0;
+		}
+		
 		String nacionalitat = request.getParameter("nacionalitat");
-		int edatRecomenada = Integer.parseInt(request.getParameter("edatRecomenada"));
+		int edatRecomenada;
+		System.err.println(request.getParameter("edatRecomenada"));
+		if(!request.getParameter("edatRecomenada").equals("")){
+			edatRecomenada = Integer.parseInt(request.getParameter("edatRecomenada"));
+		}else{
+			edatRecomenada = 0;
+		}
+		
 		String tipusColor = request.getParameter("tipusColor");
-		String tipusSo = request.getParameter("TipusSo");
+		String tipusSo = request.getParameter("tipusSo");
 		String genere = request.getParameter("genere");
 		String director = request.getParameter("director");
 		String guionista = request.getParameter("guionista");
@@ -151,12 +195,9 @@ import javax.servlet.http.HttpServletResponse;
 		
 		try {
 			
-			ctrlPelicules.afegirPelicula(pelicula);		
-			pelicula = ctrlPelicules.getPeliculaPerTitol(pelicula.getTitol());
-			request.getSession().setAttribute("pelicula", pelicula);		
+			ctrlPelicules.afegirPelicula(pelicula);				
 			
-		    rd = getServletContext().getRequestDispatcher(urlExit);
-		    rd.forward(request, response);
+			llistarPeliculesAction();
 		    
 		} catch (ControladorException e) {
 		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
@@ -171,7 +212,8 @@ import javax.servlet.http.HttpServletResponse;
 		 * eliminarPelicula i aquest ens retorna el objecte de la pelicula
 		 * I anem a l'accio per anar a pelicules.
 		 */
-		int idPelicula = Integer.parseInt(request.getParameter("idPelicula"));
+		System.err.println("elimina");
+		String idPelicula = request.getParameter("idPelicula");
 		try {
 			
 			ctrlPelicules.eliminarPelicula(idPelicula);		
@@ -192,7 +234,7 @@ import javax.servlet.http.HttpServletResponse;
 		 * Executa al controlador de pelicula modificarPelciual i li pasa
 		 * com a parametre la pelicula i li retorna el mateix objecte actualitzat
 		 */
-		urlExit="intranet/fitxa-pelicula.jsp";
+		urlExit="/intranet/fitxa_pelicula.jsp";
 		
 		Pelicula pelicula = new Pelicula();
 		

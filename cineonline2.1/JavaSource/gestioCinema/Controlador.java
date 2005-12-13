@@ -9,9 +9,9 @@ import java.util.Vector;
 
 public class Controlador {
 	private final String DRIVERBBDD = "org.postgresql.Driver";;
-	private final String URL = "jdbc:postgressql//localhost:8080/bbddCineOnline";
+	private final String URL = "jdbc:postgresql://localhost/bbddCineOnline";
 	private final String USUARI = "postgres";
-	private final String PASSWORD ="s0lar1s";	
+	private final String PASSWORD ="postgres";
 
 	private Connection conn;
 	private Statement stmt;
@@ -28,7 +28,7 @@ public class Controlador {
 		 */
 		
 		try{
-			Class.forName(DRIVERBBDD);
+			Class.forName(DRIVERBBDD);			
 			conn = DriverManager.getConnection(URL, USUARI, PASSWORD);
 			stmt = conn.createStatement();
 		}catch(ClassNotFoundException e){
@@ -81,6 +81,9 @@ public class Controlador {
 			throw new ControladorException("[Controlador]:[toVector]");
 		}
 	}
+	
+	
+	
 	public Vector selectVector(String query) throws ControladorException{
 		/*
 		 * Realitza un query concreta
@@ -134,7 +137,13 @@ public class Controlador {
 			
 		}else{
 			update(query);
+			Vector v1 = new Vector();
+			Vector v2 = new Vector();
+			v2.add("Consulta executada correctament");
+			v1.add(v2);
 			return new Vector();
 		}
 	}
+	
 }
+

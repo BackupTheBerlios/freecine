@@ -17,18 +17,17 @@ public class ControladorPelicules extends Controlador{
 		 * Converteix un ResultSet a Vector de Pelicules
 		 */
 		Vector pelicules = new Vector();
+		
 		while (rs.next()) {
 			Pelicula pelicula = new Pelicula();
 			pelicula.setAll(
-				1,
-				rs.getString(1),
+				rs.getInt(1),
 				rs.getString(2),
-				1982,
-				rs.getInt(3),
-				rs.getString(4),
+				rs.getString(3),
+				rs.getInt(4),
 				rs.getInt(5),
 				rs.getString(6),
-				rs.getString(7),
+				rs.getInt(7),
 				rs.getString(8),
 				rs.getString(9),
 				rs.getString(10),
@@ -36,7 +35,9 @@ public class ControladorPelicules extends Controlador{
 				rs.getString(12),
 				rs.getString(13),
 				rs.getString(14),
-				rs.getString(15));
+				rs.getString(15),
+				rs.getString(16),
+				rs.getString(17));
 				
 			pelicules.addElement(pelicula);
 		}
@@ -48,15 +49,18 @@ public class ControladorPelicules extends Controlador{
 		/*String camps = Pelicula.getCamps().toString();*/
 		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
 		try {
+			
 			String query = "SELECT  " +
+								"id, " +
 								"titol, " +
 								"titol_original, " +
+								"anny, " +
 								"durada, " +
-								"nacionalitat, " +
+								"id_nacionalitat, " +
 								"edat_recomanada, " +
-								"tius_color, " +
+								"tipus_color, " +
 								"tipus_so, " +
-								"genere, " +
+								"id_genere, " +
 								"director, " +
 								"guionista, " +
 								"productor, " +
@@ -64,8 +68,9 @@ public class ControladorPelicules extends Controlador{
 								"sinopsis, " +
 								"url_web, " +
 								"url_imatge " +
-							"FROM Pelicula";
-			
+							"FROM Pelicula ORDER BY id DESC";
+			/*
+			String query ="SELECT * FROM pelicula";*/
 			rsPelicules = selectRS(query);
 		
 			return toVectorPelicules(rsPelicules);
@@ -80,28 +85,39 @@ public class ControladorPelicules extends Controlador{
 		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula WHERE id="+id;";*/
 		try {
 			String query ="SELECT  " +
-							"titol, " +
-							"titol_original, " +
-							"durada, " +
-							"nacionalitat, " +
-							"edat_recomanada, " +
-							"tius_color, " +
-							"tipus_so, " +
-							"genere, " +
-							"director, " +
-							"guionista, " +
-							"productor, " +
-							"actors, " +
-							"sinopsis, " +
-							"url_web, " +
-							"url_imatge " +
-						" FROM Pelicula" +
-						" WHERE id="+id;
+								"id, " +
+								"titol, " +
+								"titol_original, " +
+								"anny, " +
+								"durada, " +
+								"id_nacionalitat, " +
+								"edat_recomanada, " +
+								"tipus_color, " +
+								"tipus_so, " +
+								"id_genere, " +
+								"director, " +
+								"guionista, " +
+								"productor, " +
+								"actors, " +
+								"sinopsis, " +
+								"url_web, " +
+								"url_imatge " +
+							"FROM Pelicula "+
+							"WHERE id="+id;
 								
 			Pelicula pelicula;
-		
-			pelicula = (Pelicula) (toVectorPelicules(selectRS(query))).firstElement();
-			return pelicula;
+			System.err.println("pelicula1");
+			Vector resultat = toVectorPelicules(selectRS(query));
+			System.err.println("pelicula2");
+			if(resultat.size()==0)
+			{
+				return null;
+			}
+			else
+			{
+				pelicula = (Pelicula) resultat.elementAt(0);
+				return pelicula;
+			}
 		} catch (SQLException e) {
 			System.err.println("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
 			throw new ControladorException("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
@@ -109,44 +125,10 @@ public class ControladorPelicules extends Controlador{
 		
 	}
 	
-	public Pelicula getPeliculaPerTitol(String titol) throws ControladorException{
-		/*String camps = Pelicula.getCamps().toString();*/
-		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula WHERE titol="+titol;";*/
-		try {
-			String query ="SELECT  " +
-							"titol, " +
-							"titol_original, " +
-							"durada, " +
-							"nacionalitat, " +
-							"edat_recomanada, " +
-							"tius_color, " +
-							"tipus_so, " +
-							"genere, " +
-							"director, " +
-							"guionista, " +
-							"productor, " +
-							"actors, " +
-							"sinopsis, " +
-							"url_web, " +
-							"url_imatge " +
-						" FROM Pelicula" +
-						" WHERE titol="+titol;
-								
-			Pelicula pelicula;
-		
-			pelicula = (Pelicula) (toVectorPelicules(selectRS(query))).firstElement();
-			return pelicula;
-		} catch (SQLException e) {
-			System.err.println("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
-			throw new ControladorException("[ControladorPelicules]:[getPelicula] Error SQL: "+e.getMessage());
-		}
-	}
-	
-	
-
-	public void eliminarPelicula(int id) throws ControladorException {
+	public void eliminarPelicula(String id) throws ControladorException {
 		String query ="DELETE FROM PELICULA WHERE id="+id;
 		update(query);
+		System.err.println(query);
 	}
 	
 	public void modificarPelicula(Pelicula pelicula) throws ControladorException {

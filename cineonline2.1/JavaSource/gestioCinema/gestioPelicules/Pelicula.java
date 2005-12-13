@@ -59,7 +59,8 @@ public class Pelicula {
 		urlImatge = "";
 	}
 	
-	public void setAll(int id_new,
+	public void setAll(
+			int id_new,
 			String titol_new,
 			String titolOriginal_new,
 			int anny_new,
@@ -247,11 +248,11 @@ public class Pelicula {
 		campsPelicula.add("titol_original");
 		campsPelicula.add("anny");
 		campsPelicula.add("durada");
-		campsPelicula.add("nacionalitat");
-		campsPelicula.add("edat_recomenada");
+		campsPelicula.add("id_nacionalitat");
+		campsPelicula.add("edat_recomanada");
 		campsPelicula.add("tipus_color");
 		campsPelicula.add("tipus_so");
-		campsPelicula.add("genere");
+		campsPelicula.add("id_genere");
 		campsPelicula.add("director");
 		campsPelicula.add("guionista");
 		campsPelicula.add("productor");
@@ -283,40 +284,77 @@ public class Pelicula {
 		return valorsPelicula;
 	}
 	
+	public Vector getFormats(){	
+		Vector formatPelicula = new Vector();
+		formatPelicula.add(""+id);
+		formatPelicula.add("'"+titol+"'");
+		formatPelicula.add("'"+titolOriginal+"'");
+		formatPelicula.add(""+anny);
+		formatPelicula.add(""+durada);
+		formatPelicula.add(""+nacionalitat);
+		formatPelicula.add(""+edatRecomenada);
+		formatPelicula.add("'"+tipusColor+"'");
+		formatPelicula.add("'"+tipusSo+"'");
+		formatPelicula.add(""+genere);
+		formatPelicula.add("'"+director+"'");
+		formatPelicula.add("'"+guionista+"'");
+		formatPelicula.add("'"+productor+"'");
+		formatPelicula.add("'"+actors+"'");
+		formatPelicula.add("'"+sinopsis+"'");
+		formatPelicula.add("'"+urlWeb+"'");
+		formatPelicula.add("'"+urlImatge+"'");	
+		return formatPelicula;
+	}
+	
 	public String sqlInsert(){
 		Iterator itCamps = getCamps().iterator();
-		Iterator itValors = getValors().iterator();
+		Iterator itFormats = getFormats().iterator();
 		String values = "(";
-		
-		if(itCamps.hasNext() && itValors.hasNext()){
-			/*Treiem el id perque la base de dades s'encarrega*/
-			itCamps.next();
-			itValors.next();
-		}
-		
-		
+		String valor ="";
+		int i=0;
 		while(itCamps.hasNext()){
-			values = values +", "+itCamps.next();
-			if(itValors.hasNext()){
-				values = values +", "+itCamps.next();
+			i++;
+			valor= (String)itCamps.next();			
+			if (i==1)
+			{
+				
+				values+=(String) itCamps.next();
+				
+			}else{
+				
+				values+=", "+valor;
+				
 			}
 		}
 		
-		values = values+") VALUES (";
 		
-		while(itValors.hasNext()){
-			if(itValors.hasNext()){
-				values = values +", "+itValors.next();
+		values+=") VALUES (";
+		
+		i=0;
+		valor="";
+		while(itFormats.hasNext()){
+			i++;
+			valor= (String)itFormats.next();
+			
+			if (i==1)
+			{
+				
+				values+=""+ itFormats.next();
+				
+			}else{
+				
+				values+=", "+valor;
+				
 			}
 		}
-		values = values+")";
+		values+=")";
 		
 		return values;
 	}
 	
 	public String sqlUpdate(){
 		Iterator itCamps = getCamps().iterator();
-		Iterator itValors = getValors().iterator();
+		Iterator itValors = getFormats().iterator();
 		String values = "";
 		
 		if(itCamps.hasNext() && itValors.hasNext()){
