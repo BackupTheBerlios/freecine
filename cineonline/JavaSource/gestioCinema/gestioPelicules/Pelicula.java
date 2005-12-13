@@ -94,7 +94,6 @@ public class Pelicula {
 		this.urlImatge=urlImatge_new;
 	}
 	
-
 	public void setAll(
 			int id_new,
 			String titol_new,
