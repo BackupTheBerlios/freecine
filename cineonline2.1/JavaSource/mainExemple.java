@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -15,7 +16,13 @@ public class mainExemple {
 		try {
 			Controlador ctrl = new Controlador();
 			ctrl = new Controlador();
-			Vector vc = ctrl.selectVector("SELECT * FROM PELICULA");
+			Vector vc = null;
+			try {
+				vc = ctrl.selectVector("SELECT * FROM PELICULA");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Iterator it= vc.iterator();
 			while(it.hasNext()){
 				Iterator it2 = ((Vector)it.next()).iterator();
