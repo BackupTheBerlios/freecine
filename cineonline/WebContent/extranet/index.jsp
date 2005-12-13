@@ -6,7 +6,6 @@
 		<jsp:include page="esquelet/menu.jsp"/>		
 	</div>
 	<div id="center">
-<<<<<<< index.jsp
 	  	<span class="txt_titol">			
 		Benvinguts a Cine<span class="titol_o">o</span>nline
 		</span>
@@ -27,9 +26,6 @@
 			Informa't dels serveis del cinema.
 			<br /><br />			
 		</span>
-=======
-	  	
->>>>>>> 1.2
 	</div>
 	<div id="right">
 		<jsp:include page="esquelet/navegadreta.jsp"/>

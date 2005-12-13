@@ -1,4 +1,3 @@
-<<<<<<< default.jsp
 <jsp:include page="esquelet_adm/header.jsp"/>
 	<div id="top">
 		<jsp:include page="esquelet_adm/top.jsp"/>		
@@ -31,6 +30,4 @@
 	<div id="right">
 			<jsp:include page="esquelet_adm/navegadreta.jsp"/>
 	</div>	
-<jsp:include page="esquelet_adm/footer.jsp"/>=======
-<jsp:include page="login.jsp"/>		
->>>>>>> 1.2
+<jsp:include page="esquelet_adm/footer.jsp"/>
