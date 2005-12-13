@@ -14,126 +14,75 @@
 		</span>
 		<br /><br />
 		<span class="txt">
-			<table border="2">
-				<tr>
-					<td></td>
-					<td><strong>títol</strong></td>
-					<td><strong>títol original</strong></td>
-					<td><strong>nacionalitat</strong></td>
-					<td><strong>director</strong></td>
-					<td><strong>any</strong></td>
-				</tr>
-
+				Cerca la teva pel·lícula
+				<br /><br />
+				<form name="frmsinopsis_query" action="javascript:alert('Fent la consulta...');">
+					títol <input type="Text" name="titol" maxlength="255" class="caixa_text" />
+					director <input type="Text" name="director" maxlength="255" class="caixa_text" />
+					any <input type="Text" name="any" maxlength="4" class="caixa_text" size="4" id="any" />
+					entre
+					<select name="encartellera" class="caixa_text">
+						<option value="cartellera" />cartellera
+						<option value="totes" />totes
+					</select>
+					<br /><br />
+					<center><input type="Submit" name="cerca" value="cerca" class="boto_venda" /></center>
+				</form>
+				<form name="frmnou" action="GestioPeliculesServlet" method="post" class="boto_horari">
+					<input type="Hidden" name="accio" value="novaPelicula" />
+					<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir peli" />
+				</form>
 				<% 
 				Vector llista = new Vector();	
 				llista = (Vector) session.getAttribute("llistaPelicules");
-
 				if(llista!=null)
 				{
 					Iterator it = llista.iterator();
+				%>
+					<table border="2">
+					<tr>
+						<td></td>
+						<td><strong>títol</strong></td>
+						<td><strong>títol original</strong></td>
+						<td><strong>nacionalitat</strong></td>
+						<td><strong>director</strong></td>
+						<td><strong>any</strong></td>
+					</tr>
+				<%
 					while(it.hasNext())
 					{
 						Pelicula pelicula = (Pelicula)it.next();
 				%>
-				<tr>
-					<td></td>
-					<td><%=pelicula.getTitol()%></td>
-					<td><%=pelicula.getTitolOriginal()%></td>
-					<td><%=pelicula.getNacionalitat()%></td>
-					<td><%=pelicula.getDirector()%></td>
-					<td><%=pelicula.getAnny()%></td>
-				</tr>
+					<tr>
+						<td>
+							<form name="frmfitxa" action="GestioPeliculesServlet" method="post" class="boto_horari">
+								<input type="Hidden" name="accio" value="detallPelicula" />
+								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
+								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+							</form>
+						</td>
+						<td><%=pelicula.getTitol()%></td>
+						<td><%=pelicula.getTitolOriginal()%></td>
+						<td><%=pelicula.getNacionalitat()%></td>
+						<td><%=pelicula.getDirector()%></td>
+						<td><%=pelicula.getAnny()%></td>
+					</tr>
 				<%
 					}
+					%>
+					</table>
+					<%
+				}
+				else
+				{
+					%>
+					No hi ha cap pel·lícula.
+					<%
 				}
 				%>
-			</table>
 		</span>	
 	</div>
 	<div id="right">
 			<jsp:include page="esquelet_adm/navegadreta.jsp"/>
 	</div>	
 <jsp:include page="esquelet_adm/footer.jsp"/>
-
-
-
-<!--
-<jsp:include page="accions.jsp"/>
-
-<form name="frmadmpelicules" action="default.jsp" method="post">
-<input type="Hidden" name="opcio_menu" class="caixa_text" value="pel·lícules" />
-<div id="caixa_pelicules">
-<div id="columna1">
-	<%
-		String id = request.getParameter("id");	
-		String idtxt = "";
-		if (id != null)
-		{
-			idtxt = id;
-		}
-	%>
-	<input type="Hidden" name="id" class="caixa_text" value="<%= idtxt %>" />
-	títol
-	<input type="Text" name="titol" class="caixa_text" value="" />
-	<br /><br />
-	títol original
-	<input type="Text" name="titolOriginal" class="caixa_text" value="" />
-	<br /><br />
-	any
-	<input type="Text" name="any" class="caixa_text" maxlength="4" value="" />
-	<br /><br />
-	nacionalitat
-	<input type="Text" name="nacionalitat" class="caixa_text" value="" />
-	<br /><br />
-	durada (minuts)
-	<input type="Text" name="durada" class="caixa_text" value="" />
-	<br /><br />
-	edat recomanada
-	<input type="Text" name="edatRecomanada" class="caixa_text" value="" />
-	<br /><br />
-	tipus color
-	<input type="Text" name="tipusColor" class="caixa_text" value="" />
-	<br /><br />
-	tipus sò
-	<input type="Text" name="tipusSo" class="caixa_text" value="" />
-</div>
-<div id="columna2">
-	director
-	<input type="Text" name="director" class="caixa_text" value="" />
-	<br /><br />
-	guionista
-	<input type="Text" name="guionista" class="caixa_text" value="" />
-	<br /><br />
-	productor
-	<input type="Text" name="productor" class="caixa_text" value="" />
-	<br /><br />
-	actors
-	<textarea name="actors" class="caixa_text"  cols="30"></textarea>
-	<br /><br />
-	sinopsis
-	<textarea name="sinopsis" class="caixa_text" cols="30"></textarea>
-	<br /><br />
-	web
-	<input type="Text" name="web" class="caixa_text" value="" />
-	<br /><br />
-	imatge
-	<input type="File" name="imatge" class="caixa_text"  value="" />
-</div>
-</div>
-<%
-	String idPelicula = request.getParameter("id");
-	if ((idPelicula == null) || (idPelicula == ""))
-	{
-%>
-<input type="Submit" name="opcio_accio" value="afegir" class="boto_accio" /> 
-<%
-	}
-	else
-	{
-%>
-		<input type="Submit" name="opcio_accio" value="modificar" class="boto_accio" />
-		<input type="Submit" name="opcio_accio" value="eliminar" class="boto_accio" />
-<%
-	}
-%>
-</form>-->
