@@ -1,0 +1,33 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.01.20.02.58;	author ivanmateu;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Estructurar el projecte amb el fitxers basics
+@
+text
+@package gestioCompraReserva;
+
+public class CompraReserva {
+
+	public CompraReserva() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+}
+@

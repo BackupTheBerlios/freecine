@@ -1,0 +1,91 @@
+.boto_menu{
+	background-color: #5D4981;
+	/* 5D4981 */
+	background-position: center;
+	border: thick groove #C0C0C0;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: top;
+	width: 150px;
+}
+
+.boto_venda{
+	background-color: #5D4981;
+	background-position: center;
+	border: thick double #C0C0C0;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	height: 20px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: lowercase;
+	vertical-align: top;
+	width: 60px;
+}
+
+.boto_accio {
+	background-color: #5D4981;
+	background-position: center;
+	border: thick double gold;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	height: 20px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: lowercase;
+	vertical-align: top;
+	width: 60px;
+}
+
+.boto_horari{
+	background-color: #C0C0C0;
+	background-position: center;
+	border: thick double #5D4981;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	font-family: verdana, monospace;
+	font-size: 9px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	width:34px;
+	text-decoration: none;
+	text-transform: lowercase;
+	vertical-align: middle;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	/* i.e. */
+	_margin-left: 0px;	
+}

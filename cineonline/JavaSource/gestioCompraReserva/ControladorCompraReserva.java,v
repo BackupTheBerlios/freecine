@@ -1,0 +1,35 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.01.20.02.58;	author ivanmateu;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Estructurar el projecte amb el fitxers basics
+@
+text
+@package gestioCompraReserva;
+
+import gestioCinema.Controlador;
+import gestioCinema.ControladorException;
+
+public class ControladorCompraReserva extends Controlador{
+
+	public ControladorCompraReserva() throws ControladorException {
+		super();
+	}
+
+}
+@
