@@ -10,7 +10,7 @@ public class Sessio {
 	private String horaInici;
 	private Pelicula pelicula;
 	private Sala sala;
-	private Vector butaquesSessio;
+	//private Vector butaquesSessio;
 	
 	public Sessio (){
 		id = -1;
@@ -18,7 +18,7 @@ public class Sessio {
 		horaInici = "";
 		pelicula = null;
 		sala = null;
-		butaquesSessio = new Vector ();
+		//butaquesSessio = new Vector ();
 	}
 	
 	public int getId (){
@@ -41,9 +41,9 @@ public class Sessio {
 		return sala;
 	}
 	
-	public Vector getButaquesSessio (){
-		return butaquesSessio;
-	}
+//	public Vector getButaquesSessio (){
+//		return butaquesSessio;
+//	}
 	
 	public void setId (int idd){
 		id=idd;
@@ -65,20 +65,20 @@ public class Sessio {
 		sala=sal;
 	}
 	
-	public void setButaquesSessio (Vector butSes){
+	/*public void setButaquesSessio (Vector butSes){
 		butaquesSessio = butSes;
-	}
+	}*/
 	
 	public void setAll( int idd, 
 			String dat,
 			String horaInic,
 			Pelicula peli,
-			Sala sal,
-			Vector butSes){
+			Sala sal){
+		id = idd;
 		data = dat;
 		horaInici = horaInic;
 		pelicula = peli;
 		sala = sal;
-		butaquesSessio = butSes;
+		//butaquesSessio = butSes;
 	}
 }
