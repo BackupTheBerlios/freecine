@@ -47,16 +47,32 @@ import javax.servlet.http.HttpServletResponse;
 			ctrlSales = new ControladorSales();
 			if(accio.equals("llistarSales")) llistarSalesAction();
 			else if(accio.equals("detallSala")) detallSalaAction();
-			else if(accio.equals("afegirSala")) afegirSalaAction();
-			else if(accio.equals("modificarSala")) modificarSalaAction();
-			else if(accio.equals("eliminarSala")) eliminarSalaAction();
+			else if(accio.equals("afegir")) afegirSalaAction();
+			else if(accio.equals("novaSala")) novaSalaAction();
+			else if(accio.equals("modificar")) modificarSalaAction();
+			else if(accio.equals("eliminar")) eliminarSalaAction();
 			else if(accio.equals("modificarEstatButaca")) modificarEstatButacaAction();
+			else{
+			    rd = getServletContext().getRequestDispatcher(urlError+"?Error=Acció incorrecta");
+			    rd.forward(request, response);
+			}
 			
 			
 		} catch (ControladorException e) {
 			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
+			rd.forward(request,response);
 		}
 	}   	 
+
+	private void novaSalaAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_sala.jsp";
+
+		request.getSession().removeAttribute("sala");		
+		
+	    rd = getServletContext().getRequestDispatcher(urlExit);
+	    rd.forward(request, response);
+		
+	}
 
 	private void llistarSalesAction() throws ServletException, IOException{
 		/*
@@ -88,22 +104,24 @@ import javax.servlet.http.HttpServletResponse;
 		 * getSala i aquest ens retorna el objecte de la sala
 		 * El posem a sessio amb l'atribut de 'sala' 
 		 */
-		System.err.println("[GestioSalesServlet][detallSalaAction]detallSalaAction :"+request.getParameter("accio"));
 		urlExit="/intranet/fitxa_sala.jsp";
-		int idSala = Integer.parseInt(request.getParameter("idSala"));
-		try {
-			
-			Sala sala = ctrlSales.getSala(idSala);		
-			request.getSession().setAttribute("sala", sala);
-			
-			System.err.println("[GestioSalesServlet][detallSalaAction] sala"+request.getSession().getAttribute("sala"));
-			System.err.println("[GestioSalesServlet][detallSalaAction] sala"+((Sala)request.getSession().getAttribute("sala")).numButaquesOperatives());
-			
-		    rd = getServletContext().getRequestDispatcher(urlExit);
-		    rd.forward(request, response);
-		    
-		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		String idSala = request.getParameter("idSala");
+		
+		if(idSala != null){
+			try {
+				
+				Sala sala = ctrlSales.getSala(Integer.parseInt(idSala));		
+				request.getSession().setAttribute("sala", sala);
+				
+			    rd = getServletContext().getRequestDispatcher(urlExit);
+			    rd.forward(request, response);
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
 		    rd.forward(request, response);
 		}
 	}
@@ -115,7 +133,53 @@ import javax.servlet.http.HttpServletResponse;
 		 * Executa al controlador de sala afegirPelciual i li pasa
 		 * com a parametre la sala
 		 */
-		urlExit="/intranet/fitxa_sala.jsp";
+		
+		String nomSala = request.getParameter("nomSala");
+		String numMaxColumnes = request.getParameter("numMaxColumnes");
+		String numMaxFiles	= request.getParameter("numMaxFiles");
+		String descripcio = request.getParameter("descripcio");
+		Sala sala = new Sala();
+		
+		if(nomSala!=null && !nomSala.equals("")){
+			sala.setNomSala(nomSala);
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sala no pot ser buit");
+		    rd.forward(request, response);
+		}
+	
+		if(numMaxColumnes!=null && Integer.parseInt(numMaxColumnes)>0){
+			sala.setNumMaxColumnes(Integer.parseInt(numMaxColumnes));
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de columnes te de ser sueperior a 0");
+		    rd.forward(request, response);
+		}
+		
+		if(numMaxFiles!=null && Integer.parseInt(numMaxFiles)>0){
+			sala.setNumMaxFiles(Integer.parseInt(numMaxFiles));
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de files te de ser sueperior a 0");
+		    rd.forward(request, response);
+		}
+		
+		if(descripcio!=null){
+			sala.setDescripcio(descripcio);
+		}
+
+	
+		
+		
+		try {
+
+			ctrlSales.afegirSala(sala);		
+			request.getSession().removeAttribute("sala");
+
+		    llistarSalesAction();
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
 	}
 	
 	private void eliminarSalaAction() throws ServletException, IOException{
@@ -124,8 +188,24 @@ import javax.servlet.http.HttpServletResponse;
 		 * eliminarSala i aquest ens retorna el objecte de la sala
 		 * I anem a l'accio per anar a pelicules.
 		 */
+		String idSala = request.getParameter("idSala");
 		
-		llistarSalesAction();
+		if(idSala != null){
+			try {
+				
+				ctrlSales.eliminarSala(Integer.parseInt(idSala));		
+				request.getSession().removeAttribute("sala");
+
+			    llistarSalesAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
+		    rd.forward(request, response);
+		}
 	}
 
 	private void modificarSalaAction() throws ServletException, IOException{
@@ -136,7 +216,59 @@ import javax.servlet.http.HttpServletResponse;
 		 * com a parametre la sala i li retorna el mateix objecte actualitzat
 		 */
 		
-		urlExit="/intranet/fitxa_sala.jsp";
+		String idSala = request.getParameter("idSala");
+		String nomSala = request.getParameter("nomSala");
+		String numMaxColumnes = request.getParameter("numMaxColumnes");
+		String numMaxFiles	= request.getParameter("numMaxFiles");
+		String descripcio = request.getParameter("descripcio");
+		Sala sala = new Sala();
+		
+		if(idSala!=null){
+			
+			sala.setId(Integer.parseInt(idSala));
+		}
+	
+		if(nomSala!=null && !nomSala.equals("")){
+			sala.setNomSala(nomSala);
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sala no pot ser buit");
+		    rd.forward(request, response);
+		}
+	
+		if(numMaxColumnes!=null && Integer.parseInt(numMaxColumnes)>0){
+			sala.setNumMaxColumnes(Integer.parseInt(numMaxColumnes));
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de columnes te de ser sueperior a 0");
+		    rd.forward(request, response);
+		}
+		
+		if(numMaxFiles!=null && Integer.parseInt(numMaxFiles)>0){
+			sala.setNumMaxFiles(Integer.parseInt(numMaxFiles));
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de files te de ser sueperior a 0");
+		    rd.forward(request, response);
+		}
+		
+		if(descripcio!=null){
+			sala.setDescripcio(descripcio);
+		}
+		
+		if(idSala != null){
+			try {
+				
+				ctrlSales.modificarSala(sala);		
+				request.getSession().removeAttribute("sala");
+
+			    llistarSalesAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
+		    rd.forward(request, response);
+		}
 	}
 	
 	private void modificarEstatButacaAction() throws ServletException, IOException{

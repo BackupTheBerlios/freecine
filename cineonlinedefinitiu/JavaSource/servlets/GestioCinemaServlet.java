@@ -159,6 +159,7 @@ import javax.servlet.http.HttpServletResponse;
 	private void sortirAction() throws ServletException, IOException {
 		urlExit="/intranet/login.jsp";
 		request.getSession().removeAttribute("NomUsuari");
+		request.getSession().invalidate();
 		rd = getServletContext().getRequestDispatcher(urlExit);
 		rd.forward(request, response);
 	}

@@ -51,6 +51,10 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("novaPelicula")) novaPeliculaAction();
 			else if(accio.equals("modificar")) modificarPeliculaAction();
 			else if(accio.equals("eliminar")) eliminarPeliculaAction();
+			else if(accio.equals("llistarGeneres")) llistarGeneresAction();
+			else if(accio.equals("llistarNacionalitats")) llistarNacionalitatsAction();
+			else if(accio.equals("detallNacionalitat")) detallNacionalitatAction();
+			
 			else{
 				rd = getServletContext().getRequestDispatcher(urlError+"?error=Accés Fallit");
 			    rd.forward(request, response);
@@ -62,6 +66,61 @@ import javax.servlet.http.HttpServletResponse;
 			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
 		}
 	}   	 
+
+	private void detallNacionalitatAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_nacionalitat.jsp";
+		System.err.println("[detallNacionalitat]");
+		int idNacionalitat = Integer.parseInt(request.getParameter("idNacionalitat"));
+		try {
+			
+			Vector nacionalitat = ctrlPelicules.getNacionalitat(idNacionalitat);	
+			request.getSession().setAttribute("nacionalitat", nacionalitat);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+	}
+
+	private void llistarNacionalitatsAction() throws ServletException, IOException {
+		urlExit="/intranet/nacionalitats.jsp";
+	
+		
+		try {
+			
+			Vector llistaNacionalitats= ctrlPelicules.getNacionalitats();		
+			request.getSession().setAttribute("llistaNacionalitats", llistaNacionalitats);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
+
+	private void llistarGeneresAction() throws ServletException, IOException {
+	urlExit="/intranet/generes.jsp";
+		
+		try {
+			
+			Vector llistaGeneres= ctrlPelicules.getGeneres();		
+			request.getSession().setAttribute("llistaGeneres", llistaGeneres);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
 
 	private void novaPeliculaAction() throws ServletException, IOException {
 		urlExit="/intranet/fitxa_pelicula.jsp";
@@ -238,7 +297,7 @@ import javax.servlet.http.HttpServletResponse;
 		
 		Pelicula pelicula = new Pelicula();
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("idPelicula"));
 		String titol = request.getParameter("titol");
 		String titolOriginal = request.getParameter("titolOriginal");
 		int anny = Integer.parseInt(request.getParameter("anny"));
