@@ -42,7 +42,7 @@ public class Sessio {
 	}
 	
 //	public Vector getButaquesSessio (){
-//		return butaquesSessio;
+//	return butaquesSessio;
 //	}
 	
 	public void setId (int idd){
@@ -66,8 +66,8 @@ public class Sessio {
 	}
 	
 	/*public void setButaquesSessio (Vector butSes){
-		butaquesSessio = butSes;
-	}*/
+	 butaquesSessio = butSes;
+	 }*/
 	
 	public void setAll( int idd, 
 			String dat,

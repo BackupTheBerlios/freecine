@@ -83,6 +83,79 @@ public class ControladorSessions extends Controlador{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws ControladorException
+	 */
+	
+	public Sessio getSessio(int id) throws ControladorException{
+		ResultSet rs;
+		String query =	"SELECT " +
+						"id, " +
+						"data_hora_inici, " +
+						"data_hora_fi, " +
+						"preu, " +
+						"id_sala, " +
+						"id_pelicula " +
+						"FROM sessio " +
+						"WHERE id = "+id;
+		
+		try {
+			rs = selectRS(query);
+			Sessio sessio = (Sessio)toVectorSessions(rs).elementAt(0);
+			System.err.println("\n[ControladorSessions]:[getSessio] -> sessio"+sessio+"\n");
+			return sessio;
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessions]:[getSessio(int id)] Error SQL:"+query+"\n"+e.getMessage());
+			throw new ControladorException("[CControladorSessions]:[getSessio(int id)] Error SQL: "+query+"\n"+e.getMessage());
+		}
+	}
+	/**
+	 * 
+	 * @param id
+	 * @throws ControladorException
+	 */
+	public void eliminarSessio(String id) throws ControladorException {
+		String query ="DELETE FROM sessio WHERE id="+id;
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessions]:[eliminarSessio(String id)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorSessions]:[eliminarSessio(String id)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	/**
+	 * 
+	 * @param sessio
+	 * @throws ControladorException
+	 */
+	public void modificarSessio(Sessio sessio) throws ControladorException {
+		String query ="UPDATE PELICULA SET "+sessio.sqlUpdate()+" WHERE id = "+sessio.getId();
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessions]:[modificarSessio(Sessio Sessio)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorSessions]:[modificarSessio(String id)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	/**
+	 * 
+	 * @param sessio
+	 * @throws ControladorException
+	 */
+	public void afegirSessio(Sessio sessio) throws ControladorException{
+		String query ="INSERT INTO sessio "+sessio.sqlInsert();
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessions]:[afegirSessio(Sessio sessio)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorSessions]:[afegirSessio(Pelicula sessio)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
 	
 	
 	/**
