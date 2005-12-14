@@ -26,44 +26,42 @@ public class Sala {
 
 	public Sala(){
 		this.id = -1;
-		nomSala = null;
+		nomSala = "";
 		numMaxColumnes = -1;
 		numMaxFiles = -1;
 		butaques = new Vector();	
+		descripcio="";
 	}
 	
 	public void setAll(
 			int id,
 			String nomSala,
+			int numButaques,
 			int numMaxColumnes,
 			int numMaxFiles,
-			int numButaques,
 			String descripcio,
 			Vector butaques){
 		this.id = id;
 		this.nomSala = nomSala;
+		this.numButaques = numButaques;
 		this.numMaxColumnes = numMaxColumnes;
 		this.numMaxFiles = numMaxFiles;
-		this.numButaques = numButaques;
 		this.descripcio = descripcio;
 		this.butaques = butaques;
 	}
 	
-	/**
-	 * @return
-	 */
+
 	public String numButaquesOperatives() {
-//		Iterator itButaques = butaques.iterator();
-//		Vector butaquesOperatives = new Vector();
-//		Butaca butaca;
-//		while (itButaques.hasNext()){
-//			butaca = (Butaca)itButaques.next();
-//			if(butaca.getOperativa()){
-//				butaquesOperatives.add(butaca);
-//			}
-//		}
-		//return butaquesOperatives;
-		return ""+5;
+		Iterator itButaques = butaques.iterator();
+		Butaca butaca;
+		int operatives=0;
+		while (itButaques.hasNext()){
+			butaca = (Butaca)itButaques.next();
+			if(butaca.getOperativa()){
+				operatives++;
+			}
+		}
+		return ""+operatives;
 	}
 
 	public Vector getButaques() {
@@ -127,8 +125,8 @@ public class Sala {
 		campsSala = new Vector();
 		campsSala.add("id");
 		campsSala.add("nom");
-		campsSala.add("num_butaques");
 		campsSala.add("num_columnes");
+		campsSala.add("num_files");
 		campsSala.add("descripcio");
 		return campsSala;
 	}
@@ -147,7 +145,6 @@ public class Sala {
 	
 	public Vector getFormats(){	
 		Vector formatSala = new Vector();
-
 		formatSala.add(""+id);
 		formatSala.add("'"+nomSala+"'");
 		formatSala.add(""+numMaxColumnes+"");
@@ -198,7 +195,7 @@ public class Sala {
 				
 			}
 		}
-		values+=")";
+		values = values+")";
 		
 		return values;
 	}

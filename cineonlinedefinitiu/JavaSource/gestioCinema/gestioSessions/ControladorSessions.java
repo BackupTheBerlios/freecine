@@ -1,16 +1,17 @@
 package gestioCinema.gestioSessions;
 
+import gestioCinema.ControladorException;
+import gestioCinema.gestioPelicules.Pelicula;
+import gestioCinema.gestioSales.ControladorSales;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import gestioCinema.Controlador;
-import gestioCinema.ControladorException;
-import gestioCinema.gestioSales.*;
-import gestioCinema.gestioPelicules.*;
 
 
-public class ControladorSessions extends Controlador{
+
+public class ControladorSessions extends ControladorSales{
 	
 	public ControladorSessions() throws ControladorException  {
 		super();
@@ -28,6 +29,7 @@ public class ControladorSessions extends Controlador{
 		
 		Vector sessions = new Vector();
 		while (rs.next()) {
+			System.err.println("[toVectorSessions]");
 			Sessio sessio= new Sessio();
 			
 			/*
@@ -44,10 +46,11 @@ public class ControladorSessions extends Controlador{
 			sessio.setAll(
 					rs.getInt(1),						// id de sessio
 					rs.getString(2),					// String de la data --> getDate --> Sessio:new Date()
-					rs.getString(2),					// String amb hora de inici
-					getPelicula(rs.getInt(6)),			// Pelicula
-					getSala(rs.getInt(5)));				// Sala
-			
+					rs.getDouble(3),						// String amb preu
+					null,//getPelicula(rs.getInt(4)),			// Pelicula
+					null,//getSala(rs.getInt(5)),
+					null);				
+			System.err.println("[toVectorSessions]"+sessio);
 			sessions.addElement(sessio);
 			System.err.println("[toVectorSessions]:"+sessio);
 			
@@ -67,14 +70,15 @@ public class ControladorSessions extends Controlador{
 		String query = "SELECT " +
 							"id, " +
 							"data_hora_inici, " +
-							"data_hora_fi, " +
 							"preu, " +
 							"id_sala, " +
 							"id_pelicula " +
 						"FROM sessio";
 		
 		try {
+			System.err.println("[getSession]");
 			rs = selectRS(query);
+			System.err.println("[getSession]"+rs);
 			return toVectorSessions(rs);
 		} catch (SQLException e) {
 			System.err.println("[ControladorSessions]:[getSessions] Error SQL:"+query+"\n"+e.getMessage());
@@ -95,7 +99,6 @@ public class ControladorSessions extends Controlador{
 		String query =	"SELECT " +
 						"id, " +
 						"data_hora_inici, " +
-						"data_hora_fi, " +
 						"preu, " +
 						"id_sala, " +
 						"id_pelicula " +
@@ -104,8 +107,8 @@ public class ControladorSessions extends Controlador{
 		
 		try {
 			rs = selectRS(query);
+			System.err.println("[getSession]"+rs);
 			Sessio sessio = (Sessio)toVectorSessions(rs).elementAt(0);
-			System.err.println("\n[ControladorSessions]:[getSessio] -> sessio"+sessio+"\n");
 			return sessio;
 		} catch (SQLException e) {
 			System.err.println("[ControladorSessions]:[getSessio(int id)] Error SQL:"+query+"\n"+e.getMessage());
@@ -157,48 +160,79 @@ public class ControladorSessions extends Controlador{
 		}
 	}
 	
+	public Vector toVectorButaquesSessio(ResultSet rs) throws SQLException{
+		/*
+		 * Converteix un ResultSet a Vector de Pelicules
+		 */
 	
-	/**
-	 * getSala: Retorna una sala amb l'id subministrat
-	 * 
-	 * @param idSala: Codi de la sala que volem obtenir
-	 * @return Sala amb id = idSala
-	 * @throws ControladorException
-	 */
+		Vector butaques = new Vector();
+		while (rs.next()) {
+			ButacaSessio butacaSessio = new ButacaSessio();
+			butacaSessio.setAllButaca(
+				rs.getInt(1),
+				rs.getInt(2),
+				rs.getInt(3),
+				rs.getBoolean(4),
+				true);//s'ha de posar adecuadament
+				
+			
+			butaques.addElement(butacaSessio);
+		}
+		return butaques;	
+	}
 	
-	public Sala getSala(int idSala) throws ControladorException{
-		ResultSet rs;
-		
-		
+	public Vector getButaquesSessio(int idSala) throws ControladorException {
+		ResultSet rsSales;
 		String query = "SELECT " +
 							"id, " +
-							"nom, " +
-							"num_butaques, " +
-							"num_columnes, " +
-							"num_files, " +
-							"descripcio " +
-						"FROM sala " +
-						"WHERE id="+idSala;
+							"num_fila, " +
+							"num_columna, " +
+							"operativa " +
+						"FROM butaca " +
+						"WHERE id_sala = "+idSala;
 		
 		try {
-			Sala sala= new Sala();
-			rs = selectRS(query);
-			while (rs.next()) {
-				sala.setAll(
-					rs.getInt(1),
-					rs.getString(2),
-					rs.getInt(3),
-					rs.getInt(4),
-					rs.getInt(5),
-					rs.getString(6),
-					null);
-			}		
-			System.err.println("\n[ControladorSessions]:[getSala] -> sala"+sala+"\n");
-			return sala;
+			rsSales = selectRS(query);
+			return toVectorButaquesSessio(rsSales);
 		} catch (SQLException e) {
-			System.err.println("[ControladorSessions]:[getSala(int idSala)] Error SQL:"+query+"\n"+e.getMessage());
-			throw new ControladorException("[ControladorSessions]:[getSala(int idSala)] Error SQL: "+query+"\n"+e.getMessage());
+			System.err.println("[ControladorSessio]:[getButaquesSessio(int idSala)] Error SQL: "+query+"\n"+e.getMessage());
+			throw new ControladorException("[ControladorSessio]:[getButaquesSessio(int idSala)] Error SQL: Error SQL:"+query+"\n"+e.getMessage());
 		}
+	}
+	
+	
+/*CONTROLADOR PELICULES*/
+	
+	public Vector toVectorPelicules(ResultSet rs) throws SQLException {
+		/*
+		 * Converteix un ResultSet a Vector de Pelicules
+		 */
+		Vector pelicules = new Vector();
+		
+		while (rs.next()) {
+			Pelicula pelicula = new Pelicula();
+			pelicula.setAll(
+				rs.getInt(1),
+				rs.getString(2),
+				rs.getString(3),
+				rs.getInt(4),
+				rs.getString(5),
+				rs.getString(6),
+				rs.getInt(7),
+				rs.getString(8),
+				rs.getString(9),
+				rs.getString(10),
+				rs.getString(11),
+				rs.getString(12),
+				rs.getString(13),
+				rs.getString(14),
+				rs.getString(15),
+				rs.getString(16),
+				rs.getString(17));
+				
+			pelicules.addElement(pelicula);
+		}
+		return pelicules;	
 	}
 	
 	/**
@@ -264,6 +298,43 @@ public class ControladorSessions extends Controlador{
 		}
 		
 	}
+	
+	public Vector getPelicules() throws ControladorException{
+		ResultSet rsPelicules;
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
+		try {
+			
+			String query = "SELECT  " +
+								"id, " +
+								"titol, " +
+								"titol_original, " +
+								"anny, " +
+								"durada, " +
+								"id_nacionalitat, " +
+								"edat_recomanada, " +
+								"tipus_color, " +
+								"tipus_so, " +
+								"id_genere, " +
+								"director, " +
+								"guionista, " +
+								"productor, " +
+								"actors, " +
+								"sinopsis, " +
+								"url_web, " +
+								"url_imatge " +
+							"FROM Pelicula ORDER BY titol ASC";
+			
+			rsPelicules = selectRS(query);
+		
+			return toVectorPelicules(rsPelicules);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getPelicules] Error SQL:"+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getPelicules] Error SQL: "+e.getMessage());
+		}
+	}
+	
+/*FI CONTROLADOR PELICULES*/
 	
 	
 }
