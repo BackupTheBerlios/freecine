@@ -1,5 +1,4 @@
 <%@ page import="java.util.Vector" %>
-<%@ page import="java.util.Iterator" %>
 <jsp:include page="esquelet_adm/header.jsp"/>
 	<div id="top">
 		<jsp:include page="esquelet_adm/top.jsp"/>		
@@ -15,24 +14,31 @@
 		<span class="txt">
 			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">
 			<div id="caixa_pelicules">			
-				<%
-					Vector nac = (Vector)session.getAttribute("nacionalitat");
-					if (nac != null)
+				<%	
+				Vector nac = new Vector();	
+				nac = (Vector)session.getAttribute("nacionalitat");
+				
+					if (nac!=null)
 					{
-						Iterator itNac = nac.iterator();
+						String amm = nac.elements().nextElement().toString();
+						amm = amm.replace("[","");
+						amm = amm.replace("]","");
+						amm = amm.replace(" ","");
+						String args[] = amm.split(",");
 						%>
-						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="<%= ""+ itNac.next() %>" />
-						nom del la nacionalitat
-						<input type="Text" name="nom" class="caixa_text" value="<%= ""+ itNac.next() %>" />
+						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="<%=args[0]%>" />
+						nom del la nacionalitat<br />
+						<input type="Text" name="nom" class="caixa_text" value="<%=args[1]%>" />
 						<br /><br />
 						<input type="Submit" name="accio" value="modificar nacionalitat" class="boto_accio" />
 						<input type="Submit" name="accio" value="eliminar nacionalitat" class="boto_accio" />
 					<%
 					}
 					else
-					{%>
+					{
+					%>
 						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="-1" />
-						nom del la nacionalitat
+						nom del la nacionalitat<br />
 						<input type="Text" name="nom" class="caixa_text" value="" />
 						<br /><br />
 						<input type="Submit" name="accio" value="afegir nacionalitat" class="boto_accio" /> 

@@ -18,10 +18,11 @@
 				<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir nac" />
 			</form>
 			<% 
-				Vector llista = new Vector();	
-				llista = (Vector) session.getAttribute("llistaNacionalitats");
+			Vector llista = new Vector();	
+			llista = (Vector) session.getAttribute("llistaNacionalitats");
 				if(llista!=null)
 				{
+					
 					Iterator it = llista.iterator();
 				%>
 					<table border="2">

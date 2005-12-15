@@ -37,7 +37,7 @@
 				{
 					Iterator it = llista.iterator();
 				%>
-					<table border="2">
+					<table width="100%">
 					<tr>
 						<td></td>
 						<td><strong>títol</strong></td>
@@ -47,18 +47,24 @@
 						<td><strong>any</strong></td>
 					</tr>
 				<%
-					while(it.hasNext())
+				int i = 0;
+				String classeFila = "";
+				while(it.hasNext())
 					{
 						Pelicula pelicula = (Pelicula)it.next();
+						if(i%2==0){classeFila = "parell";}else{classeFila = "";}
+						i ++;
 				%>
-					<tr>
-						<td>
-							<form name="frmfitxa" action="GestioClientServlet" method="post" class="boto_horari">
+					<tr class="<%= classeFila %>">
+					<form name="frmfitxa" action="GestioClientServlet" method="post">
+						<td style="text-align : center;">
+							
 								<input type="Hidden" name="accio" value="detallPelicula" />
 								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
-							</form>
+								<input type="Submit" name="opcio_menu" class="boto_horari" value="fitxa" />
+
 						</td>
+													</form>
 						<td><%=pelicula.getTitol()%></td>
 						<td><%=pelicula.getTitolOriginal()%></td>
 						<td><%=pelicula.getNacionalitat()%></td>
