@@ -22,7 +22,7 @@
 			
 			<input type="Hidden" name="idSessio" value="<%= obj.getId() %>">
 			data (dd/mm/aaaa)
-			<input type="Text" name="data" value="<%= obj.getDataHora() %>" class="caixa_text" maxlength="10">
+			<input type="Text" name="data" value="<%= obj.getDataHora() %>" class="caixa_text" maxlength="10">			
 			<br><br>
 			preu
 			<input type="Text" name="preu" class="caixa_text" value="<%= obj.getPreu() %>" maxlength="5">

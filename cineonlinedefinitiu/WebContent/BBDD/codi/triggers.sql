@@ -178,6 +178,7 @@ CREATE OR REPLACE FUNCTION modif_sala() RETURNS TRIGGER AS'
 			WHERE butaca.num_columna>nou_num_columnes-1
 			AND butaca.id_sala = NEW.id;
 		END IF;
+		NEW.num_butaques = NEW.num_files * NEW.num_columnes;
 		RETURN NEW;
 	END;
 '
@@ -930,7 +931,7 @@ CREATE TRIGGER sala_correcte BEFORE INSERT ON sala
 
 --*****************************************--
 
---TRIGGERS PER A LA COHERENCIA DELS ATRIBUTS DE PEL√çCULA--
+--TRIGGERS PER A LA COHERENCIA DELS ATRIBUTS DE PEL√?CULA--
 
 --*****************************************--
 
