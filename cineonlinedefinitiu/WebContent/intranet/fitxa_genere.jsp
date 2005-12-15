@@ -37,9 +37,9 @@
 					else
 					{
 					%>
-						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="-1" />
+						<input type="Hidden" name="idGenere" class="caixa_text" value="-1" />
 						genere<br />
-						<input type="Text" name="nomNacionalitat" class="caixa_text" value="" />
+						<input type="Text" name="nomGenere" class="caixa_text" value="" />
 						<br /><br />
 						<input type="Submit" name="accio" value="afegir genere" class="boto_accio" /> 
 				<%

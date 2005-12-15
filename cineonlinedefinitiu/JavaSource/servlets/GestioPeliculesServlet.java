@@ -4,6 +4,7 @@ import gestioCinema.ControladorException;
 import gestioCinema.gestioPelicules.ControladorPelicules;
 import gestioCinema.gestioPelicules.Pelicula;
 
+
 import java.io.IOException;
 import java.util.Vector;
 
@@ -41,24 +42,35 @@ import javax.servlet.http.HttpServletResponse;
 		this.request = request;
 		this.response = response;
 		String accio = request.getParameter("accio");
-		System.err.println("yyyyyy"+accio);
 		try {
 			
 			ctrlPelicules = new ControladorPelicules();
+			/* ACCIONS PELICULES */
 			if(accio.equals("llistarPelicules")) llistarPeliculesAction();
 			else if(accio.equals("detallPelicula")) detallPeliculaAction();
 			else if(accio.equals("afegir")) afegirPeliculaAction();
 			else if(accio.equals("novaPelicula")) novaPeliculaAction();
 			else if(accio.equals("modificar")) modificarPeliculaAction();
 			else if(accio.equals("eliminar")) eliminarPeliculaAction();
-			else if(accio.equals("llistarGeneres")) llistarGeneresAction();
+			/* ACCIONS NACIONALITAT */
 			else if(accio.equals("llistarNacionalitats")) llistarNacionalitatsAction();
 			else if(accio.equals("detallNacionalitat")) detallNacionalitatAction();
 			else if(accio.equals("novaNacionalitat")) novaNacionalitatAction();
+			else if(accio.equals("modificar nacionalitat")) modificarNacionalitatAction();
+			else if(accio.equals("eliminar nacionalitat")) eliminarNacionalitatAction();
+			else if(accio.equals("afegir nacionalitat")) afegirNacionalitatAction();
+			
+			/* ACCIONS GENERE */
+			else if(accio.equals("llistarGeneres")) llistarGeneresAction();
+			else if(accio.equals("detallGenere")) detallGenereAction();
+			else if(accio.equals("novaGenere")) novaGenereAction();
+			else if(accio.equals("modificar genere")) modificarGenereAction();
+			else if(accio.equals("eliminar genere")) eliminarGenereAction();
+			else if(accio.equals("afegir genere")) afegirGenereAction();
 			
 			
 			else{
-				rd = getServletContext().getRequestDispatcher(urlError+"?error=Accés Fallit");
+				rd = getServletContext().getRequestDispatcher(urlError+"?error=La acció ["+accio+"]no existeix a GestioPelicules");
 			    rd.forward(request, response);
 			}
 			
@@ -68,6 +80,199 @@ import javax.servlet.http.HttpServletResponse;
 			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 		}
 	}   	 
+
+	/*
+	 * 
+	 * <<<<<<<<<<<<<<<<<<<<<ACCIONS GENERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	 * 
+	 */
+	
+	private void afegirGenereAction() throws ServletException, IOException {
+		String nomGenere = request.getParameter("nomGenere");
+		
+		if(!(nomGenere!=null && !nomGenere.equals(""))){
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom genere no pot ser buit");
+		    rd.forward(request, response);
+		}
+		
+		
+		try {
+			
+			ctrlPelicules.afegirGenere(nomGenere);		
+
+			llistarGeneresAction();
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
+
+	private void eliminarGenereAction() throws ServletException, IOException {
+		String idGenere = request.getParameter("idGenere");
+		
+		if(idGenere != null){
+			try {
+				
+				ctrlPelicules.eliminarNacionalitat(idGenere);		
+
+				llistarGeneresAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idGenere null");
+		    rd.forward(request, response);
+		}
+	}
+
+	private void modificarGenereAction() throws ServletException, IOException {
+		String idGenere = request.getParameter("idGenere");
+		String nomGenere = request.getParameter("nomGenere");
+	
+		if(!(nomGenere!=null && !nomGenere.equals(""))){
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom nacionalitat no pot ser buit");
+		    rd.forward(request, response);
+		}
+		
+		if(idGenere != null){
+			try {
+				
+				ctrlPelicules.modificarGenere(idGenere, nomGenere);		
+
+				llistarNacionalitatsAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idGenere es null");
+		    rd.forward(request, response);
+		}
+		
+	}
+
+	private void novaGenereAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_genere.jsp";
+		request.getSession().removeAttribute("genere");				
+	    rd = getServletContext().getRequestDispatcher(urlExit);
+	    rd.forward(request, response);
+	}
+
+	private void detallGenereAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_genere.jsp";
+		int idGenere = Integer.parseInt(request.getParameter("idGenere"));
+		try {
+			
+			Vector genere = ctrlPelicules.getGenere(idGenere);	
+			request.getSession().setAttribute("genere", genere);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+	}
+	
+	private void llistarGeneresAction() throws ServletException, IOException {
+		urlExit="/intranet/generes.jsp";
+		
+		try {
+			
+			Vector llistaGeneres= ctrlPelicules.getGeneres();		
+			request.getSession().setAttribute("llistaGeneres", llistaGeneres);		
+			
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
+	
+	/*
+	 * 
+	 * <<<<<<<<<<<<<<<<<<<<<ACCIONS NACIONALITAT>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	 * 
+	 */
+
+	private void afegirNacionalitatAction() throws ServletException, IOException {
+		String nomNacionalitat = request.getParameter("nomNacionalitat");
+	
+		if(!(nomNacionalitat!=null && !nomNacionalitat.equals(""))){
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom nacionalitat no pot ser buit");
+		    rd.forward(request, response);
+		}
+		
+		
+		try {
+			
+			ctrlPelicules.afegirNacionalitat(nomNacionalitat);		
+
+			llistarNacionalitatsAction();
+		    
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
+
+	private void eliminarNacionalitatAction() throws ServletException, IOException {
+		String idNacionalitat = request.getParameter("idNacionalitat");
+		
+		if(idNacionalitat != null){
+			try {
+				
+				ctrlPelicules.eliminarNacionalitat(idNacionalitat);		
+
+				llistarNacionalitatsAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
+		    rd.forward(request, response);
+		}
+		
+	}
+
+	private void modificarNacionalitatAction() throws ServletException, IOException {
+		String idNacionalitat = request.getParameter("idNacionalitat");
+		String nomNacionalitat = request.getParameter("nomNacionalitat");
+	
+		if(!(nomNacionalitat!=null && !nomNacionalitat.equals(""))){
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom nacionalitat no pot ser buit");
+		    rd.forward(request, response);
+		}
+		
+		if(idNacionalitat != null){
+			try {
+				
+				ctrlPelicules.modificarNacionalitat(idNacionalitat, nomNacionalitat);		
+
+				llistarNacionalitatsAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
+		    rd.forward(request, response);
+		}
+		
+	}
 
 	private void novaNacionalitatAction() throws ServletException, IOException {
 		urlExit="/intranet/fitxa_nacionalitat.jsp";
@@ -79,7 +284,6 @@ import javax.servlet.http.HttpServletResponse;
 
 	private void detallNacionalitatAction() throws ServletException, IOException {
 		urlExit="/intranet/fitxa_nacionalitat.jsp";
-		System.err.println("[detallNacionalitat]");
 		int idNacionalitat = Integer.parseInt(request.getParameter("idNacionalitat"));
 		try {
 			
@@ -111,24 +315,12 @@ import javax.servlet.http.HttpServletResponse;
 		}
 		
 	}
-
-	private void llistarGeneresAction() throws ServletException, IOException {
-	urlExit="/intranet/generes.jsp";
-		
-		try {
-			
-			Vector llistaGeneres= ctrlPelicules.getGeneres();		
-			request.getSession().setAttribute("llistaGeneres", llistaGeneres);		
-			
-		    rd = getServletContext().getRequestDispatcher(urlExit);
-		    rd.forward(request, response);
-		    
-		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
-		    rd.forward(request, response);
-		}
-		
-	}
+	
+	/*
+	 * 
+	 * <<<<<<<<<<<<<<<<<<<<<ACCIONS PELICULES>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	 * 
+	 */
 
 	private void novaPeliculaAction() throws ServletException, IOException {
 		urlExit="/intranet/fitxa_pelicula.jsp";

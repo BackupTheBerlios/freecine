@@ -14,8 +14,8 @@
 		<br /><br />
 		<span class="txt">
 			<form name="frmnou" action="GestioPeliculesServlet" method="post" class="boto_horari">
-				<input type="Hidden" name="accio" value="novaNacionalitat" />
-				<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir nac" />
+				<input type="Hidden" name="accio" value="novaGenere" />
+				<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir genere" />
 			</form>
 			<% 
 			Vector llista = new Vector();	

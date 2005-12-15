@@ -191,18 +191,12 @@ public class ControladorPelicules extends Controlador{
 		}
 	}
 
-	public Vector getGeneres() throws ControladorException {
-		String query ="SELECT * FROM genere";
-		Vector nac;
-		try {
-			nac = selectVector(query);
-			return nac;
-		} catch (SQLException e) {
-			System.err.println("[ControladorPelicules]:[getGeneres()] query:"+query+"\n Error SQL: "+e.getMessage());
-			throw new ControladorException("[ControladorPelicules]:[getGeneres()] query:"+query+"\n Error SQL: "+e.getMessage());
-		}
-	}
-
+	/* 
+	 * 
+	 * <<<<<<<<<<<<<<<<INICI GESTIO NACIONALITAT>>>>>>>>>>>>>>>>>>>>>>
+	 *  
+	 * */
+	
 	public Vector getNacionalitats() throws ControladorException {
 		String query ="SELECT * FROM nacionalitat";
 		Vector nac;
@@ -226,6 +220,109 @@ public class ControladorPelicules extends Controlador{
 			System.err.println("[ControladorPelicules]:[getNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
 			throw new ControladorException("[ControladorPelicules]:[getNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
 		}
-	
 	}
+
+	public void modificarNacionalitat(String idNacionalitat, String nomNacionalitat) throws ControladorException {
+		String query ="UPDATE NACIONALITAT SET pais = '"+nomNacionalitat+"' WHERE id = "+idNacionalitat;
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[modificarNacionalitat(String idNacionalitat, String nomNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[modificarNacionalitat(String idNacionalitat, String nomNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+		
+	}
+	
+	public void afegirNacionalitat(String nomNacionalitat) throws ControladorException {
+		String query ="INSERT INTO NACIONALITAT (pais) VALUES ('"+nomNacionalitat+"')";
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[afegirNacionalitat(String nacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[afegirNacionalitat(String nacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	public void eliminarNacionalitat(String idNacionalitat) throws ControladorException {
+		String query ="DELETE FROM NACIONALITAT WHERE id="+idNacionalitat;
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[eliminarNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[eliminarNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	
+	
+	public Vector getGeneres() throws ControladorException {
+		String query ="SELECT * FROM genere";
+		Vector nac;
+		try {
+			nac = selectVector(query);
+			return nac;
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getGeneres()] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getGeneres()] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	/* 
+	 * 
+	 * <<<<<<<<<<<<<<<<FI GESTIO NACIONALITAT>>>>>>>>>>>>>>>>>>>>>>
+	 *  
+	 * */
+
+	/* 
+	 * 
+	 * <<<<<<<<<<<<<<<<INICI GESTIO GENERE>>>>>>>>>>>>>>>>>>>>>>
+	 *  
+	 * */
+	
+	public Vector getGenere(int idGenere) throws ControladorException {
+		String query ="SELECT * FROM Genere WHERE id="+idGenere;
+		Vector nac;
+		try {
+			nac = selectVector(query);
+			return nac;
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getGenere(int idGenere)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getGenere(int idGenere)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	public void modificarGenere(String idGenere, String nomGenere) throws ControladorException {
+		String query ="UPDATE GENERE SET descripcio = '"+nomGenere+"' WHERE id = "+idGenere;
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[modificarGenere(String idGenere, String nomGenere)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[modificarGenere(String idGenere, String nomGenere)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+		
+	}
+	
+	public void afegirGenere(String nomGenere) throws ControladorException {
+		String query ="INSERT INTO GENERE (descripcio) VALUES ('"+nomGenere+"')";
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[afegirGenere(String nacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[afegirGenere(String nacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	
+	public void eliminarGenere(String idGenere) throws ControladorException {
+		String query ="DELETE FROM GENERE WHERE id="+idGenere;
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[eliminarNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[eliminarNacionalitat(int idNacionalitat)] query:"+query+"\n Error SQL: "+e.getMessage());
+		}
+	}
+	/* 
+	 * 
+	 * <<<<<<<<<<<<<<<<FI GESTIO GENERE>>>>>>>>>>>>>>>>>>>>>>
+	 *  
+	 * */
 }
