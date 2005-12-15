@@ -1,3 +1,6 @@
+<%@ page import="java.util.Vector" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="gestioCinema.gestioPelicules.Pelicula" %>
 <jsp:include page="esquelet/header.jsp"/>
 	<div id="top">
 		<jsp:include page="esquelet/top.jsp"/>		
@@ -26,96 +29,56 @@
 				</select>
 				<br /><br />
 				<center><input type="Submit" name="cerca" value="cerca" class="boto_venda" /></center>
-			</form>
-			<br />			
-			<div id="caixa_sinopsis">
-				<div id="titol_caixa">Parretis de cine / Parretis making movies </div>
-				<div id="col_portada">
-					<div id="foto_portada">
-						<img src="imatges/portada_parretis.gif" alt="" width="136" height="176" hspace="2" vspace="2" border="0" />
-					</div>
-						<form name="frmsinopsis_venda" action="cartellera.jsp">
-							<input type="Hidden" name="idpelicula" value="1" />
-							<input type="Submit" name="opcio_menu" value="cartellera" class="boto_venda" />
-						</form>
-				</div>
-				<div id="contingut_sinopsis">
-					<span class="txt_titol_caixa">
-					director
-					</span>
-					<span class="txt_caixa">
-					Víctor Oterus
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					guionista
-					</span>
-					<span class="txt_caixa">
-					Òscar RossifumiOne
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					productor
-					</span>
-					<span class="txt_caixa">
-					Oriol Oriparres
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					actors
-					</span>
-					<span class="txt_caixa">
-					Ivan Isevic, Víctor Oterus, Òscar RossifumiOne, Oriol Oriparres i jo.
-					</span>
-					<br />			
-					<span class="txt_titol_caixa">
-					any
-					</span>
-					<span class="txt_caixa">
-					2005
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					nacionalitat
-					</span>
-					<span class="txt_caixa">
-					CAT
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					durada
-					</span>
-					<span class="txt_caixa">
-					148 minuts
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					edat recomanada
-					</span>
-					<span class="txt_caixa">
-					18 anys
-					</span>
-					<br />
-					<span class="txt_titol_caixa">
-					web
-					</span>
-					<span class="txt_caixa">
-					<a href="http://www.parretisdecine.com" class="web" target="_blank">www.parretisdecine.com</a>
-					</span>
-					<br /><br />
-					<span class="txt_titol_caixa">
-					sinòpsis
-					</span>
-					<span class="txt_caixa">
-					Joe i els seus amics estudien informàtica de sistemes a la facultat de matemàtiques de la Universitat de Barcelona.
-					<br />
-					De cop i volta els hi proposen fer un petit sistema de compra i reserva online d'entrades de cine.
-					<br />
-					A partir d'aquí sorgeixen múltiples aventures entre els Parretis abans d'entregar el projecte final.			
-					</span>			
-					<br />
-				</div>		
-			</div>
+			</form>			
+			<% 
+				Vector llista = new Vector();	
+				llista = (Vector) session.getAttribute("llistaPelicules");
+				if(llista!=null)
+				{
+					Iterator it = llista.iterator();
+				%>
+					<table border="2">
+					<tr>
+						<td></td>
+						<td><strong>títol</strong></td>
+						<td><strong>títol original</strong></td>
+						<td><strong>nacionalitat</strong></td>
+						<td><strong>director</strong></td>
+						<td><strong>any</strong></td>
+					</tr>
+				<%
+					while(it.hasNext())
+					{
+						Pelicula pelicula = (Pelicula)it.next();
+				%>
+					<tr>
+						<td>
+							<form name="frmfitxa" action="GestioClientServlet" method="post" class="boto_horari">
+								<input type="Hidden" name="accio" value="detallPelicula" />
+								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
+								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+							</form>
+						</td>
+						<td><%=pelicula.getTitol()%></td>
+						<td><%=pelicula.getTitolOriginal()%></td>
+						<td><%=pelicula.getNacionalitat()%></td>
+						<td><%=pelicula.getDirector()%></td>
+						<td><%=pelicula.getAnny()%></td>
+					</tr>
+				<%
+					}
+					%>
+					</table>
+					<%
+				}
+				else
+				{
+					%>
+					No hi ha cap pel·lícula.
+					<%
+				}
+				%>
+			
 		</span>
 	</div>
 	<div id="right">

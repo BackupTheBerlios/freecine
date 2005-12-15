@@ -1,5 +1,5 @@
 <center>
-<img src="imatges/top_cineonline.gif" width="798" height="105" alt="" border="0" />
+<img src="./extranet/imatges/top_cineonline.gif" width="798" height="105" alt="" border="0" />
 </center>
 <!--
 <span class="titol_cinenline">
