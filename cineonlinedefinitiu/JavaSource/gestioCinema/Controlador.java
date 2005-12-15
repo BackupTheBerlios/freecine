@@ -11,7 +11,7 @@ public class Controlador {
 	private final String DRIVERBBDD = "org.postgresql.Driver";;
 	private final String URL = "jdbc:postgresql://localhost/bbddCineOnline";
 	private final String USUARI = "postgres";
-	private final String PASSWORD ="s0lar1s";
+	private final String PASSWORD ="postgres";
 
 	private Connection conn;
 	private Statement stmt;
@@ -31,7 +31,6 @@ public class Controlador {
 			Class.forName(DRIVERBBDD);			
 			conn = DriverManager.getConnection(URL, USUARI, PASSWORD);
 			stmt = conn.createStatement();
-			System.err.println("[Controlador]: Conexió creada");
 		}catch(ClassNotFoundException e){
 			System.err.println("[Controlador]: configurar -> Error: "+URL+", "+USUARI+"\n"+e.getMessage());
 			e.printStackTrace();
