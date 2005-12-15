@@ -12,7 +12,7 @@
 		<br /><br />
 		<span class="txt">
 		<%
-			String error = request.getParameter("Error");	
+			String error = request.getParameter("error");	
 			if (error != null)
 			{
 				%>

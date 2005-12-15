@@ -8,7 +8,7 @@
 	</div>
 	<div id="center">
 		<span class="txt_titol">			
-			Fitxa de nacionalitat
+			Fitxa de genere
 		</span>
 		<br /><br />
 		<span class="txt">
@@ -16,7 +16,7 @@
 			<div id="caixa_pelicules">			
 				<%	
 				Vector nac = new Vector();	
-				nac = (Vector)session.getAttribute("nacionalitat");
+				nac = (Vector)session.getAttribute("genere");
 				
 					if (nac!=null)
 					{
@@ -26,22 +26,22 @@
 						amm = amm.replace(" ","");
 						String args[] = amm.split(",");
 						%>
-						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="<%=args[0]%>" />
-						nom del la nacionalitat<br />
-						<input type="Text" name="nomNacionalitat" class="caixa_text" value="<%=args[1]%>" />
+						<input type="Hidden" name="idGenere" class="caixa_text" value="<%=args[0]%>" />
+						genere<br />
+						<input type="Text" name="nomGenere" class="caixa_text" value="<%=args[1]%>" />
 						<br /><br />
-						<input type="Submit" name="accio" value="modificar nacionalitat" class="boto_accio" />
-						<input type="Submit" name="accio" value="eliminar nacionalitat" class="boto_accio" />
+						<input type="Submit" name="accio" value="modificar genere" class="boto_accio" />
+						<input type="Submit" name="accio" value="eliminar genere" class="boto_accio" />
 					<%
 					}
 					else
 					{
 					%>
 						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="-1" />
-						nom del la nacionalitat<br />
+						genere<br />
 						<input type="Text" name="nomNacionalitat" class="caixa_text" value="" />
 						<br /><br />
-						<input type="Submit" name="accio" value="afegir nacionalitat" class="boto_accio" /> 
+						<input type="Submit" name="accio" value="afegir genere" class="boto_accio" /> 
 				<%
 					}
 				%>
