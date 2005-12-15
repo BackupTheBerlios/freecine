@@ -11,7 +11,7 @@ public class Controlador {
 	private final String DRIVERBBDD = "org.postgresql.Driver";;
 	private final String URL = "jdbc:postgresql://localhost/bbddCineOnline";
 	private final String USUARI = "postgres";
-	private final String PASSWORD ="postgres";
+	private final String PASSWORD ="s0lar1s";
 
 	private Connection conn;
 	private Statement stmt;
