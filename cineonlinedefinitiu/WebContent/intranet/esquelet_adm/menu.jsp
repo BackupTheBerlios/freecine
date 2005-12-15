@@ -26,7 +26,7 @@
 </form>
 <form name="frmmenu" action="GestioPeliculesServlet" method="post" class="form_memu">
 	<input type="Hidden" name="accio" value="llistarNacionalitats" />
-	<input type="Submit" name="opcio_menu" class="boto_menu" value="nacionlitats" />
+	<input type="Submit" name="opcio_menu" class="boto_menu" value="nacionalitats" />
 </form>
 <form name="frmmenu" action="GestioPeliculesServlet" method="post" class="form_memu">
 	<input type="Hidden" name="accio" value="llistarGeneres" />
