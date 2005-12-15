@@ -3,11 +3,11 @@
 <head>
 	<title>:: Cineonline ::</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estil3columnes.css">
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estils.css">
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estilsBotons.css">
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estilsPelicules.css">
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estilsCartellera.css">
-	<link rel="STYLESHEET" type="text/css" href="./intranet/estils_adm/estilsButaca.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estil3columnes.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estils.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estilsBotons.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estilsPelicules.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estilsCartellera.css">
+	<link rel="STYLESHEET" type="text/css" href="estils_adm/estilsButaca.css">
 </head>
 <body>

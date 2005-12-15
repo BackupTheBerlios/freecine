@@ -12,14 +12,14 @@
 		</span>
 		<br /><br />
 		<span class="txt">
-			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">
+			<form name="frmadmpelicules" action="GestioSalesServlet" method="post">
 			<div id="caixa_pelicules">			
 				<%
 					Sala obj = (Sala)session.getAttribute("sala");
 					if (obj != null)
 					{
 						%>
-						<input type="Hidden" name="idSala" value="<%= obj.getId() %>" />
+						<input type="Hidden" name="idSala" value="<%= ""+obj.getId() %>" />
 						nom de la sala
 						<input type="Text" name="nomSala" class="caixa_text" value="<%= obj.getNomSala() %>" />
 						<br /><br />

@@ -17,6 +17,7 @@
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="sales" />
 </form>
 <form name="frmmenu" action="GestioSessionsServlet" method="post" class="form_memu">
+	<input type="Hidden" name="accio" value="llistarSessions" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="sessions" />
 </form>
 <form name="frmmenu" action="GestioCinemaServlet" method="post" class="form_memu">
@@ -26,4 +27,12 @@
 <form name="frmmenu" action="GestioCinemaServlet" method="post" class="form_memu">
 	<input type="Hidden" name="accio" value="consola" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="Gestió cinema" />
+</form>
+<form name="frmmenu" action="GestioPeliculesServlet" method="post" class="form_memu">
+	<input type="Hidden" name="accio" value="llistarNacionalitats" />
+	<input type="Submit" name="opcio_menu" class="boto_menu" value="nacionlitats" />
+</form>
+<form name="frmmenu" action="GestioPeliculesServlet" method="post" class="form_memu">
+	<input type="Hidden" name="accio" value="llistarGeneres" />
+	<input type="Submit" name="opcio_menu" class="boto_menu" value="generes" />
 </form>
