@@ -54,6 +54,8 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("llistarGeneres")) llistarGeneresAction();
 			else if(accio.equals("llistarNacionalitats")) llistarNacionalitatsAction();
 			else if(accio.equals("detallNacionalitat")) detallNacionalitatAction();
+			else if(accio.equals("novaNacionalitat")) novaNacionalitatAction();
+			
 			
 			else{
 				rd = getServletContext().getRequestDispatcher(urlError+"?error=Accés Fallit");
@@ -66,6 +68,14 @@ import javax.servlet.http.HttpServletResponse;
 			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
 		}
 	}   	 
+
+	private void novaNacionalitatAction() throws ServletException, IOException {
+		urlExit="/intranet/fitxa_nacionalitat.jsp";
+		request.getSession().removeAttribute("nacionalitat");				
+	    rd = getServletContext().getRequestDispatcher(urlExit);
+	    rd.forward(request, response);
+		
+	}
 
 	private void detallNacionalitatAction() throws ServletException, IOException {
 		urlExit="/intranet/fitxa_nacionalitat.jsp";
@@ -87,8 +97,6 @@ import javax.servlet.http.HttpServletResponse;
 
 	private void llistarNacionalitatsAction() throws ServletException, IOException {
 		urlExit="/intranet/nacionalitats.jsp";
-	
-		
 		try {
 			
 			Vector llistaNacionalitats= ctrlPelicules.getNacionalitats();		
