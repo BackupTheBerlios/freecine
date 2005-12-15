@@ -8,10 +8,18 @@ import junit.framework.TestCase;
 public class SimpleTest extends TestCase{
 
 	private Pelicula pelicula= new Pelicula();
+	
 	private ControladorPelicules controlador;
 	
 	public SimpleTest(String nom){
 		super(nom);
+		try {
+			controlador = new ControladorPelicules();
+		} catch (ControladorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public static void main(String[] args) {
@@ -84,8 +92,9 @@ public class SimpleTest extends TestCase{
 	
 	public void testEliminarPelicula() throws ControladorException{
 		controlador.eliminarPelicula(""+50);
-		boolean esnull=controlador.getPelicules().equals(null);
-		assertTrue(esnull);
+		//boolean esnull=controlador.getPelicules().equals(null);
+		//assertTrue(esnull);
+		assertNull(controlador.getPelicules());
 		//mirar que retornara quan no hi haguin pelicules
 	}
 
