@@ -6,6 +6,7 @@
  */
 package gestioCinema.gestioPelicules;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -41,7 +42,7 @@ public class Pelicula {
 		titol = "";
 		titolOriginal = "";
 		anny = -1;
-		durada = "00:00:00";
+		durada = "";
 		nacionalitat = "";
 		edatRecomenada = -1;
 		tipusColor = "";

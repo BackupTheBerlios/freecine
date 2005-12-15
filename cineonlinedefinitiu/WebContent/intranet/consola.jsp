@@ -13,12 +13,15 @@
 		</span>
 		<%
 		String query = request.getParameter("query");
+		if(query==null){
+			query="";
+		}
 		Vector resultat = (Vector) session.getAttribute("resultat");
 		%>
 		<span class="txt">
 			<form name="frmConsola" action="GestioCinemaServlet" method="post">				
 				<input type="Hidden" name="accio" value="consulta" />
-				<textarea name="query"><%= query  %></textarea>
+				<textarea rows=8 cols=80 name="query"><%= query  %></textarea>
 				<br /><br />
 				<input type="Submit" name="boto" value="ok" class="boto_venda">	
 			</form>
