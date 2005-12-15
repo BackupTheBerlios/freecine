@@ -6,7 +6,6 @@
  */
 package gestioCinema.gestioPelicules;
 
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 
