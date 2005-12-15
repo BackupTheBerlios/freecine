@@ -53,13 +53,13 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("eliminar")) eliminarSalaAction();
 			else if(accio.equals("modificarEstatButaca")) modificarEstatButacaAction();
 			else{
-			    rd = getServletContext().getRequestDispatcher(urlError+"?Error=Acció incorrecta");
+			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
 			    rd.forward(request, response);
 			}
 			
 			
 		} catch (ControladorException e) {
-			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
+			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 			rd.forward(request,response);
 		}
 	}   	 
@@ -93,7 +93,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -117,11 +117,11 @@ import javax.servlet.http.HttpServletResponse;
 			    rd.forward(request, response);
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
 		    rd.forward(request, response);
 		}
 	}
@@ -143,21 +143,21 @@ import javax.servlet.http.HttpServletResponse;
 		if(nomSala!=null && !nomSala.equals("")){
 			sala.setNomSala(nomSala);
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sala no pot ser buit");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom sala no pot ser buit");
 		    rd.forward(request, response);
 		}
 	
 		if(numMaxColumnes!=null && Integer.parseInt(numMaxColumnes)>0){
 			sala.setNumMaxColumnes(Integer.parseInt(numMaxColumnes));
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de columnes te de ser sueperior a 0");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=el numero de columnes te de ser sueperior a 0");
 		    rd.forward(request, response);
 		}
 		
 		if(numMaxFiles!=null && Integer.parseInt(numMaxFiles)>0){
 			sala.setNumMaxFiles(Integer.parseInt(numMaxFiles));
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de files te de ser sueperior a 0");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=el numero de files te de ser sueperior a 0");
 		    rd.forward(request, response);
 		}
 		
@@ -176,7 +176,7 @@ import javax.servlet.http.HttpServletResponse;
 		    llistarSalesAction();
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 		
@@ -199,11 +199,11 @@ import javax.servlet.http.HttpServletResponse;
 			    llistarSalesAction();
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
 		    rd.forward(request, response);
 		}
 	}
@@ -231,21 +231,21 @@ import javax.servlet.http.HttpServletResponse;
 		if(nomSala!=null && !nomSala.equals("")){
 			sala.setNomSala(nomSala);
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sala no pot ser buit");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom sala no pot ser buit");
 		    rd.forward(request, response);
 		}
 	
 		if(numMaxColumnes!=null && Integer.parseInt(numMaxColumnes)>0){
 			sala.setNumMaxColumnes(Integer.parseInt(numMaxColumnes));
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de columnes te de ser sueperior a 0");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=el numero de columnes te de ser sueperior a 0");
 		    rd.forward(request, response);
 		}
 		
 		if(numMaxFiles!=null && Integer.parseInt(numMaxFiles)>0){
 			sala.setNumMaxFiles(Integer.parseInt(numMaxFiles));
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=el numero de files te de ser sueperior a 0");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=el numero de files te de ser sueperior a 0");
 		    rd.forward(request, response);
 		}
 		
@@ -262,11 +262,11 @@ import javax.servlet.http.HttpServletResponse;
 			    llistarSalesAction();
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
 		    rd.forward(request, response);
 		}
 	}

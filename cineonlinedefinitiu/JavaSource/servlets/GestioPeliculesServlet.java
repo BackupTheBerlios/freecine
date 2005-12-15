@@ -65,7 +65,7 @@ import javax.servlet.http.HttpServletResponse;
 			
 			
 		} catch (ControladorException e) {
-			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
+			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 		}
 	}   	 
 
@@ -90,7 +90,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -106,7 +106,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 		
@@ -124,7 +124,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 		
@@ -159,7 +159,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -182,7 +182,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -267,7 +267,7 @@ import javax.servlet.http.HttpServletResponse;
 			llistarPeliculesAction();
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 
@@ -289,7 +289,7 @@ import javax.servlet.http.HttpServletResponse;
 			llistarPeliculesAction();
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -351,7 +351,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}

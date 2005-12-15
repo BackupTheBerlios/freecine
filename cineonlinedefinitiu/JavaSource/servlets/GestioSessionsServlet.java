@@ -50,13 +50,13 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("modificar")) modificarSessioAction();
 			else if(accio.equals("eliminar")) eliminarSessioAction();
 			else{
-			    rd = getServletContext().getRequestDispatcher(urlError+"?Error=Acció incorrecta");
+			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
 			    rd.forward(request, response);
 			}
 			
 			
 		} catch (ControladorException e) {
-			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
+			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 			rd.forward(request,response);
 		}
 	}   	 
@@ -90,7 +90,7 @@ import javax.servlet.http.HttpServletResponse;
 		    rd.forward(request, response);
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -120,11 +120,11 @@ import javax.servlet.http.HttpServletResponse;
 			    rd.forward(request, response);
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSessio null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSessio null");
 		    rd.forward(request, response);
 		}
 	}
@@ -148,14 +148,14 @@ import javax.servlet.http.HttpServletResponse;
 			if(data!=null && !data.equals("")){
 				sessio.setDataHora(data);
 			}else{
-				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=data no pot ser buida");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=data no pot ser buida");
 			    rd.forward(request, response);
 			}
 			
 			if(idPelicula!=null && !data.equals("")){
 				sessio.setPelicula(ctrlSessio.getPelicula(Integer.parseInt(idPelicula)));
 			}else{
-				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idPelicula no pot ser buida");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idPelicula no pot ser buida");
 			    rd.forward(request, response);
 			}
 			
@@ -163,7 +163,7 @@ import javax.servlet.http.HttpServletResponse;
 				sessio.setSala(ctrlSessio.getSala(Integer.parseInt(idSala)));
 				sessio.setButaquesSessio(ctrlSessio.getButaquesSessio(Integer.parseInt(idSala)));
 			}else{
-				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSala no pot ser buida");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala no pot ser buida");
 			    rd.forward(request, response);
 			}
 
@@ -174,7 +174,7 @@ import javax.servlet.http.HttpServletResponse;
 		    llistarSessionsAction();
 		    
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 		    rd.forward(request, response);
 		}
 	}
@@ -196,11 +196,11 @@ import javax.servlet.http.HttpServletResponse;
 			    llistarSessionsAction();
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSessio null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSessio null");
 		    rd.forward(request, response);
 		}
 	}
@@ -232,14 +232,14 @@ import javax.servlet.http.HttpServletResponse;
 				if(data!=null && !data.equals("")){
 					sessio.setDataHora(data);
 				}else{
-					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sessio no pot ser buit");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom sessio no pot ser buit");
 				    rd.forward(request, response);
 				}
 				
 				if(idPelicula!=null && !data.equals("")){
 					sessio.setPelicula(ctrlSessio.getPelicula(Integer.parseInt(idPelicula)));
 				}else{
-					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sessio no pot ser buit");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom sessio no pot ser buit");
 				    rd.forward(request, response);
 				}
 				
@@ -247,7 +247,7 @@ import javax.servlet.http.HttpServletResponse;
 					sessio.setSala(ctrlSessio.getSala(Integer.parseInt(idSala)));
 					sessio.setButaquesSessio(ctrlSessio.getButaquesSessio(Integer.parseInt(idSala)));
 				}else{
-					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=nom sessio no pot ser buit");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=nom sessio no pot ser buit");
 				    rd.forward(request, response);
 				}
 
@@ -258,11 +258,11 @@ import javax.servlet.http.HttpServletResponse;
 			    llistarSessionsAction();
 			    
 			} catch (ControladorException e) {
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error="+e.getMessage());
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
 			    rd.forward(request, response);
 			}
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?Error=idSessio null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSessio null");
 		    rd.forward(request, response);
 		}
 	}

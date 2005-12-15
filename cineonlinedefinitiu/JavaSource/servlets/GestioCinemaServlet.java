@@ -57,7 +57,7 @@ import javax.servlet.http.HttpServletResponse;
 			
 			
 		} catch (ControladorException e) {
-			rd = getServletContext().getRequestDispatcher(urlError+"?Error=No es pot connectar a la base de dades");
+			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 		}
 	}   	 
 
