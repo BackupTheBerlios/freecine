@@ -57,7 +57,7 @@ public class Interficie {
 		
 		String opcion;
 		
-		System.out.println("Men� de Usuario");
+		System.out.println("Menú de Usuario");
 		System.out.println();
 		System.out.println("a) Consultar mis datos personales");
 		System.out.println("b) Consultar mis facturas");

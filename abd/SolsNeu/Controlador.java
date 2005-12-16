@@ -64,7 +64,8 @@ public class Controlador {
 	public void consultaFacturas(){
 		String res;
 		res = bd.facturasCliente();
-		ui.imprimirResultado(res);		
+		ui.imprimirResultado(res);
+		//ui.imprimirResultado(res2);
 	}
 	
 	public void queTengoAlquilado(){

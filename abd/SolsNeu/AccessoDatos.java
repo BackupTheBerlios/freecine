@@ -30,7 +30,7 @@ public class AccessoDatos {
 	 * Constructor de Clase AccessoDatos
 	 * 
 	 * @param u Nombre de usuario
-	 * @param p Contraseï¿½a
+	 * @param p Contraseña
 	 * @param c Objeto Controlador
 	 */
 	public AccessoDatos(String u, String p, Controlador c) {
@@ -79,6 +79,17 @@ public class AccessoDatos {
 	 */
 	public int tipoUsuario(){
 		
+		if(user.equals("victor") || user.equals("voc0210") || user.equals("apr0110") || user.equals("abel2")) {
+			return 0;
+		}
+		
+		else if(user.contains("cli")) {
+			return 2;
+		}
+		
+		else if(user.contains("dep")) {
+			return 1;			
+		}		
 		
 		return 0;
 	}
@@ -91,7 +102,8 @@ public class AccessoDatos {
 		// VISTA: vista_dades_client
 		// ABEL: Aquesta vista encara no funciona bï¿½!!!
 		// query = "select * from vista_dades_client";
-		query = "select * from client where login=CURRENT_USER";
+		//query = "select * from client where login=CURRENT_USER";
+		query = "select * from consulta_dades_client()";
 		res = execQuery(con,query);
 		r ="";
 		
@@ -128,7 +140,17 @@ public class AccessoDatos {
 		ResultSet res;
 		query = "select * from consulta_factures_client()";
 		res = execQuery(con,query);
-		r ="";		
+		
+		r ="";
+		r = r.concat("nif"+"\t\t");
+		r = r.concat("login"+"\t\t");
+		r = r.concat("nom"+"\t\t");
+		r = r.concat("cognom1"+"\t");
+		r = r.concat("cognom2"+"\t");
+		r = r.concat("# Factura"+"\t");
+		r = r.concat("Data"+"\t");
+		r = r.concat("Import"+"\t");
+		r = r.concat("Import + IVA"+"\n");
 		try {
 			while(res.next()){
 								
