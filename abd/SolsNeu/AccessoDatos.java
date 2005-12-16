@@ -20,8 +20,8 @@ public class AccessoDatos {
 	private static String pwd;
 	private Controlador contr;
 	private static Connection con;
-	//private static String url = "jdbc:postgresql://127.0.0.1/abd";
-	private static String url = "jdbc:postgresql://161.116.52.21/voc0210";
+	private static String url = "jdbc:postgresql://127.0.0.1/abd";
+	//private static String url = "jdbc:postgresql://161.116.52.21/voc0210";
 	
 	private static String driver = "org.postgresql.Driver";
 	
@@ -30,7 +30,7 @@ public class AccessoDatos {
 	 * Constructor de Clase AccessoDatos
 	 * 
 	 * @param u Nombre de usuario
-	 * @param p Contrase�a
+	 * @param p Contraseï¿½a
 	 * @param c Objeto Controlador
 	 */
 	public AccessoDatos(String u, String p, Controlador c) {
@@ -51,21 +51,21 @@ public class AccessoDatos {
 		
 		try {
 			con = DriverManager.getConnection(url,user,pwd);
-			System.err.println("BD: Conexi�n realizada.");
+			System.err.println("BD: Conexiï¿½n realizada.");
 			
 		}catch(Exception e) {
-			System.err.println("BD: Intento de conexi�n fallido");
+			System.err.println("BD: Intento de conexiï¿½n fallido");
 			System.err.println(e.getMessage());
 		}		
 	}
 	
 	/**
-	 * Funci�n cerrar conexi�n.
+	 * Funciï¿½n cerrar conexiï¿½n.
 	 *
 	 */
 	public void cerrarConexion() {
 		
-		System.out.println("BD: Cerrando conexi�n...");		
+		System.out.println("BD: Cerrando conexiï¿½n...");		
 		try{
 			con.close();
 		}catch(Exception e){
@@ -89,7 +89,7 @@ public class AccessoDatos {
 		ResultSet res;
 
 		// VISTA: vista_dades_client
-		// ABEL: Aquesta vista encara no funciona b�!!!
+		// ABEL: Aquesta vista encara no funciona bï¿½!!!
 		// query = "select * from vista_dades_client";
 		query = "select * from client where login=CURRENT_USER";
 		res = execQuery(con,query);
@@ -243,8 +243,8 @@ public class AccessoDatos {
 	
 	
 	/*
-	 * NOTA: Nom�s retorna productes esgotats que han tingut unitats disponibles
-	 * TODO: S'hauria de modificar la vista per retornar tamb� productes dels que 
+	 * NOTA: Nomï¿½s retorna productes esgotats que han tingut unitats disponibles
+	 * TODO: S'hauria de modificar la vista per retornar tambï¿½ productes dels que 
 	 * 		mai hem tingut cap unitat.
 	 * 
 	 */
@@ -304,8 +304,8 @@ public class AccessoDatos {
 		query ="select func_actualitza_unitats()";
 		execQuery(con,query);
 		
-		//TODO Se podr�a mirar que devolviera el n�mero de unidades cambiadas.
-		r = "Se han pasado las unidades del a�o pasado a alquiler.";
+		//TODO Se podrï¿½a mirar que devolviera el nï¿½mero de unidades cambiadas.
+		r = "Se han pasado las unidades del aï¿½o pasado a alquiler.";
 		return r;
 	}
 	
@@ -325,7 +325,7 @@ public class AccessoDatos {
 		
 		String query ="INSERT INTO client (nif,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte) VALUES('"+nif+"', '"+login+"','"+nom+"','"+cognom1+"','"+cognom2+"','"+ciutat+"','"+carrer+"','"+num+"','"+pis+"',"+telf_contacte+")";
 		
-		//TODO: A�adir el usuario al grupo t_usuario.
+		//TODO: Aï¿½adir el usuario al grupo t_usuario.
 		
 		n = execUpdate(con,query);
 		
@@ -335,14 +335,14 @@ public class AccessoDatos {
 	
 	
 	/**
-	 * @param descr Descripci�n del producto
+	 * @param descr Descripciï¿½n del producto
 	 * @param model Modelo del producto
 	 * @param marca Marca del producto
 	 * @param mat_prim Materias primas del producto
 	 * @param activitat Actividad del producto
 	 * @param distribuidors Distribuidor al que se compra el producto
 	 * @param p_venda Precio de venta
-	 * @param p_llog_dia Precio de alquiler por d�a.
+	 * @param p_llog_dia Precio de alquiler por dï¿½a.
 	 */
 	public int nuevoProducto(	String descr, String model, String marca, String mat_prim, String activitat,
 			String distribuidors, int p_venda, int p_llog_dia) {
@@ -355,9 +355,9 @@ public class AccessoDatos {
 	
 	/**
 	 * 
-	 * @param con Conexi�n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
+	 * @param con Conexiï¿½n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
 	 * @param query Comando SQL que queremos ejecutar
-	 * @return ResultSet que contiene todas las filas con cadauna de sus columnas resultantes de aplicar la instrucci�n SQL en la Base de datos.
+	 * @return ResultSet que contiene todas las filas con cadauna de sus columnas resultantes de aplicar la instrucciï¿½n SQL en la Base de datos.
 	 * 
 	 * 
 	 */
@@ -375,13 +375,13 @@ public class AccessoDatos {
 		}
 	}
 	
-	// Fin de funci�n execQuery
+	// Fin de funciï¿½n execQuery
 	
 	/**
 	 * 
-	 * @param con Conexi�n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
+	 * @param con Conexiï¿½n con la base de datos. Esta tiene que estar ya establecida y no ser NULL
 	 * @param query Comando SQL que queremos ejecutar
-	 * @return int n�mero de filas afectadas por el insert, el update o el delete.
+	 * @return int nï¿½mero de filas afectadas por el insert, el update o el delete.
 	 * 
 	 * 
 	 */
@@ -402,7 +402,7 @@ public class AccessoDatos {
 	
 	
 	/**
-	 * @param res ResultSet provinent de l'execuci� d'una comanda SQL 
+	 * @param res ResultSet provinent de l'execuciï¿½ d'una comanda SQL 
 	 */	
 	static void printResults( ResultSet res) {
 		
