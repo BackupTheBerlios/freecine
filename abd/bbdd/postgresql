@@ -1,0 +1,15 @@
+PostgreSQL
+----------
+
+
+Error con autenticación IDENT
+
+Por defecto PostgreSQL no admite identificación mediante IDENT si esta proviene de una aplicación JAVA.
+
+Qué hay que hacer?
+
+en el fichero  pg_hba.conf hay que cambiar las linias del localhost con ident sameuser por password
+
+como nuestro usuario no tiene password (un usuario sin password no puede autenticarse con el sistema password), hay que ponerle uno
+
+como usuario postgres hacemos # ALTER USER victor WITH PASSWORD 'tal'
