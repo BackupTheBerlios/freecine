@@ -1,0 +1,37 @@
+#caixa_pelicules {
+	position: relative;
+	width: 467px;
+	background: #ffffff;
+	border: thick ridge #C0C0C0;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	text-align: left;
+	visible: false;
+}
+
+#columna1 {
+	position: relative;
+	float: left;
+	width: 48%;
+	height: 180px;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	text-align: right;
+	visible: false;
+}
+#columna2 {
+	position: relative;
+	float: right;
+	width: 48%;
+	border: thick solid #ffffff;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	text-align: right;
+	visible: false;
+}

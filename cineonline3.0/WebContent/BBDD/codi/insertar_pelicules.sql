@@ -1,0 +1,8 @@
+INSERT INTO pelicula (titol, titol_original, anny, id_nacionalitat, id_genere, durada, edat_recomanada, tipus_color, tipus_so, director, guionista, productor, actors, sinopsis, url_web, url_imatge)
+VALUES ('El resplandor', 'The Shining', 1992, 11, 4, '01:45:23', 18, 'Color', 'Dolby Digital 5.1', 'Stanley Kubrick', 'Stanley Kubrick', 'Jeff Cox', '...','Arriben a una casa per a fer-sen carrec...', 'www.theshining.com', '/home/images/shining.jpg');
+INSERT INTO pelicula (titol, titol_original, anny, id_nacionalitat, id_genere, durada, edat_recomanada, tipus_color, tipus_so, director, guionista, productor, actors, sinopsis, url_web, url_imatge)
+VALUES ('Torrente', 'Torrente', 1992, 0, 2, '01:45:23', 10, 'Color', 'Dolby Digital 5.1', 'Santiago Segura', 'Santiago Segura', 'Jeff Cox', '...','Torrente es un policia...', 'www.torrente.com', '/home/images/torrente.jpg');
+INSERT INTO pelicula (titol, titol_original, anny, id_nacionalitat, id_genere, durada, edat_recomanada, tipus_color, tipus_so, director, guionista, productor, actors, sinopsis, url_web, url_imatge)
+VALUES ('Torrente2', 'Torrente2', 1999, 0, 2, '01:55:23', 10, 'Color', 'Dolby Digital 5.1', 'Santiago Segura', 'Santiago Segura', 'Jeff Cox', '...','Torrente es un policia...', 'www.torrente.com', '/home/images/torrente.jpg');
+INSERT INTO pelicula (titol, titol_original, anny, id_nacionalitat, id_genere, durada, edat_recomanada, tipus_color, tipus_so, director, guionista, productor, actors, sinopsis, url_web, url_imatge)
+VALUES ('Torrente3', 'Torrente3', 2005, 0, 2, '01:32:13', 10, 'Color', 'Dolby Digital 5.1', 'Santiago Segura', 'Santiago Segura', 'Jeff Cox', '...','Torrente es un policia...', 'www.torrente.com', '/home/images/torrente.jpg');

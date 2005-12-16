@@ -1,0 +1,11 @@
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 122);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 123);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 124);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 125);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 126);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '12132323qwqwl', 14, 127);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '2333QEEqAHSkd', 1, 22);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '2333QEEqAHSkd', 1, 23);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '2333QEEqAHSkd', 1, 24);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '2333QEEqAHSkd', 1, 25);
+INSERT INTO compra_reserva ( pagada, codi_entrega, id_sessio, id_butaca) VALUES (TRUE, '2333QEEqAHSkd', 1, 26);
