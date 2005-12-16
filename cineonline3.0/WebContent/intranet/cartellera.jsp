@@ -24,6 +24,8 @@
 					Iterator it = llista.iterator();
 					Sessio ses = new Sessio();
 					int idSesAnt = -1;
+					int idPeliAnt = -1;
+					String hora = "";
 					%>
 					<div id="titol_cartellera">SESSIONS DEL CINE a <%= data %></div>		
 					<%		
@@ -31,41 +33,50 @@
 						{
 							ses = (Sessio)it.next();
 
-							if((int)ses.getSala().getId()!=idSesAnt)
+							if((int)ses.getSala().getId()!= idSesAnt)
 							{
 					%>
 						<div id="col_cartellera">
 								<div id="nom_sala">
 									<%= ses.getSala().getNomSala() %>
 								</div>
-							<%} %>
-								<!-- <div id="pelicula_cartellera">
-									El Pelicano			
-								</div>
-								<div id="horari_cartellera">
+							<%} 
+							
+							if((int)ses.getPelicula().getId()!= idPeliAnt)
+							{
+							%>
+							
+							 <div id="pelicula_cartellera">
+									<%= ses.getPelicula().getTitol() %>		
+							</div>
+							<div id="horari_cartellera">
 									<form name="frmcartellera_venda" action="venda.jsp"  method="post">
 										<input type="Hidden" name="nom_pelicula" value="El Pelicano" />
 										<input type="Hidden" name="idpelicula" value="1" />
 										<input type="Hidden" name="nom_sala" value="SALA 1" />
 										<input type="Hidden" name="idsala" value="1" />
 										<input type="Hidden" name="data" value="11/11/2005" />
+										<input type="Hidden" name="idsessio" value="1" />																				
 										<input type="Submit" name="venda" value="15:10" class="boto_horari" />
-										<input type="Submit" name="venda" value="18:15" class="boto_horari" />
-										<input type="Submit" name="venda" value="20:20" class="boto_horari" />
-										<input type="Submit" name="venda" value="22:30" class="boto_horari" />					
-										<input type="Hidden" name="idsessio" value="1" />
-									</form>
-								</div> -->
-							<%if(ses.getSala().getId()!=idSesAnt)
+										
+										<% if (ses.getDataHora().toString().compareTo(hora)> 0 ) 
+										{%>
+											<input type="Submit" name="venda" value="<%= ses.getDataHora() %>" class="boto_horari" />
+										<%} 										
+										%>
+							<%} %>
+																											
+							<%if((ses.getSala().getId()!=idSesAnt))
 							{
 							%>
+							</form>
+							</div> 
 						</div>
 					<%
-							}
-							else
-							{
-								idSesAnt = ses.getSala().getId();
-							}
+							}							
+							idSesAnt = ses.getSala().getId();							
+							idPeliAnt = ses.getPelicula().getId();	
+							hora = ses.getDataHora().toString();
 						}
 			}
 			%>
