@@ -84,6 +84,13 @@ public class Controlador {
 		
 	}
 	
+	
+	public void unidadesDisponibles(){
+				
+		ui.imprimirResultado(bd.unidadesDisponibles());
+		
+	}
+	
 	public void listaProductos(){
 		String res;
 		res = bd.listaProductos();
@@ -133,9 +140,9 @@ public class Controlador {
 	
 	public void nuevaFactura(String dni){
 		
-		int id_factura;
-		
-		id_factura = bd.nuevaFactura(dni);		
+		int id_factura;		
+		id_factura = bd.nuevaFactura(dni);
+		ui.nuevaLinia(id_factura);
 		
 	}
 	
@@ -145,10 +152,19 @@ public class Controlador {
 	 * @param id_unitat Unidad a incluir en la línea de factura
 	 * @param dies_lloguer Días de alquiler. 0 si es una compra.
 	 */
+	
+	//TODO: Llamar a bd y añadir nueva línea.
 	public void nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
+						
 		
-		// Imprimimos unidades disponibles.
-				
+	}
+	
+	
+	//TODO: Llamar a bd y confirmar factura.
+	public void confirmarFactura(int id_factura) {
+		
+		
+		
 		
 	}
 	

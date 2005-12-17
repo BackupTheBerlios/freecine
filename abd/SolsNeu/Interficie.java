@@ -139,6 +139,40 @@ public class Interficie {
 		contr.nuevaFactura(client);		
 	}
 	
+	public void nuevaLinia(int id_factura) {
+		
+		boolean salida = false;
+				
+		while (!salida) {
+			
+			String salir = SimpleInput.getString("Nueva linea? (si/no)");
+			if (salir.contains("n")) salida = true;
+			
+			// Mostramos las unidades para que el dependiente pueda elegir.
+			contr.unidadesDisponibles();
+			
+			int id_unidad = SimpleInput.getInteger("¿Unidad a añadir?");
+			int dias = SimpleInput.getInteger("Dias de alquiler? [0 si es una compra]");
+			
+			contr.nuevaLinia(id_factura,id_unidad,dias);
+			
+		}
+				
+		this.mostrarFactura(id_factura);
+		
+		String confirmar = SimpleInput.getString("Confirmamos la factura? (si/no)");
+		if (confirmar.contains("s")) contr.confirmarFactura(id_factura);
+		
+	}
+	
+	
+	//TODO: acabar el mostrar factura.
+	public void mostrarFactura(int id_factura) {
+		
+		
+		
+		
+	}
 	
 	
 	
