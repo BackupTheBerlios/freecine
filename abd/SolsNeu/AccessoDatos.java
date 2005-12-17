@@ -135,6 +135,31 @@ public class AccessoDatos {
 		return r;
 	}
 	
+	
+	public String listaClientes(){
+		String r,query;
+		ResultSet res;
+
+		query = "select nif, nom, cognom1, cognom2 from vista_dades_client";
+		res = execQuery(con,query);
+		r ="";
+		try {
+			while(res.next()){
+				
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\n");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+	}
+	
+	
+	
 	public String facturasCliente(){
 		String r,query;
 		ResultSet res;
@@ -227,6 +252,36 @@ public class AccessoDatos {
 		}
 		return r;
 	}
+	
+	
+	public String unidadesDisponibles(){
+		String r,query;
+		ResultSet res;
+		query = "select * from vista_unitats_disponibles";
+		res = execQuery(con,query);
+		r ="";
+		r = r.concat("id"+"\t");
+		r = r.concat("Descripcion"+"\t");
+		r = r.concat("Marca"+"\t\t");
+		r = r.concat("Modelo"+"\t\t");
+		r = r.concat("Precio+IVA"+"\t\t");
+		r = r.concat("Precio Alquiler"+"\n");
+		try {
+			while(res.next()){
+								
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t\t");
+				r = r.concat(res.getString(3)+"\t\t");
+				r = r.concat(res.getString(4)+"\t\t");
+				r = r.concat(res.getString(5)+"\t\t");
+				r = r.concat(res.getString(6)+"\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+	}
+	
 	
 	
 	public String listaProductos(){
@@ -330,6 +385,24 @@ public class AccessoDatos {
 		r = "Se han pasado las unidades del aï¿½o pasado a alquiler.";
 		return r;
 	}
+	
+	/**
+	 * 
+	 * @param dni Dni del cliente al que asignamos la nueva factura
+	 * @return identificador de la nueva factura.
+	 */
+	public int nuevaFactura(String dni) {
+		
+		int id_factura = 0;
+		
+		//TODO: Llamar a una función "crear_factura" que me retorne el id de la factura creada.
+		
+		
+		return id_factura;
+		
+	}
+	
+	
 	
 	public int nuevaUnidad(int id_producte, String mida_talla, String llog_vend ){
 		int n;

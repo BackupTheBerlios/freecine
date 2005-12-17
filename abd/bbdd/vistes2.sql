@@ -21,7 +21,7 @@ DECLARE
 	END;
 	'LANGUAGE 'plpgsql';
 
---Vista de producctes disponibles
+--Vista de productes disponibles
 
 CREATE OR REPLACE VIEW vista_productes_disponibles_client AS
 SELECT DISTINCT id_prod, descr AS "Descripció", model, marca, activitat, p_venda AS "Preu", p_venda*factura.iva AS "Preu+IVA"

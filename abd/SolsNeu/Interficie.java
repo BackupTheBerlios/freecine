@@ -121,7 +121,7 @@ public class Interficie {
 			contr.venta2alquiler();
 		}
 		else if (opcion.equals("f")) {
-			contr.nuevaFactura();
+			this.nuevaFactura();
 		}
 		else if (opcion.equals("g")) {
 			this.nuevaUnidad();
@@ -131,11 +131,22 @@ public class Interficie {
 		}			
 	}
 	
+	
+	public void nuevaFactura() {
+		
+		contr.listaClientes();
+		String client = SimpleInput.getString("¿DNI del cliente?");
+		contr.nuevaFactura(client);		
+	}
+	
+	
+	
+	
 	public void menu_admin() {
 		
 		String opcion;
 		
-		System.out.println("Men� de Administrador");
+		System.out.println("Menú de Administrador");
 		System.out.println();
 		System.out.println("a) Dar de alta NUEVO usuario");
 		System.out.println("b) Dar de alta nuevo producto");
@@ -143,7 +154,7 @@ public class Interficie {
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qu� opci�n eliges?");
+		opcion = SimpleInput.getString("Qué opción eliges?");
 		
 		if (opcion.equals("a")) {
 			this.nuevoUsuario();
@@ -173,19 +184,19 @@ public class Interficie {
 		
 				
 		//TODO: No dejar poner nada salvo 0,1 o 2.
-		int t_usuario = SimpleInput.getInteger("Tipo de usuario [0:Administrador, 1:Trabajador, 2:Cliente]");
+		//int t_usuario = SimpleInput.getInteger("Tipo de usuario [0:Administrador, 1:Trabajador, 2:Cliente]");
 		String nif = SimpleInput.getString("NIF? ");
 		String login = SimpleInput.getString("login? ");
-		String nom = SimpleInput.getString("�Nombre? ");
+		String nom = SimpleInput.getString("Nombre? ");
 		String cognom1 = SimpleInput.getString("Primer apellido? ");
 		String cognom2 = SimpleInput.getString("Segundo apellido? ");
 		String ciutat = SimpleInput.getString("Ciudad ?");
 		String carrer = SimpleInput.getString("Calle? ");
 		String num = SimpleInput.getString("Numero?");
 		String pis = SimpleInput.getString("Piso?");
-		String telf_contacte = SimpleInput.getString("Tel�fono? ");
+		String telf_contacte = SimpleInput.getString("Telefono? ");
 		
-		contr.nuevoUsuario(nif,t_usuario,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte);
+		contr.nuevoUsuario(nif,0,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte);
 		
 	}
 	
