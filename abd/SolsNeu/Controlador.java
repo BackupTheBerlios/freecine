@@ -57,7 +57,7 @@ public class Controlador {
 		
 		String res;
 		res = bd.datosCliente();
-		ui.imprimirResultado(res);		
+		ui.imprimirResultado(res);	
 		
 	}
 	
