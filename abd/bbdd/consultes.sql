@@ -82,10 +82,11 @@ AND unitat.fact_llog = factura.id_factura
 AND linia_factura.num_factura = factura.id_factura
 AND factura.nif_client='58963688P';
 
+
 --10.Consulta de totes les unitats que estan llogades actualment.
 
 
-SELECT client.nif AS "DNI", client.nom AS "Nom",client.cognom1 AS "1r Cognom",producte.descr AS "DescripciÃ³n", producte.marca AS "Marca", producte.model AS "Model", CURRENT_DATE AS "Data Actual", factura.data AS "Dia Llogat"
+SELECT client.nif AS "DNI", client.nom AS "Nom",client.cognom1 AS "1r Cognom",unitat.id_unitat AS "Id Unitat", producte.descr AS "Descripción", producte.marca AS "Marca", producte.model AS "Model", CURRENT_DATE AS "Data Actual", factura.data AS "Dia Llogat"
 FROM client,producte,unitat,linia_factura,factura
 WHERE   producte.id_prod = unitat.id_producte
 AND 	unitat.llog_vend = 'LL'
@@ -93,7 +94,7 @@ AND 	unitat.id_unitat = linia_factura.id_unit
 AND 	linia_factura.num_factura = factura.id_factura
 AND 	client.nif=factura.nif_client
 AND 	unitat.disponible = false
-AND	 unitat.fact_llog IS NOT NULL;
+AND	unitat.fact_llog IS NOT NULL;
 
 --11.Consulta de les unitats que es van adquirir la temporada passada.
 

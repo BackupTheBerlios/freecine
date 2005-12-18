@@ -95,16 +95,20 @@ END;
 --	l'opció perque sempre pots tenir unitats de lloguer no disponibles per qualsevol motiu. Millor fer una funció per això.
 -- 1) Comprovem que la unitat estava llogada.(cal comprovar si volem tornar una unitat d'una factura que només sigui confirmada)
 -- 2) Amb la seva factura comprovem si s'ha passat dels dies.
--- 3) Si s'ha passat, li creem una factura nova sense línies amb el nou deute i retornem la factura a l'stock
+-- 3) Si s'ha passat, li creem una factura nova sense línies amb el nou deute i retornem la unitat a l'stock.
 -- 4) Si no s'ha passat només retornem la factura
 
+-- Retorna:
+-- 0: si el client no ha de pagar res
+-- -1: si la unitat no estava llogada
+-- id_factura: id de la factura amb la multa a pagar.
 
 CREATE OR REPLACE FUNCTION func_retornar_unitat(INTEGER) RETURNS INTEGER AS'
 DECLARE
 	tmpunitat RECORD;
 	tmpfactura RECORD;
 	tmpproducte RECORD;
-	
+	id_factura INTEGER;
 	dies	INTEGER;
 BEGIN
 	SELECT * FROM unitat INTO tmpunitat WHERE unitat.id_unitat = $1;
@@ -118,21 +122,40 @@ BEGIN
 		IF dies > 0 THEN
 			RAISE NOTICE ''El client sha passat de dies, haurà de pagar'';
 			
-			INSERT INTO factura(nif_client,import,import_final,confirm) VALUES (tmpfactura.nif_client,tmpproducte.p_llog_dia*dies,tmpproducte.p_llog_dia*dies*1.16,true);
+			INSERT INTO factura(nif_client,import,import_final) VALUES (tmpfactura.nif_client,tmpproducte.p_llog_dia*dies,tmpproducte.p_llog_dia*dies*1.16);
+			SELECT currval(''factura_id_factura_seq'') INTO id_factura;
 			UPDATE unitat SET disponible = true WHERE unitat.id_unitat = $1;
 			UPDATE unitat SET fact_llog = NULL WHERE unitat.id_unitat = $1;
-			RETURN 1;
+			RETURN id_factura;
 		ELSE
 			RAISE NOTICE ''El client no ha excedit els dies de lloguer, no ha de pagar res'';
 			UPDATE unitat SET disponible = true WHERE unitat.id_unitat = $1;
 			UPDATE unitat SET fact_llog = NULL WHERE unitat.id_unitat = $1;
-			RETURN NULL;
+			RETURN 0;
 		END IF;
 	
 	ELSE
 		RAISE NOTICE ''Aquesta unitat no estava llogada, no es pot retornar'';
-		RETURN NULL;
+		RETURN -1;
 	END IF;
 
 END;
+'LANGUAGE 'plpgsql';
+
+
+
+-- Modificació 5: Nova Factura sáb 10 dic 2005 21:16:15 CET 
+-- ========================================================
+
+-- Que fa?
+-- Crea una nova factura i retorna l'integer del seu id.
+
+CREATE OR REPLACE FUNCTION func_nova_factura(TEXT) RETURNS INTEGER AS'
+DECLARE 
+		id INTEGER;
+	BEGIN
+		INSERT INTO factura(nif_client) VALUES ($1);
+		SELECT currval(''factura_id_factura_seq'') INTO id;
+		RETURN id;
+	END;	
 'LANGUAGE 'plpgsql';

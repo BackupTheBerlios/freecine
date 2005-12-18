@@ -22,13 +22,18 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE client TO victordep;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE factura TO victordep;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE unitat TO victordep;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE producte TO victordep;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE linia_factura TO victordep;
 GRANT SELECT ON TABLE vista_clients_mesdies_lloguer TO victordep;
 GRANT SELECT ON TABLE vista_unitats_esgotades TO victordep;
 GRANT SELECT ON TABLE vista_import_acumulat TO victordep;
+GRANT SELECT ON TABLE vista_productes_llogats_client TO victordep;
+GRANT SELECT ON TABLE vista_unitats_disponibles TO victordep;
+GRANT ALL ON factura_id_factura_seq to victordep;
+GRANT ALL ON client to victordep;
 
 --PRIVILEGIS DELS CLIENTS
 
-GRANT SELECT ON TABLE vista_dades_client TO victorcli;
+GRANT SELECT ON TABLE vista_dades_client TO victorcli,victordep;
 GRANT SELECT ON TABLE vista_productes_disponibles_client TO victorcli;
 GRANT SELECT ON TABLE vista_productes_llogats_client TO victorcli;
 GRANT SELECT ON TABLE vista_factures_client TO victorcli;

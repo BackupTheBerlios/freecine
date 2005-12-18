@@ -29,13 +29,15 @@ FROM 	producte,unitat, factura
 WHERE 	unitat.disponible=TRUE	
 AND 	producte.id_prod=unitat.id_producte;
 
---Vista dels productes llogats actualment per un client
+-- Vista dels productes llogats actualment per un client
+-- Necesito la columna login para la función
 
 CREATE OR REPLACE VIEW vista_productes_llogats_client AS 
-SELECT client.nif, producte.descr AS "Descripció", client.login, producte.marca AS "Marca", producte.model AS "Model", unitat.mida_talla AS "Talla", unitat.llog_vend AS "Estat", CURRENT_DATE AS "Data Avui", factura.data AS "Data llogat", linia_factura.dies_lloguer AS "Dies llogat", factura.data+linia_factura.dies_lloguer  AS "Data Retorn"
+SELECT unitat.id_unitat, producte.descr AS "Descripció", producte.marca AS "Marca", producte.model AS "Model", client.nif AS "Client", client.login as "login", factura.data AS "Data llogat", linia_factura.dies_lloguer AS "Dies llogat", factura.data+linia_factura.dies_lloguer  AS "Data Retorn"
 FROM client, producte,unitat,linia_factura,factura
 WHERE producte.id_prod = unitat.id_producte
 AND unitat.llog_vend = 'LL'
+AND unitat.disponible = FALSE
 AND unitat.id_unitat = linia_factura.id_unit
 AND linia_factura.num_factura = factura.id_factura
 AND factura.nif_client=client.nif;
@@ -78,13 +80,15 @@ DECLARE
   ===VISTES DEL DEPENDENT===
   ==========================*/
 
---Vista dels clients que triguen més dies en retornar els productes que els especificats en el lloguer
-DROP VIEW  vista_clients_mesdies_lloguer;
+-- Malament.
+-- Vista dels clients que triguen més dies en retornar els productes que els especificats en el lloguer
+
 CREATE OR REPLACE VIEW vista_clients_mesdies_lloguer AS    
-	SELECT DISTINCT client.nif, client.nom, client.cognom1, client.telf_contacte, CURRENT_DATE AS "Data Actual", factura.data AS "Data Lloguer", 				 linia_factura.dies_lloguer as "Dies llogat", unitat.llog_vend AS "LL/V"
+	SELECT DISTINCT client.nif, client.nom, client.cognom1, client.telf_contacte, CURRENT_DATE AS "Data Actual", factura.data AS "Data Lloguer", 		 linia_factura.dies_lloguer as "Dies llogat", unitat.llog_vend AS "LL/V"
 	FROM client,factura,linia_factura,unitat
 	WHERE (CURRENT_DATE-factura.data)>linia_factura.dies_lloguer
 	AND unitat.llog_vend='LL'
+	AND unitat.disponible
 	AND linia_factura.dies_lloguer<>0;
 
 -- ABEL: Modificar perque també retorni productes dels que mai hem tingut cap unitat disponible. (!) (JA FUNCIONA!!!!!!!)
@@ -152,4 +156,18 @@ DECLARE
 		RETURN;
 	END;'
 	LANGUAGE 'plpgsql'; 
+
+
+
+--
+-- Altres vistes
+--
+
+--Vista de unitats disponibles
+
+CREATE OR REPLACE VIEW vista_unitats_disponibles AS
+SELECT DISTINCT unitat.id_producte, descr AS "Descripció", marca, model, p_venda*factura.iva AS "Preu+IVA", producte.p_llog_dia
+FROM 	producte, unitat, factura
+WHERE 	unitat.disponible=TRUE	
+AND 	producte.id_prod=unitat.id_producte;
 

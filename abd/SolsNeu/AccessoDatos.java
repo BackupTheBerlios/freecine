@@ -51,21 +51,21 @@ public class AccessoDatos {
 		
 		try {
 			con = DriverManager.getConnection(url,user,pwd);
-			System.err.println("BD: Conexiï¿½n realizada.");
+			System.err.println("BD: Conexión realizada.");
 			
 		}catch(Exception e) {
-			System.err.println("BD: Intento de conexiï¿½n fallido");
+			System.err.println("BD: Intento de conexión fallido");
 			System.err.println(e.getMessage());
 		}		
 	}
 	
 	/**
-	 * Funciï¿½n cerrar conexiï¿½n.
+	 * Función cerrar conexión.
 	 *
 	 */
 	public void cerrarConexion() {
 		
-		System.out.println("BD: Cerrando conexiï¿½n...");		
+		System.out.println("BD: Cerrando conexión...");		
 		try{
 			con.close();
 		}catch(Exception e){
@@ -195,6 +195,63 @@ public class AccessoDatos {
 		return r;
 	}
 	
+	/**
+	 * 
+	 * @param id_factura
+	 * @return
+	 */
+	public String getFactura(int id_factura) {
+		
+		String r,query;
+		ResultSet res;
+		query = "select * from factura where id_factura="+id_factura;
+		r = "";
+		res = execQuery(con,query);
+		try {
+			while(res.next()){
+				
+				r = r.concat("\t");
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\t");
+				r = r.concat(res.getString(5)+"\t");
+				r = r.concat(res.getString(6)+"\t\t");
+				r = r.concat(res.getString(7)+"\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+		
+	}
+	
+	
+	public String getLinia(int id_factura) {
+		
+		String r,query;
+		ResultSet res;
+		query = "select id,id_unit,import,dies_lloguer from linia_factura where num_factura="+id_factura;
+		r = "";
+		r.concat(" id | id_unit | import | dies_lloguer\n");
+		r.concat("----+---------+--------+--------------\n");
+		res = execQuery(con,query);
+		try {
+			while(res.next()){
+				
+				r = r.concat(res.getString(1)+"\t");
+				r = r.concat(res.getString(2)+"\t");
+				r = r.concat(res.getString(3)+"\t");
+				r = r.concat(res.getString(4)+"\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}
+		return r;
+		
+	}
+	
+	
 	public String productosAlquiladosCliente(){
 		String r,query;
 		ResultSet res;
@@ -254,32 +311,11 @@ public class AccessoDatos {
 	}
 	
 	
-	public String unidadesDisponibles(){
+	public ResultSet unidadesDisponibles(){
 		String r,query;
 		ResultSet res;
 		query = "select * from vista_unitats_disponibles";
-		res = execQuery(con,query);
-		r ="";
-		r = r.concat("id"+"\t");
-		r = r.concat("Descripcion"+"\t");
-		r = r.concat("Marca"+"\t\t");
-		r = r.concat("Modelo"+"\t\t");
-		r = r.concat("Precio+IVA"+"\t\t");
-		r = r.concat("Precio Alquiler"+"\n");
-		try {
-			while(res.next()){
-								
-				r = r.concat(res.getString(1)+"\t");
-				r = r.concat(res.getString(2)+"\t\t");
-				r = r.concat(res.getString(3)+"\t\t");
-				r = r.concat(res.getString(4)+"\t\t");
-				r = r.concat(res.getString(5)+"\t\t");
-				r = r.concat(res.getString(6)+"\n");
-			}
-		} catch (SQLException e) {
-			System.err.println("Fetch failed: "+ e.getMessage());
-		}
-		return r;
+		return execQuery(con,query);
 	}
 	
 	
@@ -305,17 +341,10 @@ public class AccessoDatos {
 	}
 	
 		
-	
-	
-	// TODO: Abel, s'ha de fer anar aquesta vista, que no funciona.
-	public String morosos(){
-		String r,query;
-		ResultSet res;
+	public ResultSet morosos(){
+		String query;
 		query =  "select * from vista_clients_mesdies_lloguer";
-		//res = execQuery(con,query);
-		r="";		
-		
-		return r;
+		return execQuery(con,query);
 	}
 	
 	
@@ -326,53 +355,42 @@ public class AccessoDatos {
 	 * 
 	 */
 	
-	public String productosAcabados(){
-		String r,query;
-		ResultSet res;
-		r = "";
+	public ResultSet productosAcabados(){
+		String query;
 		query = "select * from vista_unitats_esgotades";
-		res = execQuery(con,query);
-		try {
-			while(res.next()){
-								
-				r = r.concat(res.getString(1)+" | ");
-				r = r.concat(res.getString(2)+" | ");
-				r = r.concat(res.getString(3)+" | ");
-				r = r.concat(res.getString(4)+" | ");
-				r = r.concat(res.getString(5)+"\n");
-				
-			}
-		} catch (SQLException e) {
-			System.err.println("Fetch failed: "+ e.getMessage());
-		}
+		return execQuery(con,query);
 		
-		
-		return r;
 	}
 	
 	
-	public String actividadFavorita(){
-		String r,query;
-		ResultSet res;
-		r = "";
-		query = " select nif,nom,cognom1,cognom2,activitat_favorita from client ORDER by cognom1 ASC";
-		res = execQuery(con,query);
-		try {
-			while(res.next()){
-								
-				r = r.concat(res.getString(1)+" | ");
-				r = r.concat(res.getString(2)+" | ");
-				r = r.concat(res.getString(3)+" | ");
-				r = r.concat(res.getString(4)+" | ");
-				r = r.concat(res.getString(5)+"\n");
-				
-			}
-		} catch (SQLException e) {
-			System.err.println("Fetch failed: "+ e.getMessage());
-		}
+	/**
+	 * @return
+	 */
+	public ResultSet ventasAcumuladas() {
 		
+		String query = "select * from vista_import_acumulat";
 		
-		return r;
+		return execQuery(con,query);
+	}
+	
+	public ResultSet ventasAcumuladas(String data) {
+		
+		String query = "select * from funcio_import_data('"+data+"')";
+		
+		return execQuery(con,query);
+	}
+	
+	public ResultSet ventasAcumuladas(String data_de, String data_fins) {
+		
+		String query = "select * from funcio_import_data('"+data_de+","+data_fins+"')";
+		
+		return execQuery(con,query);
+	}
+	
+	public ResultSet actividadFavorita(){
+		String query;
+		query = "select nif,nom,cognom1,cognom2,activitat_favorita from client ORDER by cognom1 ASC";
+		return execQuery(con,query);
 	}
 	
 	
@@ -381,10 +399,21 @@ public class AccessoDatos {
 		query ="select func_actualitza_unitats()";
 		execQuery(con,query);
 		
-		//TODO Se podrï¿½a mirar que devolviera el nï¿½mero de unidades cambiadas.
-		r = "Se han pasado las unidades del aï¿½o pasado a alquiler.";
+		//TODO Se podria mirar que devolviera el numero de unidades cambiadas.
+		r = "Se han pasado las unidades del año pasado a alquiler.";
 		return r;
 	}
+	
+	/**
+	 * @return
+	 */
+	public ResultSet productosEnAlquiler() {
+		
+		String query = "select * from vista_productes_llogats_client";
+		return execQuery(con,query);
+		
+	}
+
 	
 	/**
 	 * 
@@ -394,14 +423,49 @@ public class AccessoDatos {
 	public int nuevaFactura(String dni) {
 		
 		int id_factura = 0;
+		ResultSet rs;
 		
 		//TODO: Llamar a una función "crear_factura" que me retorne el id de la factura creada.
 		
+		String query = "select func_nova_factura('"+dni+"')";
+		rs = execQuery(con,query);
+		try {
+			while(rs.next()){						
+				
+				id_factura = rs.getInt(1);
+				
+			}
+		} catch (SQLException e) {
+			System.err.println("Fetch failed: "+ e.getMessage());
+		}	
 		
 		return id_factura;
 		
 	}
 	
+	
+	public ResultSet devolverAlquiler(int id_unitat) {		
+		
+		String query = "select func_retornar_unitat("+id_unitat+")";
+		return execQuery(con,query);		
+		
+	}
+	
+	/**
+	 * @param id_factura Factura que queremos confirmar.
+	 */
+	public void confirmarFactura(int id_factura) {
+		
+		String query = "update factura set confirm = 'true' where id_factura ="+id_factura;
+		execUpdate(con,query);
+		
+	}
+	
+	public void nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
+		
+		String query = "INSERT INTO linia_factura (num_factura,id_unit,dies_lloguer)VALUES ("+id_factura+","+id_unitat+","+dies_lloguer+")";
+		
+	}
 	
 	
 	public int nuevaUnidad(int id_producte, String mida_talla, String llog_vend ){
@@ -518,5 +582,10 @@ public class AccessoDatos {
 			System.err.println("Fetch failed: "+ e.getMessage());
 		}
 	}
+
+	
+
+	
+	
 
 }

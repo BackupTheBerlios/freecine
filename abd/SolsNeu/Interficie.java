@@ -35,8 +35,7 @@ public class Interficie {
 		
 	}
 	
-	public void imprimirResultado(String res) {
-		
+	public void imprimirResultado(String res) {		
 		System.out.println(res);
 		SimpleInput.getString("Aprieta una tecla para continuar.");
 	}
@@ -57,7 +56,10 @@ public class Interficie {
 		
 		String opcion;
 		
+		System.out.println();
+		System.out.println("===============");
 		System.out.println("Menú de Usuario");
+		System.out.println("===============");
 		System.out.println();
 		System.out.println("a) Consultar mis datos personales");
 		System.out.println("b) Consultar mis facturas");
@@ -67,7 +69,7 @@ public class Interficie {
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qu� opci�n eliges?");
+		opcion = SimpleInput.getString("¿Qué opción eliges?");
 		
 		if (opcion.equals("a")) {
 			contr.consultaDatosPersonales();
@@ -89,8 +91,10 @@ public class Interficie {
 	public void menu_vendedor() {
 		
 		String opcion;
-		
-		System.out.println("Men� de Vendedor");
+		System.out.println();
+		System.out.println("================");
+		System.out.println("Menú de Vendedor");
+		System.out.println("================");
 		System.out.println();
 		System.out.println("a) Consulta de clientes con alquileres retrasados.");
 		System.out.println("b) Consulta de productos sin stock.");
@@ -98,24 +102,26 @@ public class Interficie {
 		System.out.println("d) Consulta de actividad preferida de los clientes.");
 		System.out.println("e) Poner unidades de la temporada pasada en alquiler");
 		System.out.println("f) NUEVA FACTURA.");
-		System.out.println("g) Dar de alta nuevas unidades de un producto.");
+		System.out.println("g) Devolver Producto alquilado");
+		System.out.println("h) Dar de alta nuevas unidades de un producto.");
+		System.out.println("i) Extra: Ver factura");
 		System.out.println("-------------------------------------");
 		System.out.println("q) Salir del programa");
 		System.out.println();
 		System.out.println();
-		opcion = SimpleInput.getString("Qu� opci�n eliges?");
+		opcion = SimpleInput.getString("¿Qué opción eliges?");
 		
 		if (opcion.equals("a")) {
-			contr.morosos();
+			this.morosos();
 		}
 		else if (opcion.equals("b")) {
-			contr.productosAcabados();
+			this.productosAcabados();
 		}
 		else if (opcion.equals("c")) {
-			contr.ventasAcumuladas();
+			this.ventasAcumuladas();
 		}
 		else if (opcion.equals("d")) {
-			contr.actividadFavorita();
+			this.actividadFavorita();
 		}
 		else if (opcion.equals("e")) {
 			contr.venta2alquiler();
@@ -124,7 +130,13 @@ public class Interficie {
 			this.nuevaFactura();
 		}
 		else if (opcion.equals("g")) {
+			this.devolverAlquiler();
+		}
+		else if (opcion.equals("h")) {
 			this.nuevaUnidad();
+		}
+		else if (opcion.equals("i")) {
+			this.verFactura();
 		}
 		else if (opcion.equals("q")) {
 			contr.salir();		
@@ -132,24 +144,85 @@ public class Interficie {
 	}
 	
 	
+	public void morosos() {
+		
+		this.imprimirResultado(contr.morosos());
+				
+	}
+	
+	public void productosAcabados() {
+		
+		this.imprimirResultado(contr.productosAcabados());
+	
+	}
+	
+	
+	public void ventasAcumuladas(){
+		System.out.println();
+		System.out.println("a) Consulta de ventas de un día en concreto.");
+		System.out.println("b) Consulta de ventas de un período.");
+		System.out.println("c) Consulta de ventas totales.");
+		System.out.println();
+		String opcion = SimpleInput.getString("¿Qué opción eliges?");
+		
+		if (opcion.equals("a")) {
+			
+			String dia = SimpleInput.getString("¿Día?");
+			String mes = SimpleInput.getString("¿Mes?");
+			String any = SimpleInput.getString("¿Año?");
+			
+			this.imprimirResultado(contr.ventasAcumuladas(any+mes+dia));
+			
+			
+			
+		}
+		else if (opcion.equals("b")){
+			
+			
+			System.out.println("Fecha Inicial");
+			String dia = SimpleInput.getString("¿Día?");
+			String mes = SimpleInput.getString("¿Mes?");
+			String any = SimpleInput.getString("¿Año?");
+			
+			System.out.println("Fecha Final");
+			String dia2 = SimpleInput.getString("¿Día?");
+			String mes2 = SimpleInput.getString("¿Mes?");
+			String any2 = SimpleInput.getString("¿Año?");
+
+			this.imprimirResultado(contr.ventasAcumuladas(any+mes+dia,any2+mes2+dia2));
+			
+			
+		}
+		else if (opcion.equals("c")){
+			
+			
+			this.imprimirResultado(contr.ventasAcumuladas());
+			
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
 	public void nuevaFactura() {
+		int id_factura;
+		boolean salida = false;
 		
 		contr.listaClientes();
 		String client = SimpleInput.getString("¿DNI del cliente?");
-		contr.nuevaFactura(client);		
-	}
-	
-	public void nuevaLinia(int id_factura) {
+		id_factura = contr.nuevaFactura(client);		
 		
-		boolean salida = false;
-				
+		
 		while (!salida) {
 			
-			String salir = SimpleInput.getString("Nueva linea? (si/no)");
-			if (salir.contains("n")) salida = true;
+			String salir = SimpleInput.getString("Nueva línea? (si/no)");
+			if (salir.contains("n")) break;
 			
 			// Mostramos las unidades para que el dependiente pueda elegir.
-			contr.unidadesDisponibles();
+			this.imprimirResultado(contr.unidadesDisponibles());
 			
 			int id_unidad = SimpleInput.getInteger("¿Unidad a añadir?");
 			int dias = SimpleInput.getInteger("Dias de alquiler? [0 si es una compra]");
@@ -157,8 +230,9 @@ public class Interficie {
 			contr.nuevaLinia(id_factura,id_unidad,dias);
 			
 		}
-				
-		this.mostrarFactura(id_factura);
+		
+		// Mostramos la factura completa con todas sus línias.
+		this.imprimirResultado(contr.mostrarFactura(id_factura));
 		
 		String confirmar = SimpleInput.getString("Confirmamos la factura? (si/no)");
 		if (confirmar.contains("s")) contr.confirmarFactura(id_factura);
@@ -166,21 +240,55 @@ public class Interficie {
 	}
 	
 	
-	//TODO: acabar el mostrar factura.
-	public void mostrarFactura(int id_factura) {
+	
+	public void devolverAlquiler(){
 		
+		int id_factura;
+				
+		this.imprimirResultado(contr.productosEnAlquiler());
 		
+		int id_unitat = SimpleInput.getInteger("¿ID de la unidad a devolver? [0 para volver]");
+		if (id_unitat == 0) return;
 		
+		id_factura = contr.devolverAlquiler(id_unitat);
+		System.err.println(id_factura);
+		
+		if (id_factura == -1) {
+			System.out.println("[Error] La unidad no estaba alquilada");
+			return;
+		} else if (id_factura == 0) {
+			
+			System.out.println();
+			System.out.println("[Aviso] Unidad devuelta correctamente");
+			System.out.println();
+			return;
+		}
+		
+		else {		
+			this.imprimirResultado(contr.mostrarFactura(id_factura));
+			String confirmar = SimpleInput.getString("Confirmamos la factura? (si/no)");
+			if (confirmar.contains("s")) contr.confirmarFactura(id_factura);
+		}
 		
 	}
 	
+	public void actividadFavorita(){
+		this.imprimirResultado(contr.actividadFavorita());	
+	}
 	
+	public void verFactura(){
+		int id_factura = SimpleInput.getInteger("¿Número de Factura?");
+		this.imprimirResultado(contr.mostrarFactura(id_factura));
+		
+	}
 	
 	public void menu_admin() {
 		
 		String opcion;
-		
+		System.out.println();
+		System.out.println("=====================");
 		System.out.println("Menú de Administrador");
+		System.out.println("=====================");
 		System.out.println();
 		System.out.println("a) Dar de alta NUEVO usuario");
 		System.out.println("b) Dar de alta nuevo producto");

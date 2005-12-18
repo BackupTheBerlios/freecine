@@ -12,7 +12,7 @@
 --*****************************************--
 
 INSERT INTO client (nif,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte,activitat_favorita )
-	VALUES('46967753M', 'victor','Victor','Otero','Cela','Barcelona','C/Villarroel','57','3-2',934549294,'\N');
+	VALUES('46967753M', 'victorcli','Victor','Otero','Cela','Barcelona','C/Villarroel','57','3-2',934549294,'\N');
 INSERT INTO client (nif,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte,activitat_favorita )
 	VALUES('56233122J','voc0210_dep_a','Abel','Miró','Martorell','Berga','C/Pio Baroja','23','1-2-B',938213356,'\N');
 INSERT INTO client (nif,login,nom,cognom1,cognom2,ciutat,carrer,num,pis,telf_contacte,activitat_favorita )
