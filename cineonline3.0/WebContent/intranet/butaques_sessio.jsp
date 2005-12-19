@@ -34,13 +34,11 @@
 				if (but.isPagada())
 				{				
 					
-					tipusButaca = "butaca_reservada";
+					tipusButaca = "butaca_ocupada";
 					
 				}
 				else {
-					tipusButaca = "butaca_ocupada";
-					
-					
+					tipusButaca = "butaca_reservada";										
 				}
 				
 			}
@@ -57,30 +55,19 @@
 			sel ="checked";
 		}
 		
-		
+		tipusButaca = "butaca_ocupada";
 		
 		if (but.getOperativa())
 		{
 			if (but.getCompradaReservada())
-			{				
-				if (but.isPagada())
-				{				
-					
-					butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
-					
-				}
-				else {
-					
-					butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
-					
-				}				
+			{							
+				butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
 			}
 			else
 			{
 				butaquesTaula+= "<td><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></td>\n";
 				// <div id='"+tipusButaca+"'></div>
-			}
-			
+			}			
 		}
 		else
 		{
