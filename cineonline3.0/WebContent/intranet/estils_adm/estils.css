@@ -1,6 +1,5 @@
 body {
 background-color: #ffffff;
-/*#DCDBD9;*/
 border: 1px ridge #7B7B7B;
 margin: 0 0 0 0px;
 padding: 0 0 0 0px;
@@ -10,11 +9,9 @@ _height: 600px;
 }
 
 table {
-	/*background-color :#7B7B7B;*/
-	background-color :#FFFFFF;
+	background-color :#7B7B7B;
 	margin: 0 0 0 0px;
-	border: 0 0 0 0px;
-/*	width:100%;*/
+	border: 0px;
 }
 
 tr {
@@ -25,7 +22,6 @@ td {
 	text-align : left;
 	text-decoration : none;
 	vertical-align : baseline;
-	
 }
 
 .parell {
