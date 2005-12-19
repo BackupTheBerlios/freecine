@@ -219,6 +219,29 @@ public class ControladorSessions extends ControladorSales{
 		}
 	}
 	
+	public ButacaSessio getButacaSessio(int idSessio, int idButaca) throws ControladorException {
+		// Aqui es tindra de fer la vista que ens dongui, ara de mentres fem una copia de la sessio i li posem un camp més al vector
+		ResultSet rsSales;
+		String query = "SELECT * FROM butaca_sessio (" + idSessio + ") WHERE id_butaca = "+idButaca;
+		
+		try {
+			rsSales = selectRS(query);
+			Vector butaques = toVectorButaquesSessio(rsSales);
+			ButacaSessio butacaSessio;
+			if(butaques!=null){
+				butacaSessio = (ButacaSessio) butaques.firstElement();
+				return butacaSessio;
+			}else{
+				System.err.println("[ControladorSessio]:[getButaquesSessio(int idSala, int idButaca)] La butaca no existeix");
+				throw new ControladorException("[ControladorSessio]:[getButaquesSessio(int idSala, int idButaca)] La butaca no existeix");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessio]:[getButacaSessio(int idSala, int idButaca)] Error SQL: "+query+"\n"+e.getMessage());
+			throw new ControladorException("[ControladorSessio]:[getButacaSessio(int idSala, int IdButaca)] Error SQL: Error SQL:"+query+"\n"+e.getMessage());
+		}
+	}
+	
 	public Vector getSessionsCartellera(String data) throws ControladorException{
 		ResultSet rs;
 		String query = "SELECT " +
