@@ -85,7 +85,11 @@ public class ControladorSales extends Controlador{
 							"num_columnes, " +
 							"num_files, " +
 							"descripcio " +
-						"FROM sala";
+						"FROM sala " +
+						"ORDER BY nom ASC";
+		
+		System.err.println("OK[ControladorSales]:[getSales]"+query);
+		
 		try {
 			rsSales = selectRS(query);
 			return toVectorSales(rsSales);
@@ -167,13 +171,24 @@ public class ControladorSales extends Controlador{
 	}
 	
 	public void setButacaOperativa(String idSala, String idButaca, String operativa) throws ControladorException{
-		ResultSet rsSales;
 		String query = "UPDATE BUTACA SET operativa = "+operativa +
-						" WHERE id_sala = "+idSala+" " +
-						" AND id = "+idButaca;
+		" WHERE id_sala = "+idSala+" " +
+		" AND id = "+idButaca;
+		
+		
 		
 		try {
-			update(query);
+			/* Mirem que no existeixi cap sessio que depengui d'aquesta sala */
+			String query2 = "SELECT id FROM SESSIO WHERE id_sala = "+idSala;
+			ResultSet rs = selectRS(query2);
+			if(rs.next()){
+				System.err.println("[ControladorSales]:[setButacaOperativa()] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
+				throw new ControladorException("[ControladorSales]:[setButacaOperativa()] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
+				
+			}else{
+				update(query);
+			}
+			
 		} catch (SQLException e) {
 			System.err.println("[ControladorSales]:[setButacaOperativa(int idSala, int idButaca, boolean operativa)] Error SQL: "+query+"\n"+e.getMessage());
 			throw new ControladorException("[ControladorSales]:[setButacaOperativa(int idSala, int idButaca, boolean operativa)] Error SQL: "+query+"\n"+e.getMessage());
@@ -210,8 +225,8 @@ public class ControladorSales extends Controlador{
 			String query2 = "SELECT id FROM SESSIO WHERE id_sala = "+idSala;
 			ResultSet rs = selectRS(query2);
 			if(rs.next()){
-				System.err.println("[ControladorSales]:[eliminarSales(int idSala)] query:"+query+"\n Error: Hi han session que depenent d'aquesta pelicula");
-				throw new ControladorException("[ControladorSales]:[eliminarSales(int idSala)] query:"+query+"\n Error: Hi han session que depenent d'aquesta pelicula");
+				System.err.println("[ControladorSales]:[eliminarSales(int idSala)] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
+				throw new ControladorException("[ControladorSales]:[eliminarSales(int idSala)] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
 			}else{
 				System.err.println("[DeleteSessio]\n"+query+"\n"+query2);
 				update(query);
@@ -226,7 +241,15 @@ public class ControladorSales extends Controlador{
 		String query ="UPDATE SALA SET "+sala.sqlUpdate()+" WHERE id = "+sala.getId();
 		
 		try {
-			update(query);
+			/* Mirem que no existeixi cap sessio que depengui d'aquesta sala */
+			String query2 = "SELECT id FROM SESSIO WHERE id_sala = "+sala.getId();
+			ResultSet rs = selectRS(query2);
+			if(rs.next()){
+				System.err.println("[ControladorSales]:[modificarSala()] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
+				throw new ControladorException("[ControladorSales]:[modificarSala()] query:"+query+"\n Error: Hi han session que depenent d'aquesta sala");
+			}else{
+				update(query);
+			}
 		} catch (SQLException e) {
 			System.err.println("[ControladorSales]:[modificarSala(Sala sala)] query:"+query+"\n Error SQL: "+e.getMessage());
 			throw new ControladorException("[ControladorSales]:[modificarPelicula(String id)] query:"+query+"\n Error SQL: "+e.getMessage());
