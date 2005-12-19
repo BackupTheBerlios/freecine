@@ -37,7 +37,7 @@
 				{
 					Iterator it = llista.iterator();
 				%>
-					<table width="100%">
+					<table cellspacing="0">
 					<tr>
 						<td></td>
 						<td><strong>títol</strong></td>
@@ -57,8 +57,7 @@
 				%>
 					<tr class="<%= classeFila %>">
 					<form name="frmfitxa" action="GestioClientServlet" method="post">
-						<td style="text-align : center;">
-							
+						<td>							
 								<input type="Hidden" name="accio" value="detallPelicula" />
 								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
 								<input type="Submit" name="opcio_menu" class="boto_horari" value="fitxa" />

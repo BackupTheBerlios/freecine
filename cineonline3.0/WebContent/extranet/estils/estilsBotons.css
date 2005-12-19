@@ -21,6 +21,29 @@
 }
 
 .boto_enllac{
+	background-color: #C0C0C0;
+	background-position: center;
+	border: thick double #2F82F2;
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	font-family: verdana, monospace;
+	font-size: 9px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	width:auto;
+	text-decoration: none;
+	text-transform: lowercase;
+	vertical-align: middle;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	/* i.e. */
+	_margin-left: 0px;	
+	/*
 	background-color: #2F82F2;
 	background-position: center;
 	border: thick double #C0C0C0;
@@ -39,7 +62,9 @@
 	text-decoration: none;
 	text-transform: lowercase;
 	vertical-align: top;
-	width: auto;
+	width: auto;*/
+	/* i.e. */
+/*	_margin-left: 0px;	*/
 }
 
 .boto_accio {

@@ -11,8 +11,54 @@
 	<div id="center">
 		<span class="txt_titol">			
 			Cartellera
-		</span>		
+		</span>
+		<br /><br />
 		<span class="txt">	
+			Tria el dia de la cartellera
+				<br /><br />
+				<form name="frmcartellera_query" action="javascript:alert('Anat a la cartellera del dia...');" method="post">
+					dia
+					<select name="dia" style="width:45px">
+					<%
+						int i;
+						for (i=1; i <= 31; i++)
+						{
+					%>
+						<option value="<%= i %>" /><%= i %>
+					<%
+						}
+					%>
+					</select>
+					mes
+					<select name="mes" style="width:45px">			
+					<%
+						
+						for (i=1; i <= 12; i++)
+						{
+					%>
+						<option value="<%= i %>" /><%= i %>
+					<%
+						}
+					%>
+					</select>
+					any
+					<select name="mes" style="width:55px">			
+			
+					<%						
+						long datal = System.nanoTime();
+						for (i=2005; i <= 2010; i++)
+						{
+					%>
+						<option value="<%= i %>" /><%= i  %>
+					<%
+						}
+					%>
+					</select>
+					<input type="Submit" name="cerca" value="cerca" class="boto_enllac" />
+					<input type="Submit" name="carca" value="ant" class="boto_enllac" align="right" />
+					<input type="Submit" name="cerca" value="seg" class="boto_enllac" align="right" />
+				</form>
+				<br />
 			<div id="caixa_cartellera">								
 				<% 
 				String data = (String) session.getAttribute("dataActual");				
