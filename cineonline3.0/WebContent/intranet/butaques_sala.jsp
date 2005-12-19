@@ -41,7 +41,6 @@
 		}
 		
 		butaquesTaula+= "<td><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></td>\n";
-		//<div id='"+tipusButaca+"'></div>
 		
 		if(but.getNumColumna() == numMaxColumnes-1){
 			butaquesTaula+= "</tr>\n";
