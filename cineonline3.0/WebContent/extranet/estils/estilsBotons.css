@@ -20,7 +20,7 @@
 	width: 150px;
 }
 
-.boto_venda{
+.boto_enllac{
 	background-color: #2F82F2;
 	background-position: center;
 	border: thick double #C0C0C0;
@@ -39,7 +39,29 @@
 	text-decoration: none;
 	text-transform: lowercase;
 	vertical-align: top;
-	width: 60px;
+	width: auto;
+}
+
+.boto_accio {
+	background-color: #2F82F2;
+	background-position: center;
+	border: thick double gold;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	font-family: verdana, monospace;
+	font-size: 10px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	height: 20px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: lowercase;
+	vertical-align: top;
+	width: auto;
 }
 
 .boto_horari{

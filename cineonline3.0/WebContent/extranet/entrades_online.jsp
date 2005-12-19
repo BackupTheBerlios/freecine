@@ -29,7 +29,7 @@
 		<br /><br />
 				<form name="frmsinopsis_cartellera" action="GestioClientServlet" method="post" class="form_memu">
 					<input type="Hidden" name="accio" value="goCartellera" />
-					<input type="Submit" name="opcio_menu" value="cartellera" class="boto_venda" />
+					<input type="Submit" name="opcio_menu" value="cartellera" class="boto_enllac" />
 				</form>
 		</span>
 	</div>
