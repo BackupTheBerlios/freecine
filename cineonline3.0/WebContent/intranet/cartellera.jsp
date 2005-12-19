@@ -51,7 +51,7 @@
 							</div>
 							<div id="horari_cartellera">
 									<form name="frmcartellera_venda" action="GestioSessionsServlet"  method="post">
-										<input type="Hidden" name="idSessio" value="<%= ses.getSala().getId() %>" />																				
+										<input type="Hidden" name="idSessio" value="<%= ses.getId() %>" />
 										<input type="Hidden" name="accio" value="venda" />
 										
 										<% if (ses.getDataHora().toString().compareTo(hora)> 0 ) 

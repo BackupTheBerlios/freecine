@@ -77,7 +77,8 @@
 			}
 			else
 			{
-				butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
+				butaquesTaula+= "<td><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></td>\n";
+				// <div id='"+tipusButaca+"'></div>
 			}
 			
 		}

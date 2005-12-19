@@ -17,6 +17,16 @@
 			<u>Dades de la sessió:</u>
 			<br /><br />
 			<%
+			if (session.getAttribute("sessio")== null)  
+			{
+				System.err.println("es nula");
+			}
+			else
+			{
+				System.err.println("MNO es nula");
+			}
+				
+			  
 				Sessio ses = (Sessio) session.getAttribute("sessio");
 				//int idpelicula = ses.getPelicula().getId();
 				String nom_pelicula = ses.getPelicula().getTitol();

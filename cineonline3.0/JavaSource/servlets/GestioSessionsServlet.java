@@ -75,6 +75,7 @@ import javax.servlet.http.HttpServletResponse;
 				
 				Sessio sessio = ctrlSessio.getSessio(Integer.parseInt(idSessio));				
 				request.getSession().setAttribute("sessio", sessio);				
+				System.err.println(sessio.getPelicula().getTitol());
 				
 			    rd = getServletContext().getRequestDispatcher(urlExit);
 			    rd.forward(request, response);
