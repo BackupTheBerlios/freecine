@@ -44,8 +44,8 @@ import javax.servlet.http.HttpServletResponse;
 		this.request = request;
 		this.response = response;
 		String accio = request.getParameter("accio");
-		try {
-			
+		
+		try {	
 			ctrlSales = new ControladorSales();
 			if(accio.equals("llistarSales")) llistarSalesAction();
 			else if(accio.equals("detallSala")) detallSalaAction();
@@ -87,7 +87,7 @@ import javax.servlet.http.HttpServletResponse;
 		urlExit="/intranet/sales.jsp";
 		
 		try {
-			
+			System.err.println("llistaSales");
 			Vector llistaSales = ctrlSales.getSales();		
 			request.getSession().setAttribute("llistaSales", llistaSales);		
 			
