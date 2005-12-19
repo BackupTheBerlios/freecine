@@ -73,6 +73,7 @@ input, textarea, select {
 }
 input.check {
 	width: 15px;	
+	height: 15px;
 	background-color : #FFFFFF;
 	color : #FFFFFF;
 }

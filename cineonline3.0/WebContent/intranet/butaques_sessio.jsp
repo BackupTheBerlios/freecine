@@ -10,20 +10,17 @@
 	Iterator itBut = butaques.iterator();
 	
 	int numMaxColumnes = sessio.getSala().getNumMaxColumnes();
-	int numMaxFiles = sessio.getSala().getNumMaxFiles();
 	
 	String butaquesTaula= "";
 	butaquesTaula+= "<table cellspacing=0 cellpadding=0 border=0 bgcolor=yellow>\n";
-	String tipusButaca = "butaca_disponible";
-	//String llista_butaques[];
-	
+	String tipusButaca = "butaca_disponible";	
 
-	while(itBut.hasNext()){
-
-
+	while(itBut.hasNext())
+	{
 		ButacaSessio but = (ButacaSessio) itBut.next();
 		String sel = "";
-		if(but.getNumColumna()==0){
+		if(but.getNumColumna()==0)
+		{
 			butaquesTaula+= "<tr>\n";
 		}
 		
@@ -32,30 +29,23 @@
 			if (but.getCompradaReservada())
 			{				
 				if (but.isPagada())
-				{				
-					
-					tipusButaca = "butaca_ocupada";
-					
+				{									
+					tipusButaca = "butaca_ocupada";					
 				}
 				else {
 					tipusButaca = "butaca_reservada";										
-				}
-				
+				}				
 			}
 			else
 			{
 				tipusButaca = "butaca_disponible";
 			}
-			
-			
 		}
 		else
 		{
 			tipusButaca = "butaca_no_operativa";
 			sel ="checked";
-		}
-		
-		tipusButaca = "butaca_ocupada";
+		}		
 		
 		if (but.getOperativa())
 		{
@@ -66,7 +56,6 @@
 			else
 			{
 				butaquesTaula+= "<td><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></td>\n";
-				// <div id='"+tipusButaca+"'></div>
 			}			
 		}
 		else
@@ -76,11 +65,8 @@
 		
 		if(but.getNumColumna() == numMaxColumnes-1){
 			butaquesTaula+= "</tr>\n";
-		}
-		
+		}	
 	}
-	
-	butaquesTaula+= "</table><br />\n";
-	
+	butaquesTaula+= "</table><br />\n";	
 %>
 <%= butaquesTaula %>
