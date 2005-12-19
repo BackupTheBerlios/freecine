@@ -60,7 +60,7 @@
 						<td>							
 								<input type="Hidden" name="accio" value="detallPelicula" />
 								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_horari" value="fitxa" />
+								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 
 						</td>
 													</form>

@@ -17,7 +17,7 @@
 				<br /><br />
 				<form name="frmcartellera_query" action="javascript:alert('Anat a la cartellera del dia...');" method="post">
 					dia
-					<select name="dia" class="caixa_text">
+					<select name="dia" class="caixa_text" style="width:45px">
 					<%
 						int i;
 						for (i=1; i <= 31; i++)
@@ -29,7 +29,7 @@
 					%>
 					</select>
 					mes
-					<select name="mes" class="caixa_text">			
+					<select name="mes" class="caixa_text" style="width:45px">			
 					<%
 						
 						for (i=1; i <= 12; i++)
@@ -41,12 +41,11 @@
 					%>
 					</select>
 					any
-					<select name="mes" class="caixa_text">			
+					<select name="mes" class="caixa_text" style="width:55px">			
 			
-					<%
-						
+					<%						
 						long data = System.nanoTime();
-						for (i=2005; i <= 2006; i++)
+						for (i=2005; i <= 2010; i++)
 						{
 					%>
 						<option value="<%= i %>" /><%= i  %>
@@ -54,9 +53,9 @@
 						}
 					%>
 					</select>
-					<input type="Submit" name="cerca" value="cerca" class="boto_venda" />
-					<input type="Submit" name="carca" value="ant" class="boto_venda" align="right" />
-					<input type="Submit" name="cerca" value="seg" class="boto_venda" align="right" />
+					<input type="Submit" name="cerca" value="cerca" class="boto_enllac" />
+					<input type="Submit" name="carca" value="ant" class="boto_enllac" align="right" />
+					<input type="Submit" name="cerca" value="seg" class="boto_enllac" align="right" />
 				</form>
 				<br />
 				<div id="caixa_cartellera">
