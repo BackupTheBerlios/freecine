@@ -1,3 +1,6 @@
+<%@ page import="java.util.Vector" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="gestioCinema.gestioSessions.Sessio" %>
 <jsp:include page="esquelet_adm/header.jsp"/>
 	<div id="top">
 		<jsp:include page="esquelet_adm/top.jsp"/>		
@@ -14,47 +17,29 @@
 			<u>Dades de la sessió:</u>
 			<br /><br />
 			<%
-				String idpelicula = request.getParameter("idpelicula");
-				String nom_pelicula = request.getParameter("nom_pelicula");
-				String idsala = request.getParameter("idsala");
-				String nom_sala = request.getParameter("nom_sala");
-				String data = request.getParameter("data");
-				String hora = request.getParameter("venda");
-				String idsessio = request.getParameter("idsessio");
+				Sessio ses = (Sessio) session.getAttribute("sessio");
+				//int idpelicula = ses.getPelicula().getId();
+				String nom_pelicula = ses.getPelicula().getTitol();
+				//int idsala = ses.getSala().getId();
+				String nom_sala = ses.getSala().getNomSala();
+				String data = ses.getDataHora();				
+				int idsessio = ses.getId();
 			%>
-			<%= nom_pelicula %>
+			Pel·lícula: <%= nom_pelicula %>
 			<br /><br />
-			<%= nom_sala %>
+			Sala: <%= nom_sala %>
 			<br /><br />
-			<%= data %>
+			Data: <%= data %>
 			<br /><br />
-			<%= hora %>
-			<br /><br />
-			<form name="frmvenda" action="ticket.jsp" method="post">
-				<input type="Hidden" name="idsessio" value="<%= idsessio %>" />
-				<input type="Hidden" name="llista_butaques" value="" />
+			<form name="frmvenda" action="GestioCompraReserva" method="post">
+				<input type="Hidden" name="idSessio" value="<%= idsessio %>" />
+				<input type="Hidden" name="accio" value="confirmar" />
 				Vull fer una 
-				<select name="tipus_venda" class="caixa_text">
+				<select name="tipus_venda">
 					<option value="compra" /> compra
 					<option value="reserva" /> reserva
 				</select>
-				<br /><br />
-				<%
-					int maxNumEntrades = 6;
-				%>
-				Nombre d'entrades (màxim <%= maxNumEntrades %>)
-				<select name="num_entrades" class="caixa_text">
-					<%
-					int i;
-					for (i=1; i <= maxNumEntrades; i++)
-					{
-					%>
-						<option value="<%= i %>" /><%= i %>
-					<%
-						}
-					%>		
-				</select>
-				<br /><br />
+				<br /><br />				
 				<%
 				boolean sessioNumerada = true;
 				if (sessioNumerada)
@@ -63,7 +48,7 @@
 				Sessió numerada, escull les butaques corresponents a les entrades.
 				<br /><br />
 				<center>
-					<jsp:include page="butaques.jsp"/>
+					<jsp:include page="butaques_sessio.jsp"/>
 				</center>
 				<%
 				}
@@ -76,7 +61,7 @@
 				%>
 				<br /><br />
 				<center>		
-					<input type="Submit" name="opcio_menu" class="boto_venda" value="continuar" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="continuar" />
 				</center>
 			</form>
 		</span>

@@ -1,6 +1,5 @@
 .boto_menu{
 	background-color: #5D4981;
-	/* 5D4981 */
 	background-position: center;
 	border: thick groove #C0C0C0;
 	border-right-width: 1px;
@@ -21,7 +20,7 @@
 	width: 150px;
 }
 
-.boto_venda{
+.boto_enllac{
 	background-color: #5D4981;
 	background-position: center;
 	border: thick double #C0C0C0;
@@ -40,7 +39,7 @@
 	text-decoration: none;
 	text-transform: lowercase;
 	vertical-align: top;
-	width: 60px;
+	width: auto;
 }
 
 .boto_accio {
@@ -62,7 +61,7 @@
 	text-decoration: none;
 	text-transform: lowercase;
 	vertical-align: top;
-	width: 60px;
+	width: auto;
 }
 
 .boto_horari{

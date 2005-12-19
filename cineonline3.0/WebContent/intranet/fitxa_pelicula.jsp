@@ -26,18 +26,18 @@
 						Iterator itnac=nacionalitats.iterator();
 						%>
 					<div id="columna1">
-						<input type="Hidden" name="idPelicula" class="caixa_text" value="<%= peli.getId() %>" />
+						<input type="Hidden" name="idPelicula"   value="<%= peli.getId() %>" />
 						títol
-						<input type="Text" name="titol" class="caixa_text" value="<%= peli.getTitol() %>" />
+						<input type="Text" name="titol"   value="<%= peli.getTitol() %>" />
 						<br /><br />
 						títol original
-						<input type="Text" name="titolOriginal" class="caixa_text" value="<%= peli.getTitolOriginal() %>" />
+						<input type="Text" name="titolOriginal"   value="<%= peli.getTitolOriginal() %>" />
 						<br /><br />
 						any
-						<input type="Text" name="anny" class="caixa_text" maxlength="4" value="<%= peli.getAnny() %>" />
+						<input type="Text" name="anny"   maxlength="4" value="<%= peli.getAnny() %>" />
 						<br /><br />
 						nacionalitat
-						<select name="nacionalitat" class="fitxa">
+						<select name="nacionalitat">
 						<%while(itnac.hasNext()){
 							
 							Vector nac = (Vector)itnac.next();
@@ -68,7 +68,7 @@
 						<br /><br />
 						
 						genere
-						<select name="genere" class="fitxa">
+						<select name="genere">
 						<%while(itge.hasNext()){
 							
 							Vector ge = (Vector)itge.next();
@@ -97,38 +97,38 @@
 						</select>
 						<br /><br />
 						durada (minuts)
-						<input type="Text" name="durada" class="caixa_text" value="<%= peli.duradaMinuts() %>" />
+						<input type="Text" name="durada"   value="<%= peli.duradaMinuts() %>" />
 						<br /><br />
 						edat recomenada
-						<input type="Text" name="edatRecomenada" class="caixa_text" value="<%= peli.getEdatRecomenada() %>" />
+						<input type="Text" name="edatRecomenada"   value="<%= peli.getEdatRecomenada() %>" />
 						<br /><br />
 						tipus color
-						<input type="Text" name="tipusColor" class="caixa_text" value="<%= peli.getTipusColor() %>" />
+						<input type="Text" name="tipusColor"   value="<%= peli.getTipusColor() %>" />
 						<br /><br />
 						tipus sò
-						<input type="Text" name="tipusSo" class="caixa_text" value="<%= peli.getTipusSo() %>" />
+						<input type="Text" name="tipusSo"   value="<%= peli.getTipusSo() %>" />
 					</div>
 					<div id="columna2">
 						director
-						<input type="Text" name="director" class="caixa_text" value="<%= peli.getDirector() %>" />
+						<input type="Text" name="director"   value="<%= peli.getDirector() %>" />
 						<br /><br />
 						guionista
-						<input type="Text" name="guionista" class="caixa_text" value="<%= peli.getGuionista() %>" />
+						<input type="Text" name="guionista"   value="<%= peli.getGuionista() %>" />
 						<br /><br />
 						productor
-						<input type="Text" name="productor" class="caixa_text" value="<%= peli.getProductor() %>" />
+						<input type="Text" name="productor"   value="<%= peli.getProductor() %>" />
 						<br /><br />
 						actors
-						<textarea name="actors" class="caixa_text"  cols="30"><%= peli.getActors() %></textarea>
+						<textarea name="actors"    cols="30"><%= peli.getActors() %></textarea>
 						<br /><br />
 						sinopsis
-						<textarea name="sinopsis" class="caixa_text" cols="30"><%= peli.getSinopsis() %></textarea>
+						<textarea name="sinopsis"   cols="30"><%= peli.getSinopsis() %></textarea>
 						<br /><br />
 						web
-						<input type="Text" name="web" class="caixa_text" value="<%= peli.getUrlWeb() %>" />
+						<input type="Text" name="urlWeb"   value="<%= peli.getUrlWeb() %>" />
 						<br /><br />
 						imatge
-						<input type="File" name="imatge" class="caixa_text" value="<%= peli.getUrlImatge() %>" />
+						<input type="File" name="urlImatge"   value="<%= peli.getUrlImatge() %>" />
 						<br /><br />
 						<input type="Submit" name="accio" value="modificar" class="boto_accio" />
 						<input type="Submit" name="accio" value="eliminar" class="boto_accio" />
@@ -145,18 +145,18 @@
 					
 					%>
 					<div id="columna1">
-						<input type="Hidden" name="id" class="caixa_text" value="" />
+						<input type="Hidden" name="id"  value="" />
 						títol
-						<input type="Text" name="titol" class="caixa_text" value="" />
+						<input type="Text" name="titol"  value="" />
 						<br /><br />
 						títol original
-						<input type="Text" name="titolOriginal" class="caixa_text" value="" />
+						<input type="Text" name="titolOriginal"  value="" />
 						<br /><br />
 						any
-						<input type="Text" name="anny" class="caixa_text" maxlength="4" value="" />
+						<input type="Text" name="anny"   maxlength="4" value="" />
 						<br /><br />
 						nacionalitat
-						<select name="nacionalitat" class="caixa_text">
+						<select name="nacionalitat">
 						<%while(itnac.hasNext()){
 							
 							Vector nac = (Vector)itnac.next();
@@ -178,7 +178,7 @@
 						</select>
 						<br /><br />
 						genere
-						<select name="genere" class="caixa_text">
+						<select name="genere">
 						<%while(itge.hasNext()){
 							
 							Vector ge = (Vector)itge.next();
@@ -199,38 +199,38 @@
 						</select>
 						<br /><br />
 						durada (minuts)
-						<input type="Text" name="durada" class="caixa_text" value="" />
+						<input type="Text" name="durada"   value="" />
 						<br /><br />
 						edat recomenada
-						<input type="Text" name="edatRecomenada" class="caixa_text" value="" />
+						<input type="Text" name="edatRecomenada"   value="" />
 						<br /><br />
 						tipus color
-						<input type="Text" name="tipusColor" class="caixa_text" value="" />
+						<input type="Text" name="tipusColor"   value="" />
 						<br /><br />
 						tipus sò
-						<input type="Text" name="tipusSo" class="caixa_text" value="" />
+						<input type="Text" name="tipusSo"   value="" />
 					</div>
 					<div id="columna2">
 						director
-						<input type="Text" name="director" class="caixa_text" value="" />
+						<input type="Text" name="director"   value="" />
 						<br /><br />
 						guionista
-						<input type="Text" name="guionista" class="caixa_text" value="" />
+						<input type="Text" name="guionista"   value="" />
 						<br /><br />
 						productor
-						<input type="Text" name="productor" class="caixa_text" value="" />
+						<input type="Text" name="productor"   value="" />
 						<br /><br />
 						actors
-						<textarea name="actors" class="caixa_text"  cols="30"></textarea>
+						<textarea name="actors"    cols="30"></textarea>
 						<br /><br />
 						sinopsis
-						<textarea name="sinopsis" class="caixa_text" cols="30"></textarea>
+						<textarea name="sinopsis" cols="30"></textarea>
 						<br /><br />
 						web
-						<input type="Text" name="web" class="caixa_text" value="" />
+						<input type="Text" name="urlWeb" value="" />
 						<br /><br />
 						imatge
-						<input type="File" name="imatge" class="caixa_text"  value="" />
+						<input type="File" name="urlImatge"  value="" />
 						<br /><br />
 						<input type="Submit" name="accio" value="afegir" id="afegirPelicula" class="boto_accio" /> 
 					</div>

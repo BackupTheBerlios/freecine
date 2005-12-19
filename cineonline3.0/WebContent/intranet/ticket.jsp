@@ -53,7 +53,7 @@
 				<form name="frmticketacabar" action="finalitzar.jsp" method="post">
 					<input type="hidden" name="tipus_venda" value="<%= tipusVenda %>" />
 					<input type="hidden" name="num_entrades" value="<%= numEntrades %>" />
-					<input type="Submit" name="opcio_menu" class="boto_venda" value="<%= accio %>" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="<%= accio %>" />
 				</form>
 				</center>
 				<%

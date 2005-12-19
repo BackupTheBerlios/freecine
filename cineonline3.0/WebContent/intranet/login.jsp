@@ -21,12 +21,12 @@
 					
 			<form name="frmlogin" action="GestioCinemaServlet" method="post">
 				nom d'usuari
-				<input type="Text" name="nomUsuari" maxlength="30" value="" class="caixa_text" />
+				<input type="Text" name="nomUsuari" maxlength="30" value="" />
 				<br /><br />
 				password
-				<input type="Password" name="pwd" maxlength="20" value="" class="caixa_text" />
+				<input type="Password" name="pwd" maxlength="20" value="" />
 				<br /><br />
-				<input type="Submit" name="accio" value="accedir" class="boto_venda">	
+				<input type="Submit" name="accio" value="accedir" class="boto_enllac">	
 			</form>
 			L'ús inapropiat del sistema està penat amb multes majors a 30.000 euros.
 		</span>

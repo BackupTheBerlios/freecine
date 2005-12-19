@@ -18,7 +18,7 @@
 				Tria el dia que vols consultar la cartellera
 				<br /><br />
 				dia
-				<select name="dia" class="caixa_text">
+				<select name="dia">
 				<%
 					int i;
 					for (i=1; i <= 31; i++)
@@ -30,7 +30,7 @@
 				%>
 				</select>
 				mes
-				<select name="mes" class="caixa_text">			
+				<select name="mes">			
 				<%
 					
 					for (i=1; i <= 12; i++)
@@ -42,7 +42,7 @@
 				%>
 				</select>
 				any
-				<select name="anny" class="caixa_text">			
+				<select name="anny">			
 		
 				<%
 					
@@ -55,9 +55,9 @@
 					}
 				%>
 				</select>
-				<input type="Submit" name="cerca" value="cerca" class="boto_venda" />
-				<input type="Submit" name="carca" value="ant" class="boto_venda" align="right" />
-				<input type="Submit" name="cerca" value="seg" class="boto_venda" align="right" />
+				<input type="Submit" name="cerca" value="cerca" class="boto_enllac" />
+				<input type="Submit" name="carca" value="ant" class="boto_enllac" align="right" />
+				<input type="Submit" name="cerca" value="seg" class="boto_enllac" align="right" />
 			</form>
 			
 			<br><br>

@@ -21,9 +21,9 @@
 		<span class="txt">
 			<form name="frmConsola" action="GestioCinemaServlet" method="post">				
 				<input type="Hidden" name="accio" value="consulta" />
-				<textarea rows=8 cols=80 name="query"><%= query  %></textarea>
+				<textarea name="query" rows=15 cols=600 style="width:600px;"><%= query  %></textarea>
 				<br /><br />
-				<input type="Submit" name="boto" value="ok" class="boto_venda">	
+				<input type="Submit" name="boto" value="ok" class="boto_enllac">	
 			</form>
 			<% 				
 				if(resultat!=null)

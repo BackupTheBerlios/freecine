@@ -50,7 +50,7 @@
 			%>
 			<center>
 				<form name="frmvendacartellera" action="cartellera.jsp" method="post">
-					<input type="Submit" name="opcio_menu" class="boto_venda" value="cartellera" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="cartellera" />
 				</form>
 			</center>
 		</span>

@@ -16,7 +16,7 @@
 		<span class="txt">
 		<form name="frmnou" action="GestioSessionsServlet" method="post" class="boto_horari">
 			<input type="Hidden" name="accio" value="novaSessio" />
-			<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir ses" />
+			<input type="Submit" name="opcio_menu" class="boto_enllac" value="nova sessió" />
 		</form>
 		<% 
 				Vector llista = new Vector();	
@@ -25,7 +25,7 @@
 				{
 					Iterator it = llista.iterator();
 				%>
-			<table border="2">
+			<table cellspacing="0">
 				<tr>
 					<td></td>
 					<td><strong>data i hora</strong></td>
@@ -33,16 +33,27 @@
 					<td><strong>sala</strong></td>
 				</tr>
 				<%
+					int cont = 0;
 					while(it.hasNext())
 					{
 						Sessio obj = (Sessio)it.next();
+						String 	estilfila = "";
+					 	cont ++;
+					 	if(cont%2==0)
+					 	{
+					 		estilfila = "parell";
+					 	}
+					 	else
+					 	{
+					 		estilfila = "";
+					 	}
 				%>
-				<tr>
+				<tr class="<%= estilfila %>">
 					<td>
 							<form name="frmfitxa" action="GestioSessionsServlet" method="post" class="boto_horari">
 								<input type="Hidden" name="accio" value="detallSessio" />
 								<input type="Hidden" name="idSessio" value="<%= ""+ obj.getId() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 							</form>
 					</td>
 					<td><%= ""+ obj.getDataHora() %></td>		

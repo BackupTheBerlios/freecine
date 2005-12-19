@@ -9,12 +9,11 @@
 	</div>
 	<div id="center">
 		<span class="txt_titol">			
-			Fitxa de genere
+			Fitxa de gènere
 		</span>
 		<br /><br />
 		<span class="txt">
-			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">
-			<div id="caixa_pelicules">			
+			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">			
 				<%	
 				Vector genere = new Vector();	
 				genere = (Vector)session.getAttribute("genere");
@@ -24,26 +23,24 @@
 
 						Iterator itGenere = genere.iterator();
 						%>
-						<input type="Hidden" name="idGenere" class="caixa_text" value="<%=itGenere.next()%>" />
-						genere<br />
-						<input type="Text" name="nomGenere" class="caixa_text" value="<%=(String)itGenere.next()%>" />
+						<input type="Hidden" name="idGenere" value="<%=itGenere.next()%>" />
+						gènere<br />
+						<input type="Text" name="nomGenere" value="<%=(String)itGenere.next()%>" />
 						<br /><br />
-						<input type="Submit" name="accio" value="eliminar genere" class="boto_accio" />
+						<input type="Submit" name="accio" value="eliminar gènere" class="boto_accio" />
 					<%
 					}
 					else
 					{
 					%>
-						<input type="Hidden" name="idGenere" class="caixa_text" value="-1" />
-						genere<br />
-						<input type="Text" name="nomGenere" class="caixa_text" value="" />
+						<input type="Hidden" name="idGenere" value="-1" />
+						gènere<br />
+						<input type="Text" name="nomGenere" value="" />
 						<br /><br />
-						<input type="Submit" name="accio" value="afegir genere" class="boto_accio" /> 
+						<input type="Submit" name="accio" value="afegir gènere" class="boto_accio" /> 
 				<%
 					}
 				%>
-
-			</div>
 			</form>
 		</span>	
 	</div>

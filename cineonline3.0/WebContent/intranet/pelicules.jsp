@@ -17,20 +17,20 @@
 				Cerca la teva pel·lícula
 				<br /><br />
 				<form name="frmsinopsis_query" action="javascript:alert('Fent la consulta...');">
-					títol <input type="Text" name="titol" maxlength="255" class="caixa_text" />
-					director <input type="Text" name="director" maxlength="255" class="caixa_text" />
-					any <input type="Text" name="any" maxlength="4" class="caixa_text" size="4" id="any" />
-					entre
-					<select name="encartellera" class="caixa_text">
+					títol <input type="Text" name="titol" maxlength="255" />
+					director <input type="Text" name="director" maxlength="255" />
+					any <input type="Text" name="any" maxlength="4" size="4" id="any" style="width:35px" />					 
+					en 
+					<select name="encartellera" style="width:80px">
 						<option value="cartellera" />cartellera
 						<option value="totes" />totes
 					</select>
 					<br /><br />
-					<center><input type="Submit" name="cerca" value="cerca" class="boto_venda" /></center>
+					<center><input type="Submit" name="cerca" value="cerca" class="boto_enllac" /></center>
 				</form>
 				<form name="frmnou" action="GestioPeliculesServlet" method="post" class="boto_horari">
 					<input type="Hidden" name="accio" value="novaPelicula" />
-					<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir peli" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="nova pel·lícula" />
 				</form>
 				<% 
 				Vector llista = new Vector();	
@@ -38,13 +38,13 @@
 				if(llista!=null)
 				{
 					Iterator it = llista.iterator();
+					int cont = 0;
 				%>
-					<table border="2">
+					<table cellspacing="0">
 					<tr>
 						<td></td>
 						<td><strong>títol</strong></td>
 						<td><strong>títol original</strong></td>
-						<td><strong>nacionalitat</strong></td>
 						<td><strong>director</strong></td>
 						<td><strong>any</strong></td>
 					</tr>
@@ -52,18 +52,27 @@
 					while(it.hasNext())
 					{
 						Pelicula pelicula = (Pelicula)it.next();
+						String 	estilfila = "";
+					 	cont ++;
+					 	if(cont%2==0)
+					 	{
+					 		estilfila = "parell";
+					 	}
+					 	else
+					 	{
+					 		estilfila = "";
+					 	}
 				%>
-					<tr>
+					<tr class="<%= estilfila %>">
 						<td>
 							<form name="frmfitxa" action="GestioPeliculesServlet" method="post" class="boto_horari">
 								<input type="Hidden" name="accio" value="detallPelicula" />
 								<input type="Hidden" name="idPelicula" value="<%= ""+pelicula.getId() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 							</form>
 						</td>
 						<td><%=pelicula.getTitol()%></td>
 						<td><%=pelicula.getTitolOriginal()%></td>
-						<td><%=pelicula.getNacionalitat()%></td>
 						<td><%=pelicula.getDirector()%></td>
 						<td><%=pelicula.getAnny()%></td>
 					</tr>

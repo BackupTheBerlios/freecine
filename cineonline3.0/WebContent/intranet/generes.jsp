@@ -9,13 +9,13 @@
 	</div>
 	<div id="center">
 		<span class="txt_titol">			
-			Generes
+			Gèneres
 		</span>
 		<br /><br />
 		<span class="txt">
 			<form name="frmnou" action="GestioPeliculesServlet" method="post" class="boto_horari">
 				<input type="Hidden" name="accio" value="novaGenere" />
-				<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir genere" />
+				<input type="Submit" name="opcio_menu" class="boto_enllac" value="nou gènere" />
 			</form>
 			<% 
 			Vector llista = new Vector();	
@@ -24,24 +24,35 @@
 				{
 					
 					Iterator it = llista.iterator();
+					int cont = 0;
 				%>
-					<table border="2">
+					<table cellspacing="0">
 					<tr>
 						<td></td>
-						<td><strong>genere</strong></td>
+						<td><strong>gènere</strong></td>
 					</tr>
 				<%
 					while(it.hasNext())
 					{
 						Vector obj = (Vector)it.next();
 					 	Iterator itObj = obj.iterator();
+					 	String 	estilfila = "";
+					 	cont ++;
+					 	if(cont%2==0)
+					 	{
+					 		estilfila = "parell";
+					 	}
+					 	else
+					 	{
+					 		estilfila = "";
+					 	}
 				%>
-					<tr>
+					<tr class="<%= estilfila %>">
 						<td>
 							<form name="frmfitxa" action="GestioPeliculesServlet" method="post" class="boto_horari">
 								<input type="Hidden" name="accio" value="detallGenere" />
 								<input type="Hidden" name="idGenere" value="<%= ""+ itObj.next() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 							</form>
 						</td>
 						<td><%= ""+itObj.next()%></td>
@@ -55,7 +66,7 @@
 				else
 				{
 					%>
-					No hi ha cap genere.
+					No hi ha cap gènere.
 					<%
 				}
 				%>

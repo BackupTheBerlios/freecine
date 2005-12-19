@@ -1,8 +1,15 @@
+<%@ page import="gestioCinema.gestioSessions.Sessio" %>
+<%@ page import="gestioCinema.gestioSessions.ButacaSessio" %>
+<%@ page import="java.util.Vector" %>
 <%
-
-	int numMaxColumnes = 9;
-	int numMaxFiles = 19;
-	String butaquesTaula = "<table>";
+	
+	Sessio sess = (Sessio) session.getAttribute("sessio");
+	Vector butaques = sess.getButaquesSessio();
+	
+	int numMaxColumnes = sess.getSala().getNumMaxColumnes();
+	int numMaxFiles = sess.getSala().getNumMaxFiles();
+	
+	String butaquesTaula = "<table cellspacing=0 cellpadding=0 border=0>";
 	String tipusButaca = "butaca_disponible";
 	//String llista_butaques[];
 	
@@ -14,13 +21,20 @@
 		butaquesTaula+= "<tr>";
 		for (j=0;j< numMaxColumnes;j++)
 		{
-			if (j == numMaxColumnes/2)
+			ButacaSessio bses =(ButacaSessio)butaques.elementAt(j);
+			if (bses.getCompradaReservada())
 			{
-				tipusButaca = "butaca_no_operativa";
+				
+			}
+			
+			
+			if ( bses.getOperativa())
+			{				
+				tipusButaca = "butaca_disponible";
 			}
 			else
 			{
-				tipusButaca = "butaca_disponible";
+				tipusButaca = "butaca_no_operativa";
 			}
 			if (i== numMaxFiles/2)
 			{
@@ -36,7 +50,15 @@
 			{
 				tipusButaca = "butaca_ocupada";
 			}
-			butaquesTaula+= "<td><div id='"+tipusButaca+"'><a href=javascript:alert('afegintotrient') id='"+ tipusButaca + "' title='(fil " + (i+1) +",col " + (j+1) + ")'></a></div></td>";
+			
+			if  (tipusButaca == "butaca_disponible")
+			{
+				butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Checkbox' name='cekbutaca_" + bses.getNumButaca() + "' class='check' /></div></td>";
+			}
+			else
+			{
+				butaquesTaula+= "<td><div id='"+tipusButaca+"'><a href=# id='"+ tipusButaca + "' title='(fil " + (i+1) +",col " + (j+1) + ")'></div></a></td>";
+			}
 		}
 		butaquesTaula+= "</tr>";
 	}

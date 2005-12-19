@@ -1,45 +1,98 @@
-<!-- 
-<span class="txt_titol">			
-	Butaques de sessio
-</span>
-<br /><br />
-<span class="txt">
-	<form name="frm" action="accions.jsp" method="post">
-	<input type="Hidden" name="numButaca" value="" />
-	número fila
-	<input type="Text" name="nomSala" value="" maxlength="3" class="caixa_text" />
-	<br /><br />
-	número columna
-	<input type="Text" name="numButaques" value="" maxlength="3" class="caixa_text" />
-	<br /><br />
-	opetativa
-	<input type="Checkbox" name="operativa" value="" disabled class="caixa_text" />
-	<br /><br />
-	estat
-	<select name="estat" class="caixa_text">
-		<option value="1" />Disponible
-		<option value="2" />Comprada
-		<option value="3" />Reservada
-	</select>
-	<br /><br />
-		<input type="Submit" name="opcio_accio" value="modificar" class="boto_accio" />
-	</form>
-	<table border="2">
-		<%
-		int numMaxColumnes = 10;
-		int numMaxFiles = 20;
-		String butaquesTaula = "";
-		for (int i=0; i<numMaxFiles;i++)
-		{
-		butaquesTaula+= "<tr>";
-			for (int j=0;j<numMaxColumnes;j++)
-			{
-			butaquesTaula+= "<td><a href='butaques_sessio.jsp' title='(" + i + "," + j + ")'>|_|</a></td>";
-			}
-		butaquesTaula+= "</tr>";
+<%@ page import="gestioCinema.gestioSessions.Sessio" %>
+<%@ page import="gestioCinema.gestioSessions.ButacaSessio" %>
+<%@ page import="java.util.Vector" %>
+<%@ page import="java.util.Iterator" %>
+<%
+	
+	Sessio sessio = (Sessio)session.getAttribute("sessio");	
+
+	Vector butaques = sessio.getButaquesSessio();
+	Iterator itBut = butaques.iterator();
+	
+	int numMaxColumnes = sessio.getSala().getNumMaxColumnes();
+	int numMaxFiles = sessio.getSala().getNumMaxFiles();
+	
+	String butaquesTaula= "";
+	butaquesTaula+= "<table cellspacing=0 cellpadding=0 border=0 bgcolor=yellow>\n";
+	String tipusButaca = "butaca_disponible";
+	//String llista_butaques[];
+	
+
+	while(itBut.hasNext()){
+
+
+		ButacaSessio but = (ButacaSessio) itBut.next();
+		String sel = "";
+		if(but.getNumColumna()==0){
+			butaquesTaula+= "<tr>\n";
 		}
-		 %>
-		 <%= butaquesTaula %>
-	</table>
-</span>
- -->
+		
+		if (but.getOperativa())
+		{				
+			if (but.getCompradaReservada())
+			{				
+				if (but.isPagada())
+				{				
+					
+					tipusButaca = "butaca_reservada";
+					
+				}
+				else {
+					tipusButaca = "butaca_ocupada";
+					
+					
+				}
+				
+			}
+			else
+			{
+				tipusButaca = "butaca_disponible";
+			}
+			
+			
+		}
+		else
+		{
+			tipusButaca = "butaca_no_operativa";
+			sel ="checked";
+		}
+		
+		
+		
+		if (but.getOperativa())
+		{
+			if (but.getCompradaReservada())
+			{				
+				if (but.isPagada())
+				{				
+					
+					butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
+					
+				}
+				else {
+					
+					butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
+					
+				}				
+			}
+			else
+			{
+				butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Checkbox' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
+			}
+			
+		}
+		else
+		{
+			butaquesTaula+= "<td><div id='"+tipusButaca+"'><input type='Hidden' name='cekbutaca_" + but.getNumButaca() + "' class='check' "+ sel +" /></div></td>\n";
+		}
+		
+		if(but.getNumColumna() == numMaxColumnes-1){
+			butaquesTaula+= "</tr>\n";
+		}
+		
+	}
+	
+	butaquesTaula+= "</table><br />\n";
+	
+%>
+<%= butaquesTaula %>

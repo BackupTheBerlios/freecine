@@ -29,26 +29,26 @@
 		if (sessio != null)
 		{%>
 			
-			<input type="Hidden" name="idSessio" value="<%= sessio.getId() %>">
+			<input type="Hidden" name="idSessio" value="<%= sessio.getId() %>" />
 			<%
 			String[] dh = sessio.getDataHora().split(" ");		
 			%>
 			data (dd/mm/aa)
-			<input type="Text" name="data" value="<%= dh[0] %>" class="caixa_text" maxlength="10">
+			<input type="Text" name="data" value="<%= dh[0] %>" maxlength="10" />
 			<br><br>
 			hora inici (hh:mm)<!---->
-			<input type="Text" name="horaInici" class="caixa_text" value="<%= dh[1] %>" maxlength="5">
+			<input type="Text" name="horaInici" value="<%= dh[1] %>" maxlength="5" />
 			<br><br>
 			preu
-			<input type="Text" name="preu" class="caixa_text" value="<%= sessio.getPreu() %>" maxlength="5">
+			<input type="Text" name="preu" value="<%= sessio.getPreu() %>" maxlength="5" />
 			</span>
 			<br /><br />
 			<span class="txt">
-			<form name="frmadmsessions" action="GestioSessioServlet" method="post">
-			<div id="caixa_sessions">							
+			<form name="frmadmsessions" action="GestioSessioServlet" method="post">	
+			<div id="caixa_sessions">		
 					<div id="columna1">
 						pel·lícula						
-						<select name="selPelicula" class="fitxa">
+						<select name="selPelicula">
 						<%while(itpel.hasNext()){
 							
 							Pelicula pel = (Pelicula)itpel.next();
@@ -76,7 +76,7 @@
 						<br /><br />
 						
 						sala
-						<select name="selSala" class="fitxa">
+						<select name="selSala">
 						<%while(itsal.hasNext()){
 							
 							Sala sal = (Sala)itsal.next();
@@ -108,21 +108,21 @@
 					}
 					else
 					{%>
-			<input type="Hidden" name="idSessio" value="-1">
+			<input type="Hidden" name="idSessio" value="-1" />
 			data (dd/mm/aaaa)
-			<input type="Text" name="data" value="" class="caixa_text" maxlength="10">
+			<input type="Text" name="data" value="" maxlength="10" />
 			<br><br>
 			data última sessio (dd/mm/aaaa)
-			<input type="Text" name="dataUltima" class="caixa_text" value="" maxlength="10"> (rang)
+			<input type="Text" name="dataUltima" value="" maxlength="10" /> (rang)
 			<br><br>
 			hora inici (hh:mm)
-			<input type="Text" name="horaInici" class="caixa_text" value="" maxlength="5">
+			<input type="Text" name="horaInici" value="" maxlength="5" />
 			<br><br>
 			preu
-			<input type="Text" name="preu" class="caixa_text" value="" maxlength="5">
+			<input type="Text" name="preu" value="" maxlength="5" />
 			<br><br>
 			pel·lícula						
-						<select name="idPelicula" class="fitxa">
+						<select name="idPelicula">
 						<%while(itpel.hasNext()){
 							
 							Pelicula pel = (Pelicula)itpel.next();
@@ -143,7 +143,7 @@
 						<br /><br />
 						
 						sala
-						<select name="idSala" class="fitxa">
+						<select name="idSala">
 						<%while(itsal.hasNext()){
 							
 							Sala sal = (Sala)itsal.next();
@@ -163,6 +163,7 @@
 						<br /><br />						
 						<input type="Submit" name="accio" value="afegir" class="boto_accio" />
 			<%}%>
+			</div>
 			</form>
 		</span>
 	</div>

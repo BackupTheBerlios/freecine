@@ -50,18 +50,13 @@
 									<%= ses.getPelicula().getTitol() %>		
 							</div>
 							<div id="horari_cartellera">
-									<form name="frmcartellera_venda" action="venda.jsp"  method="post">
-										<input type="Hidden" name="nom_pelicula" value="El Pelicano" />
-										<input type="Hidden" name="idpelicula" value="1" />
-										<input type="Hidden" name="nom_sala" value="SALA 1" />
-										<input type="Hidden" name="idsala" value="1" />
-										<input type="Hidden" name="data" value="11/11/2005" />
-										<input type="Hidden" name="idsessio" value="1" />																				
-										<input type="Submit" name="venda" value="15:10" class="boto_horari" />
+									<form name="frmcartellera_venda" action="GestioSessionsServlet"  method="post">
+										<input type="Hidden" name="idSessio" value="<%= ses.getSala().getId() %>" />																				
+										<input type="Hidden" name="accio" value="venda" />
 										
 										<% if (ses.getDataHora().toString().compareTo(hora)> 0 ) 
 										{%>
-											<input type="Submit" name="venda" value="<%= ses.getDataHora() %>" class="boto_horari" />
+											<input type="Submit" name="bt_venda" value="<%= ses.donaHora() %>" class="boto_horari" />
 										<%} 										
 										%>
 							<%} %>

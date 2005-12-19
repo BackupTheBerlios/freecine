@@ -16,7 +16,7 @@
 		<span class="txt">
 			<form name="frmnou" action="GestioSalesServlet" method="post" class="boto_horari">
 					<input type="Hidden" name="accio" value="novaSala" />
-					<input type="Submit" name="opcio_menu" class="boto_menu" value="afegir sala" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="nova sala" />
 				</form>
 			<% 
 				Vector llista = new Vector();	
@@ -24,8 +24,9 @@
 				if(llista!=null)
 				{
 					Iterator it = llista.iterator();
+					int cont = 0;
 				%>
-					<table border="2">
+					<table cellspacing="0">
 					<tr>
 						<td></td>
 						<td><strong>nom de la sala</strong></td>
@@ -35,13 +36,23 @@
 					while(it.hasNext())
 					{
 						Sala obj = (Sala)it.next();
+						String 	estilfila = "";
+					 	cont ++;
+					 	if(cont%2==0)
+					 	{
+					 		estilfila = "parell";
+					 	}
+					 	else
+					 	{
+					 		estilfila = "";
+					 	}
 				%>
-					<tr>
+					<tr  class="<%= estilfila %>">
 						<td>
 							<form name="frmfitxa" action="GestioSalesServlet" method="post" class="boto_horari">
 								<input type="Hidden" name="accio" value="detallSala" />
 								<input type="Hidden" name="idSala" value="<%= ""+obj.getId() %>" />
-								<input type="Submit" name="opcio_menu" class="boto_menu" value="fitxa" />
+								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 							</form>
 						</td>
 						<td><%=obj.getNomSala()%></td>

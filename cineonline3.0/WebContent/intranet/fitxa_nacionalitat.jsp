@@ -13,8 +13,7 @@
 		</span>
 		<br /><br />
 		<span class="txt">
-			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">
-			<div id="caixa_pelicules">			
+			<form name="frmadmpelicules" action="GestioPeliculesServlet" method="post">			
 				<%	
 				Vector nac = new Vector();	
 				nac = (Vector)session.getAttribute("nacionalitat");
@@ -23,12 +22,12 @@
 					{
 						Iterator itNac = nac.iterator();
 						%>
-						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="<%= itNac.next() %>" />
-						nom del la nacionalitat<br />
+						<input type="Hidden" name="idNacionalitat" value="<%= itNac.next() %>" />
+						nacionalitat<br />
 						<%if(itNac.hasNext()){ %>
-						<input type="Text" name="nomNacionalitat" class="caixa_text" value="<%=(String) itNac.next()%>" />
+						<input type="Text" name="nomNacionalitat" value="<%=(String) itNac.next()%>" />
 						<%} else{%>
-						<input type="Text" name="nomNacionalitat" class="caixa_text" value="" />
+						<input type="Text" name="nomNacionalitat" value="" />
 						<%} %>
 						<br /><br />
 						<input type="Submit" name="accio" value="eliminar nacionalitat" class="boto_accio" />
@@ -37,16 +36,14 @@
 					else
 					{
 					%>
-						<input type="Hidden" name="idNacionalitat" class="caixa_text" value="-1" />
-						nom del la nacionalitat<br />
-						<input type="Text" name="nomNacionalitat" class="caixa_text" value="" />
+						<input type="Hidden" name="idNacionalitat" value="-1" />
+						nacionalitat<br />
+						<input type="Text" name="nomNacionalitat" value="" />
 						<br /><br />
 						<input type="Submit" name="accio" value="afegir nacionalitat" class="boto_accio" /> 
 				<%
 					}
 				%>
-
-			</div>
 			</form>
 		</span>	
 	</div>
