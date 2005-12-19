@@ -461,9 +461,12 @@ public class AccessoDatos {
 		
 	}
 	
-	public void nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
+	public int nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
 		
 		String query = "INSERT INTO linia_factura (num_factura,id_unit,dies_lloguer)VALUES ("+id_factura+","+id_unitat+","+dies_lloguer+")";
+		int n = execUpdate(con,query);
+		
+		return n;
 		
 	}
 	

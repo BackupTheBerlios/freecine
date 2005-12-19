@@ -222,12 +222,18 @@ public class Interficie {
 			if (salir.contains("n")) break;
 			
 			// Mostramos las unidades para que el dependiente pueda elegir.
+			// TODO: Comprobar que metes una unidad de alquiler o al menos mostrar de qué tipo son
 			this.imprimirResultado(contr.unidadesDisponibles());
 			
 			int id_unidad = SimpleInput.getInteger("¿Unidad a añadir?");
 			int dias = SimpleInput.getInteger("Dias de alquiler? [0 si es una compra]");
 			
-			contr.nuevaLinia(id_factura,id_unidad,dias);
+			int n = contr.nuevaLinia(id_factura,id_unidad,dias);
+			
+			if (n==0){
+				
+				System.out.println("ERROR: No se ha podido añadir la unidad a la factura.");
+			}
 			
 		}
 		

@@ -126,7 +126,8 @@ public class Controlador {
 		r = r.concat("Marca"+"\t\t");
 		r = r.concat("Modelo"+"\t\t");
 		r = r.concat("Precio+IVA"+"\t\t");
-		r = r.concat("Precio Alquiler"+"\n");
+		r = r.concat("Precio Alquiler"+"\t\t");
+		r = r.concat("Alquiler / Venta\n");
 		try {
 			while(res.next()){
 								
@@ -135,7 +136,8 @@ public class Controlador {
 				r = r.concat(res.getString(3)+"\t\t");
 				r = r.concat(res.getString(4)+"\t\t");
 				r = r.concat(res.getString(5)+"\t\t");
-				r = r.concat(res.getString(6)+"\n");
+				r = r.concat(res.getString(6)+"\t\t");
+				r = r.concat(res.getString(7)+"\n");
 			}
 		} catch (SQLException e) {
 			System.err.println("Fetch failed: "+ e.getMessage());
@@ -380,9 +382,10 @@ public class Controlador {
 	 * @param id_unitat Unidad a incluir en la línea de factura
 	 * @param dies_lloguer Días de alquiler. 0 si es una compra.
 	 */
-	public void nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
+	public int nuevaLinia(int id_factura, int id_unitat, int dies_lloguer) {
 		
-		bd.nuevaLinia(id_factura,id_unitat,dies_lloguer);
+		int n = bd.nuevaLinia(id_factura,id_unitat,dies_lloguer);
+		return n;
 		
 	}	
 	public void confirmarFactura(int id_factura) {
