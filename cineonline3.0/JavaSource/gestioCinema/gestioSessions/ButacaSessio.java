@@ -16,9 +16,12 @@ import gestioCinema.gestioSales.Butaca;
  */
 public class ButacaSessio extends Butaca{
 	private boolean compradaReservada;
+	private boolean pagada;
 	
 	public ButacaSessio(){
 		super();
+		compradaReservada = false;
+		pagada = false;
 	}
 	
 	public void setAllButaca(
@@ -26,12 +29,14 @@ public class ButacaSessio extends Butaca{
 			int numFila, 
 			int numColumna, 
 			boolean operativa, 
-			boolean compradaReservada){
+			boolean compradaReservada,
+			boolean pagada){
 		setNumButaca(numButaca);
 		setNumFila(numFila);
 		setNumColumna(numColumna);
 		setOperativa(operativa);
 		setCompradaReservada(compradaReservada);
+		setPagada(pagada);
 	}
 
 	public boolean getCompradaReservada() {
@@ -41,4 +46,14 @@ public class ButacaSessio extends Butaca{
 	public void setCompradaReservada(boolean compradaReservada) {
 		this.compradaReservada = compradaReservada;
 	}
+
+	public boolean isPagada() {
+		return pagada;
+	}
+
+	public void setPagada(boolean pagada) {
+		this.pagada = pagada;
+	}
+	
+	
 }

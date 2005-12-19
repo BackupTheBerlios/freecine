@@ -2,8 +2,6 @@ package gestioCinema.gestioSessions;
 import gestioCinema.gestioPelicules.Pelicula;
 import gestioCinema.gestioSales.Sala;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -196,5 +194,14 @@ public class Sessio {
 			}
 		}
 		return values;
+	}
+	
+	public String donaHora(){		
+		String amm = getDataHora();		
+		String args[] = amm.split(" ");
+		String data = args[1];
+		String args2[] = data.split(":");
+		data = args2[0] + ":" + args2[1];
+		return ""+data;
 	}
 }

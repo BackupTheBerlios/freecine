@@ -58,4 +58,7 @@ public class Butaca {
 		this.operativa = operativa;
 	}
 	
+	public String toString() {
+		return ""+ this.numButaca + ":" + this.numFila + ":" + this.numColumna;
+	}
 }

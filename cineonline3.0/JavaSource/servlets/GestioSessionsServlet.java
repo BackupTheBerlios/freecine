@@ -52,6 +52,7 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("novaSessio")) novaSessioAction();
 			else if(accio.equals("eliminar")) eliminarSessioAction();
 			else if(accio.equals("llistarSessionsCartellera")) llistarSessionsCartelleraAction();
+			else if(accio.equals("venda")) vendaAction();
 			
 			else{
 			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
@@ -64,6 +65,30 @@ import javax.servlet.http.HttpServletResponse;
 			rd.forward(request,response);
 		}
 	}   	 
+
+	private void vendaAction() throws ServletException, IOException {
+		urlExit="/intranet/venda.jsp";
+		String idSessio = request.getParameter("idSessio");
+		
+		if(idSessio != null){
+			try {
+				
+				Sessio sessio = ctrlSessio.getSessio(Integer.parseInt(idSessio));				
+				request.getSession().setAttribute("sessio", sessio);				
+				
+			    rd = getServletContext().getRequestDispatcher(urlExit);
+			    rd.forward(request, response);
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSessio null");
+		    rd.forward(request, response);
+		}
+		
+	}
 
 	private void llistarSessionsCartelleraAction() throws ServletException, IOException {
 		urlExit="/intranet/cartellera.jsp";

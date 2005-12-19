@@ -458,6 +458,10 @@ import javax.servlet.http.HttpSession;
 		String sinopsis = request.getParameter("sinopsis");
 		String urlWeb = request.getParameter("urlWeb");
 		String urlImatge = request.getParameter("urlImatge");
+		/* tractar imatge */
+		
+		System.err.println("opopopop " + urlImatge);
+		
 		pelicula.setAll(
 				id,
 				titol,
@@ -560,6 +564,13 @@ import javax.servlet.http.HttpSession;
 		if (control == "")
 		{
 		*/	
+		
+		/* tractar imatge */
+		if (urlImatge!=null)
+		{
+		System.err.println("opopopop " + urlImatge);
+		}
+		
 		pelicula.setAll(
 				id,
 				titol,

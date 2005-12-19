@@ -153,7 +153,8 @@ public class ControladorSales extends Controlador{
 							"operativa " +
 						"FROM butaca " +
 						"WHERE id_sala = "+idSala+" " +
-						"AND id = "+idButaca;
+						"AND id = "+idButaca+
+						"ORDER BY num_fila, num_columna ASC";
 		
 		try {
 			rsSales = selectRS(query);
@@ -165,6 +166,22 @@ public class ControladorSales extends Controlador{
 		}
 	}
 	
+	public void setButacaOperativa(String idSala, String idButaca, String operativa) throws ControladorException{
+		ResultSet rsSales;
+		String query = "UPDATE BUTACA SET operativa = "+operativa +
+						" WHERE id_sala = "+idSala+" " +
+						" AND id = "+idButaca;
+		
+		try {
+			update(query);
+		} catch (SQLException e) {
+			System.err.println("[ControladorSales]:[setButacaOperativa(int idSala, int idButaca, boolean operativa)] Error SQL: "+query+"\n"+e.getMessage());
+			throw new ControladorException("[ControladorSales]:[setButacaOperativa(int idSala, int idButaca, boolean operativa)] Error SQL: "+query+"\n"+e.getMessage());
+		}
+		
+	}
+	
+	
 	public Vector getButaques(int idSala) throws ControladorException {
 		ResultSet rsSales;
 		String query = "SELECT " +
@@ -173,7 +190,8 @@ public class ControladorSales extends Controlador{
 							"num_columna, " +
 							"operativa " +
 						"FROM butaca " +
-						"WHERE id_sala = "+idSala;
+						"WHERE id_sala = "+idSala+" " +
+						"ORDER BY num_fila, num_columna";
 		
 		try {
 			rsSales = selectRS(query);

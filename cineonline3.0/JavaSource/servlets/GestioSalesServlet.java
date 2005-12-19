@@ -1,10 +1,12 @@
 package servlets;
 
 import gestioCinema.ControladorException;
+import gestioCinema.gestioSales.Butaca;
 import gestioCinema.gestioSales.ControladorSales;
 import gestioCinema.gestioSales.Sala;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -51,7 +53,7 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("novaSala")) novaSalaAction();
 			else if(accio.equals("modificar")) modificarSalaAction();
 			else if(accio.equals("eliminar")) eliminarSalaAction();
-			else if(accio.equals("modificarEstatButaca")) modificarEstatButacaAction();
+			else if(accio.equals("modificarEstatsButaques")) modificarEstatsButaquesAction();
 			else{
 			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
 			    rd.forward(request, response);
@@ -271,11 +273,55 @@ import javax.servlet.http.HttpServletResponse;
 		}
 	}
 	
-	private void modificarEstatButacaAction() throws ServletException, IOException{
+	private void modificarEstatsButaquesAction() throws ServletException, IOException{
 		/*
 		 * Afagar el idSala, el idButaca i el estat (0 o 1) i posa el estat adecuat a la butaca
 		 * i actualitza a la base de dades.
 		 */
+
 		urlExit="/intranet/fitxa_sala.jsp";
+		String idSala = request.getParameter("idSala");
+		
+		if(idSala != null){
+			try {
+				
+				Sala sala = ctrlSales.getSala(Integer.parseInt(idSala));		
+				
+				
+				if(sala!=null){
+					
+					Vector butaques = sala.getButaques();
+					Iterator itBut = butaques.iterator();
+					
+					while(itBut.hasNext()){
+						int id =((Butaca)itBut.next()).getNumButaca();
+						String check = "cekbutaca_" + id;
+						String noOperativa = request.getParameter(check);
+						if (noOperativa == null)
+						{
+							ctrlSales.setButacaOperativa(idSala,""+id,"true");
+						}
+						else
+						{
+							ctrlSales.setButacaOperativa(idSala,""+id,"false");
+						}
+						
+					}
+					
+					ctrlSales.getSala(Integer.parseInt(idSala));		
+					request.getSession().setAttribute("sala", sala);
+					
+				}
+				System.err.println("gossa "+sala.getButaques());
+			    detallSalaAction();
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+		}else{
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSala null");
+		    rd.forward(request, response);
+		}
 	}
 }

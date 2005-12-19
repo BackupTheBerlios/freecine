@@ -421,5 +421,5 @@ public class Pelicula {
 		int minuts = 60 * Integer.parseInt(args[0]) + Integer.parseInt(args[1]);
 		return ""+minuts;
 	}
-	
+
 }

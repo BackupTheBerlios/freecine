@@ -61,7 +61,16 @@ public class ControladorSessions extends ControladorSales{
 			
 		}
 		
-		
+	/*
+	 * 
+	 * 
+	 * 										<!-- <input type="Hidden" name="nom_pelicula" value="<%= ses.getPelicula().getTitol() %>" />
+										<input type="Hidden" name="idpelicula" value="<%= ses.getPelicula().getId() %>" />
+										<input type="Hidden" name="nom_sala" value="<%=ses.getSala().getNomSala() %>" />
+										<input type="Hidden" name="idsala" value="<%= ses.getSala().getId() %>" />
+										<input type="Hidden" name="data" value="<%= ses.getDataHora()%>" /> -->
+	 * 
+	 */	
 		Iterator itSess = sessions.iterator();	
 		Sessio sessio;
 		
@@ -69,9 +78,7 @@ public class ControladorSessions extends ControladorSales{
 			sessio = (Sessio)itSess.next();
 			sessio.setPelicula(getPelicula(sessio.getPelicula().getId()));
 			sessio.setSala(getSala(sessio.getSala().getId()));
-			//sessio.setButaquesSessio(getButaquesSessio(sessio.getId())); El treieum pq la vista de butacasessio no va encara
-			//possem les butaques de la sala actual
-			sessio.setButaquesSessio(getButaquesSessio(sessio.getSala().getId()));
+			sessio.setButaquesSessio(getButaquesSessio(sessio.getId())); 
 		}
 		return sessions;	
 	}
@@ -190,9 +197,9 @@ public class ControladorSessions extends ControladorSales{
 				rs.getInt(2), //num de fila
 				rs.getInt(3), //num de columna
 				rs.getBoolean(4), //operativa
-				false);//s'ha de posar adecuadament compradaReservada
-				
-			
+				rs.getBoolean(5), //compradaReservada
+				rs.getBoolean(6));//pagada
+
 			butaques.addElement(butacaSessio);
 		}
 		return butaques;	
@@ -201,13 +208,7 @@ public class ControladorSessions extends ControladorSales{
 	public Vector getButaquesSessio(int idSessio) throws ControladorException {
 		// Aqui es tindra de fer la vista que ens dongui, ara de mentres fem una copia de la sessio i li posem un camp més al vector
 		ResultSet rsSales;
-		String query = "SELECT " +
-							"id, " +
-							"num_fila, " +
-							"num_columna, " +
-							"operativa " +
-						"FROM butaca " +
-						"WHERE id_sala = "+idSessio;
+		String query = "SELECT * FROM butaca_sessio (" + idSessio + ")";
 		
 		try {
 			rsSales = selectRS(query);
