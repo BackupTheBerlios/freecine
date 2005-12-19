@@ -24,7 +24,6 @@
 	vertical-align: center;
 }
 
-
 #foto_portada {
 	position: relative;
 	float: left;
@@ -49,6 +48,7 @@
 	border-bottom-width: 2px;
 	text-align: center;
 }
+
 #contingut_sinopsis {
 	position: relative;
 	float: right;
