@@ -17,12 +17,9 @@
 	butaquesTaula+= "<input type='Hidden' name='idSala' value='"+ sala.getId() + "'>\n";
 	butaquesTaula+= "<input type='Hidden' name='accio' value='modificarEstatsButaques'>\n";
 	String tipusButaca = "butaca_disponible";
-	//String llista_butaques[];
-	
 
-	while(itBut.hasNext()){
-
-
+	while(itBut.hasNext())
+	{
 		Butaca but = (Butaca) itBut.next();
 		String sel = "";
 		if(but.getNumColumna()==0){
