@@ -68,9 +68,55 @@ import javax.servlet.http.HttpServletResponse;
 			}
 		}   	 
 
+		private void eliminarUsuariAction() {
+			urlExit="/intranet/default.jsp";
+			/* Atributs que agafo de la jsp per a fer l'accio
+			idNouUsuari
+			*/
+			
+			/*Ho agafo de sessio, no m'ho passa la jsp, pq el usuari ja tindria d'estar validat*/
+			String userLogin = (String) request.getSession().getAttribute("nomUsuari");
+			String userRol = (String) request.getSession().getAttribute("rol");
+			
+			
+			if(userLogin!=null && userRol!=null && !userLogin.equals("") && !userRol.equals("")){
+				try {
+					if(userRol.equals("0")){
+						String idUsuari = request.getParameter("idNouUsuari");
+						
+						if(idUsuari!=null && !idUsuari.equals("") ){
+							
+							Usuari usuari = new Usuari();
+					
+							ctrl.eliminarUsuari(idUsuari);
+							
+							llistarUsuarisAction();
+							
+						}else{
+							throw new ControladorException("El id no es correcte");
+						}
+					}else{
+						RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=No tens suficients " +
+								"privilègis per a realitzar l'acció");
+					    rd.forward(request, response);	
+					}
+							
+				} catch (ControladorException e) {
+				    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+				    rd.forward(request, response);
+				}
+			}else{
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
+			    rd.forward(request, response);
+			}
+		}
+			
+		}
+
 		private void modificarUsuariAction() throws ServletException, IOException {
 			urlExit="/intranet/default.jsp";
 			/* Atributs que agafo de la jsp per a fer l'accio
+			idNouUsuari
 			nouNomUsuari
 			nouPswUsuari
 			nouRolUsuari
@@ -84,7 +130,7 @@ import javax.servlet.http.HttpServletResponse;
 			if(userLogin!=null && userRol!=null && !userLogin.equals("") && !userRol.equals("")){
 				try {
 					if(userRol.equals("0")){
-						String idUsuari = request.getParameter("idUsuari");
+						String idUsuari = request.getParameter("idNouUsuari");
 						String newNomUsuari = request.getParameter("nouNomUsuari");
 						String newPswUsuari = request.getParameter("nouPswUsuari");
 						String newRolUsuari = request.getParameter("nouRolUsuari");
@@ -184,6 +230,7 @@ import javax.servlet.http.HttpServletResponse;
 					if(userRol.equals("0")){
 						llistaUsuaris = ctrl.getUsuaris();
 					}else{
+						/*llista només els de rol inferior*/
 						llistaUsuaris = ctrl.getUsuarisRolInf(Integer.parseInt("rol"));
 					}
 							
