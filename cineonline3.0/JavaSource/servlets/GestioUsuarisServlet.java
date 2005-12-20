@@ -68,7 +68,7 @@ import javax.servlet.http.HttpServletResponse;
 			}
 		}   	 
 
-		private void eliminarUsuariAction() {
+		private void eliminarUsuariAction() throws ServletException, IOException {
 			urlExit="/intranet/default.jsp";
 			/* Atributs que agafo de la jsp per a fer l'accio
 			idNouUsuari
@@ -109,8 +109,6 @@ import javax.servlet.http.HttpServletResponse;
 			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
 			    rd.forward(request, response);
 			}
-		}
-			
 		}
 
 		private void modificarUsuariAction() throws ServletException, IOException {
