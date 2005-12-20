@@ -25,6 +25,10 @@
 	<input type="Hidden" name="accio" value="llistarGeneres" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="generes" />
 </form>
+<form name="frmmenu" action="GestioUsuarisServlet" method="post" class="form_memu">
+	<input type="Hidden" name="accio" value="llistar usuaris" />
+	<input type="Submit" name="opcio_menu" class="boto_menu" value="Usuaris" />
+</form>
 <form name="frmmenu" action="GestioCinemaServlet" method="post" class="form_memu">
 	<input type="Hidden" name="accio" value="consola" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="Gestió cinema" />

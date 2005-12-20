@@ -104,7 +104,7 @@ import javax.servlet.http.HttpServletResponse;
 				    rd.forward(request, response);
 				}
 			}else{
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+" Cal que et loguegis per a fer aquesta acció");
 			    rd.forward(request, response);
 			}
 		}
@@ -154,7 +154,7 @@ import javax.servlet.http.HttpServletResponse;
 				    rd.forward(request, response);
 				}
 			}else{
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+" Cal que et loguegis per a fer aquesta acció");
 			    rd.forward(request, response);
 			}
 		}
@@ -203,14 +203,14 @@ import javax.servlet.http.HttpServletResponse;
 				    rd.forward(request, response);
 				}
 			}else{
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+" Cal que et loguegis per a fer aquesta acció");
 			    rd.forward(request, response);
 			}
 						
 		}
 
 		private void llistarUsuarisAction() throws ServletException, IOException {
-			urlExit="/intranet/default.jsp";
+			urlExit="/intranet/fitxa_usuari.jsp";
 			/* Atributs que agafo de la jsp per a fer l'accio
 			 * CAP
 			 */
@@ -219,7 +219,9 @@ import javax.servlet.http.HttpServletResponse;
 			String userLogin = (String) request.getSession().getAttribute("nomUsuari");
 			String userRol = (String) request.getSession().getAttribute("rol");
 			
-			
+			userLogin = "aa";
+			userRol = ""+1; 
+			userLogin = "log";
 			if(userLogin!=null && userRol!=null && !userLogin.equals("") && !userRol.equals("")){
 				try {
 					Vector llistaUsuaris;
@@ -227,7 +229,7 @@ import javax.servlet.http.HttpServletResponse;
 						llistaUsuaris = ctrl.getUsuaris();
 					}else{
 						/*llista només els de rol inferior*/
-						llistaUsuaris = ctrl.getUsuarisRolInf(Integer.parseInt("rol"));
+						llistaUsuaris = ctrl.getUsuarisRolInf(Integer.parseInt(userRol));
 					}
 							
 					request.getSession().setAttribute("llistaUsuaris", llistaUsuaris);		
@@ -240,7 +242,7 @@ import javax.servlet.http.HttpServletResponse;
 				    rd.forward(request, response);
 				}
 			}else{
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+"? Cal que et loguegis per a fer aquesta acció");
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+" Cal que et loguegis per a fer aquesta acció");
 			    rd.forward(request, response);
 			}
 			

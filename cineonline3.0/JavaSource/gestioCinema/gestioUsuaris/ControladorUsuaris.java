@@ -38,9 +38,9 @@ public class ControladorUsuaris extends Controlador{
 							"id, " +
 							"login, " +
 							"password, " +
-							"rol, " +
+							"tipus, " +
 						"FROM treballador " +
-						"ORDER BY loguin";
+						"ORDER BY login";
 		
 		try {
 			rsUsuari = selectRS(query);
@@ -57,9 +57,9 @@ public class ControladorUsuaris extends Controlador{
 							"id, " +
 							"login, " +
 							"password, " +
-							"rol, " +
+							"tipus " +
 						"FROM treballador " +
-						"ORDER BY rol";
+						"ORDER BY tipus";
 		
 		try {
 			rsUsuari = selectRS(query);
@@ -74,12 +74,12 @@ public class ControladorUsuaris extends Controlador{
 		ResultSet rsUsuari;
 		String query = "SELECT " +
 							"id, " +
-							"loin, " +
+							"login, " +
 							"password, " +
-							"rol, " +
+							"tipus " +
 						"FROM TREBALLADOR " +
-						"WHERE rol > "+rol+" "+
-						"ORDER BY loguin";
+						"WHERE tipus > "+rol+" "+
+						"ORDER BY login";
 		
 		try {
 			rsUsuari = selectRS(query);
@@ -130,10 +130,10 @@ public class ControladorUsuaris extends Controlador{
 							"id, " +
 							"login, " +
 							"password, " +
-							"rol, " +
+							"tipus " +
 						"FROM treballador " +
 						"WHERE login" +
-						"ORDER BY loguin";
+						"ORDER BY login";
 		
 		try {
 			rsUsuari = selectRS(query);
