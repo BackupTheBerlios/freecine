@@ -27,7 +27,7 @@
 				String data = args2[0] + args2[1] + args2[2];
 				 %>
 				 <%= data2 %>
-				<form name="frmcartellera_query" action="GestioSessionsServlet" method="post">
+				<form name="frmcartellera_query" action="GestioClientServlet" method="post">
 					dia
 					<select name="dia" style="width:45px">
 					<%
