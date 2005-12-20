@@ -28,11 +28,11 @@ public class Usuari {
 		this.id = id;
 	}
 
-	public String getNomUsuari() {
+	public String getLogin() {
 		return login;
 	}
 
-	public void setNomUsuari(String login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
@@ -150,6 +150,10 @@ public class Usuari {
 	
 	public String toString(){
 		return ""+getValors();
+	}
+
+	public boolean validarUsuari(String nomUsuari, String pwd) {
+		return (this.login.equals(nomUsuari) && this.password.equals(pwd));	
 	}
 
 }

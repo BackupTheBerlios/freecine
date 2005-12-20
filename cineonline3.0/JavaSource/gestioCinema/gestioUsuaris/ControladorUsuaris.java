@@ -37,7 +37,7 @@ public class ControladorUsuaris extends Controlador{
 		ResultSet rsUsuari;
 		String query = "SELECT " +
 							"id, " +
-							"loguin, " +
+							"login, " +
 							"password, " +
 							"rol, " +
 						"FROM treballador " +
@@ -56,7 +56,7 @@ public class ControladorUsuaris extends Controlador{
 		ResultSet rsUsuari;
 		String query = "SELECT " +
 							"id, " +
-							"loguin, " +
+							"login, " +
 							"password, " +
 							"rol, " +
 						"FROM treballador " +
@@ -75,7 +75,7 @@ public class ControladorUsuaris extends Controlador{
 		ResultSet rsUsuari;
 		String query = "SELECT " +
 							"id, " +
-							"loguin, " +
+							"loin, " +
 							"password, " +
 							"rol, " +
 						"FROM TREBALLADOR " +
@@ -123,5 +123,32 @@ public class ControladorUsuaris extends Controlador{
 			System.err.println("[ControladorUsuaris]:[eliminarSala(String idSala)] query:"+query+"\n query:"+query+"\n Error SQL: "+e.getMessage());
 			throw new ControladorException("[ControladorUsuaris]:[eliminarPelicula(String id)] query:"+query+"\n Error SQL: "+e.getMessage());
 		}
-	}	
+	}
+
+	public Usuari getUsuari(Usuari usuari) throws ControladorException {
+		ResultSet rsUsuari;
+		String query = "SELECT " +
+							"id, " +
+							"login, " +
+							"password, " +
+							"rol, " +
+						"FROM treballador " +
+						"WHERE login" +
+						"ORDER BY loguin";
+		
+		try {
+			rsUsuari = selectRS(query);
+			Vector usuaris = toVectorUsuaris(rsUsuari);
+			
+			if(usuaris!=null){
+				return (Usuari)usuaris.firstElement();
+			}else{
+				throw new ControladorException("Nom d'usuari o contrasenya incorrectes");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
+			throw new ControladorException("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
+		}	
+	}		
 }
