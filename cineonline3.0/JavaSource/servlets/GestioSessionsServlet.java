@@ -53,6 +53,7 @@ import javax.servlet.http.HttpServletResponse;
 			else if(accio.equals("eliminar")) eliminarSessioAction();
 			else if(accio.equals("llistarSessionsCartellera")) llistarSessionsCartelleraAction();
 			else if(accio.equals("venda")) vendaAction();
+			else if(accio.equals("cerca")) cercaAction();
 			
 			else{
 			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
@@ -65,6 +66,28 @@ import javax.servlet.http.HttpServletResponse;
 			rd.forward(request,response);
 		}
 	}   	 
+
+	private void cercaAction() throws ServletException, IOException {
+		urlExit="/intranet/cartellera.jsp";
+		String dia= request.getParameter("dia");
+		String mes= request.getParameter("mes");
+		String anny= request.getParameter("anny");
+		String data = anny+"-"+mes+"-"+dia;
+		try {
+			Vector llistaSessions = ctrlSessio.getSessionsPerData(""+ data);
+
+			request.getSession().setAttribute("llistaSessions", llistaSessions);
+			request.getSession().setAttribute("dataActual",data);
+			System.err.println("[getSessioCartellera]"+llistaSessions);
+		    rd = getServletContext().getRequestDispatcher(urlExit);
+		    rd.forward(request, response);
+   
+		} catch (ControladorException e) {
+		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+		    rd.forward(request, response);
+		}
+		
+	}
 
 	private void vendaAction() throws ServletException, IOException {
 		urlExit="/intranet/venda.jsp";

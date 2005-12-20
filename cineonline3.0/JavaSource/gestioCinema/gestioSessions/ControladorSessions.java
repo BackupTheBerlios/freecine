@@ -137,6 +137,27 @@ public class ControladorSessions extends ControladorSales{
 			throw new ControladorException("[CControladorSessions]:[getSessio(int id)] Error SQL: "+query+"\n"+e.getMessage());
 		}
 	}
+	
+	public Vector getSessionsPerData(String aaaa_mm_dd) throws ControladorException{
+		ResultSet rs;
+		String query = "SELECT " +
+							"id, " +
+							"data_hora_inici, " +
+							"preu, " +
+							"id_sala, " +
+							"id_pelicula " +
+						"FROM sessio " +
+						"WHERE data_hora_inici LIKE '" + aaaa_mm_dd + "%' " +
+						" ORDER BY sessio.id_sala, sessio.id_pelicula, data_hora_inici ASC ";
+	
+		try {
+			rs = selectRS(query);
+			return toVectorSessions(rs); 
+		} catch (SQLException e) {
+			System.err.println("[ControladorSessions]:[getSessionsPerData(String aaaa_mm_dd)] Error SQL:"+query+"\n"+e.getMessage());
+			throw new ControladorException("[CControladorSessions]:[getSessionsPerData(String aaaa_mm_dd)] Error SQL: "+query+"\n"+e.getMessage());
+		}
+	}
 	/**
 	 * 
 	 * @param id
@@ -393,8 +414,98 @@ public class ControladorSessions extends ControladorSales{
 								"url_web, " +
 								"url_imatge " +
 							"FROM Pelicula ORDER BY titol ASC";
-			
+			/*
+			String query ="SELECT * FROM pelicula";*/
 			rsPelicules = selectRS(query);
+		
+			return toVectorPelicules(rsPelicules);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getPelicules] Error SQL:"+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getPelicules] Error SQL: "+e.getMessage());
+		}
+	}
+	
+	public Vector getPeliculesAlfabeticament() throws ControladorException{
+		ResultSet rsPelicules;
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
+		try {
+			
+			String query = "SELECT  " +
+								"id, " +
+								"titol, " +
+								"titol_original, " +
+								"anny, " +
+								"durada, " +
+								"id_nacionalitat, " +
+								"edat_recomanada, " +
+								"tipus_color, " +
+								"tipus_so, " +
+								"id_genere, " +
+								"director, " +
+								"guionista, " +
+								"productor, " +
+								"actors, " +
+								"sinopsis, " +
+								"url_web, " +
+								"url_imatge " +
+							"FROM Pelicula ORDER BY titol ASC";
+			/*
+			String query ="SELECT * FROM pelicula";*/
+			rsPelicules = selectRS(query);
+		
+			return toVectorPelicules(rsPelicules);
+		} catch (SQLException e) {
+			System.err.println("[ControladorPelicules]:[getPelicules] Error SQL:"+e.getMessage());
+			throw new ControladorException("[ControladorPelicules]:[getPelicules] Error SQL: "+e.getMessage());
+		}
+	}
+	
+	public Vector cercaPelicules(String titol, String director, String any) throws ControladorException{
+		ResultSet rsPelicules;
+		/*String camps = Pelicula.getCamps().toString();*/
+		/*String query = "SELECT "+camps.substring(4,camps.length()-2)+" FROM Pelicula";*/
+		try {
+			
+			String query = "SELECT  " +
+								"id, " +
+								"titol, " +
+								"titol_original, " +
+								"anny, " +
+								"durada, " +
+								"id_nacionalitat, " +
+								"edat_recomanada, " +
+								"tipus_color, " +
+								"tipus_so, " +
+								"id_genere, " +
+								"director, " +
+								"guionista, " +
+								"productor, " +
+								"actors, " +
+								"sinopsis, " +
+								"url_web, " +
+								"url_imatge " +
+							"FROM Pelicula " +
+							"WHERE ";
+			String condicions = "";
+			if(!titol.equals("")){
+				condicions+="titol LIKE '%" + titol + "%' AND ";
+				condicions+="titol_original LIKE '%" +  titol + "%' AND ";
+			}
+			
+			if(!director.equals("")){
+				condicions+="director LIKE '%" + director + "%' AND ";
+	
+			}
+			
+			if(!any.equals("")){
+				condicions+="anny LIKE '%" + any + "%' AND ";
+			}
+			
+			condicions+=" (0 = 0) ORDER BY titol ASC ";
+
+			System.err.println(query+condicions);
+			rsPelicules = selectRS(query+condicions);
 		
 			return toVectorPelicules(rsPelicules);
 		} catch (SQLException e) {

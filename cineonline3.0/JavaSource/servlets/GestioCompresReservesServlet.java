@@ -2,12 +2,12 @@ package servlets;
 
 import gestioCinema.ControladorException;
 import gestioCinema.gestioSales.Butaca;
-import gestioCinema.gestioSessions.ControladorSessions;
+import gestioCinema.gestioSessions.ButacaSessio;
 import gestioCinema.gestioSessions.Sessio;
+import gestioCompraReserva.CompraReserva;
+import gestioCompraReserva.ControladorCompresReserves;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 	private String urlError="/intranet/error.jsp";
 	private RequestDispatcher rd;
 	private ControladorCompresReserves ctrlCR;
-	private SimpleDateFormat sdf;
-	
 	public GestioCompresReservesServlet() {
 		super();
 	}   	
@@ -47,8 +45,11 @@ import javax.servlet.http.HttpServletResponse;
 		String accio = request.getParameter("accio");
 		try {
 			
-			ctrlSessio = new ControladorSessions();
-			if(accio.equals("comprar")) comprarAction();
+			ctrlCR = new ControladorCompresReserves();
+			if(accio.equals("continuar venda")) continuarVendaAction();
+			else if(accio.equals("confirmar")) confirmarAction();
+			else if(accio.equals("cerca entrades")) cercaEntradesAction();
+			else if(accio.equals("lliurar")) lliurarEntradesAction();
 			
 			else{
 			    rd = getServletContext().getRequestDispatcher(urlError+"?error=Acció incorrecta");
@@ -60,91 +61,146 @@ import javax.servlet.http.HttpServletResponse;
 			rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 			rd.forward(request,response);
 		}
-	}   	 
+	}
 
+	private void lliurarEntradesAction() throws ServletException, IOException {
+		urlExit="/intranet/entrades_online.jsp";
+		String codiEntrega = request.getParameter("codi_entrega");		
+		try {
+			ctrlCR.setCompresReservesPagadaCodiEntrega(codiEntrega);	
+			Vector llistaCR = ctrlCR.getCompresReservesCodiEntrega(codiEntrega);
+			request.getSession().setAttribute("llistaCR", llistaCR);
+			request.getSession().setAttribute("entrada",codiEntrega);
+		
+			rd = getServletContext().getRequestDispatcher(urlExit);
+			rd.forward(request,response);
+		} catch (ControladorException e) {
+			rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			rd.forward(request,response);
+		}
+		
+	}
 
-
-	private void comprarAction() throws ServletException, IOException {
-		urlExit="/intranet/ticket.jsp";
+	private void cercaEntradesAction() throws ServletException, IOException {
+		urlExit="/intranet/entrades_online.jsp";
+		String codiEntrega = request.getParameter("codi_entrega");
 		
 		try {
+			Vector llistaCR = ctrlCR.getCompresReservesCodiEntrega(codiEntrega);
+			request.getSession().setAttribute("llistaCR", llistaCR);
+			request.getSession().setAttribute("entrada",codiEntrega);
 			
-			String idSessio = (String) request.getAttribute("idSessio");
-			String tipusVenda = (String) request.getAttribute("tipus_venda");
-			Vector butaques = sala.getButaques();
-			Iterator itBut = butaques.iterator();
+			rd = getServletContext().getRequestDispatcher(urlExit);
+			rd.forward(request,response);
 			
+			
+			
+		} catch (ControladorException e) {
+			rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			rd.forward(request,response);
+		}
+		
+	}
+
+	private void confirmarAction() throws ServletException, IOException {
+		urlExit="/intranet/finalitzar.jsp";
+		Sessio sessio = (Sessio) request.getSession().getAttribute("sessio");
+		String tipusVenda = request.getParameter("tipus_venda");
+		Vector butSelec = (Vector) request.getSession().getAttribute("butaquesSelec");
+		boolean pagada = (tipusVenda.equals("compra"));
+		
+		CompraReserva cr = new CompraReserva();
+		//String codi = sessio.generarCodi()+"tv-"+tipusVenda.charAt(0)+ (int)(Math.random()*10000);
+		String codi = ""+sessio.generarCodi()+ (int)(Math.random()*10000);
+		Iterator itBut= butSelec.iterator();
+		Vector vCR = new Vector();
+		while(itBut.hasNext()){
+			ButacaSessio bs = (ButacaSessio) itBut.next();
+			cr = new CompraReserva();
+			cr.setAll(-1,pagada,codi,sessio.donaHora(),sessio, bs);
+			vCR.add(cr);
+		}
+		
+		try {
+			itBut= vCR.iterator();
 			while(itBut.hasNext()){
-				int id =((Butaca)itBut.next()).getNumButaca();
-				String check = "cekbutaca_" + id;
-				String noOperativa = request.getParameter(check);
-				if (noOperativa == null)
-				{
-					ctrlSales.setButacaOperativa(idSala,""+id,"true");
-				}
-				else
-				{
-					ctrlSales.setButacaOperativa(idSala,""+id,"false");
-				}
-				
+				CompraReserva crva = (CompraReserva) itBut.next();
+				ctrlCR.afegirCompraReserva(crva);
 			}
 			
 			
+			request.getSession().setAttribute("codiClau", codi);
+			request.getSession().setAttribute("tipusVenda", tipusVenda);
+			rd = getServletContext().getRequestDispatcher(urlExit);
+			rd.forward(request,response);
 			
 			
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date data_actual = new Date();
-			String str_data_actual = sdf.format(data_actual);
-			
-			/*
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.setTime(data_actual);*/
-			
-
-			Vector llistaSessions = ctrlSessio.getSessionsCartellera(""+ str_data_actual);
-			
-			
-			
-			request.getSession().setAttribute("llistaSessions", llistaSessions);
-			request.getSession().setAttribute("dataActual",str_data_actual);
-			System.err.println("[getSessioCartellera]"+llistaSessions);
-		    rd = getServletContext().getRequestDispatcher(urlExit);
-		    rd.forward(request, response);
-   
 		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
-		    rd.forward(request, response);
+			rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			rd.forward(request,response);
 		}
+		
+		
 		
 	}
 
-	private void llistarSessionsCartelleraAction() throws ServletException, IOException {
-		urlExit="/intranet/cartellera.jsp";
+	private void continuarVendaAction() throws ServletException, IOException{
+		urlExit="/intranet/ticket.jsp";
+		String idSessio = request.getParameter("idSessio");
+		String tipusVenda = request.getParameter("tipus_venda");
+		boolean pagada = (tipusVenda.equals("pagada"));
 		
-		try {
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date data_actual = new Date();
-			String str_data_actual = sdf.format(data_actual);
+		try{
+		
+			if(idSessio !=null){
+				Sessio sessio = ctrlCR.getSessio(Integer.parseInt(idSessio));
+				if(sessio!=null){
+					
+					Vector butaquesSessio = sessio.getButaquesSessio();
+					Iterator itBut = butaquesSessio.iterator();
+					Vector butCR= new Vector();
+					
+					while(itBut.hasNext()){
+						int id =((Butaca)itBut.next()).getNumButaca();
+						String check = "cekbutaca_" + id;
+						String seleccionada = request.getParameter(check);
+						if (seleccionada != null)
+						{
+							ButacaSessio but = ctrlCR.getButacaSessio(Integer.parseInt(idSessio), id);
+							but.setPagada(pagada);
+							butCR.add(but);
+						}
+					}
+					
+					if(butCR.size()==0){
+						RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=No ha seleccionat cap butaca");
+					    rd.forward(request, response);
+					}
+					else
+					{
+						request.getSession().setAttribute("butaquesSelec", butCR);
+						request.getSession().setAttribute("sessio", sessio);
+						request.getSession().setAttribute("tipusVenda", tipusVenda);
 			
-			/*
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.setTime(data_actual);*/
+						RequestDispatcher rd = getServletContext().getRequestDispatcher(urlExit);
+						rd.forward(request, response);
+					}
+					
+				}else{
+					RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=No existeix la sessio");
+				    rd.forward(request, response);
+				}
 			
-
-			Vector llistaSessions = ctrlSessio.getSessionsCartellera(""+ str_data_actual);
-			
-			
-			
-			request.getSession().setAttribute("llistaSessions", llistaSessions);
-			request.getSession().setAttribute("dataActual",str_data_actual);
-			System.err.println("[getSessioCartellera]"+llistaSessions);
-		    rd = getServletContext().getRequestDispatcher(urlExit);
-		    rd.forward(request, response);
-   
-		} catch (ControladorException e) {
-		    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
-		    rd.forward(request, response);
+		    
+		    
+			}else{
+				RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error=idSessio null");
+			    rd.forward(request, response);
+			}
+		}catch(ControladorException e){
+			rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			rd.forward(request,response);
 		}
-		
 	}
-} 
+}
+		

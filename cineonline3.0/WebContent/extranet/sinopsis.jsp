@@ -18,16 +18,17 @@
 			<br /><br />
 			Cerca la teva pel·lícula
 			<br /><br />
-			<form name="frmsinopsis_query" action="javascript:alert('Fent la consulta...');">
+			<form name="frmsinopsis_query" action="GestioClientServlet" method="Post">
+			<input type="Hidden" name="accio" value="cerca pelicula" />
 					títol <input type="Text" name="titol" maxlength="255" />
 					director <input type="Text" name="director" maxlength="255" />
 					any <input type="Text" name="any" maxlength="4" size="4" id="any" style="width:35px" />					 
-					en 
+					<!-- en 
 					<select name="encartellera" style="width:80px">
 						<option value="cartellera" />cartellera
 						<option value="totes" />totes
 					</select>
-					<br /><br />
+					<br /><br /> -->
 					<center><input type="Submit" name="cerca" value="cerca" class="boto_enllac" /></center>
 				</form>				
 			<% 

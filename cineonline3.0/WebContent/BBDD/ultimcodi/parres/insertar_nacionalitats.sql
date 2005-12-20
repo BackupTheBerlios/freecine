@@ -1,0 +1,12 @@
+INSERT INTO nacionalitat (pais) VALUES ('Espanya');
+INSERT INTO nacionalitat (pais) VALUES ('Fransa');
+INSERT INTO nacionalitat (pais) VALUES ('Anglaterra');
+INSERT INTO nacionalitat (pais) VALUES ('Alemania');
+INSERT INTO nacionalitat (pais) VALUES ('Austria');
+INSERT INTO nacionalitat (pais) VALUES ('Dinamarca');
+INSERT INTO nacionalitat (pais) VALUES ('Portugal');
+INSERT INTO nacionalitat (pais) VALUES ('Russia');
+INSERT INTO nacionalitat (pais) VALUES ('Cuba');
+INSERT INTO nacionalitat (pais) VALUES ('Argentina');
+INSERT INTO nacionalitat (pais) VALUES ('Bolivia');
+INSERT INTO nacionalitat (pais) VALUES ('Estats Units');

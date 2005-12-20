@@ -48,13 +48,13 @@
 					 	}
 				%>
 					<tr class="<%= estilfila %>">
+						<form name="frmfitxa" action="GestioPeliculesServlet" method="post">
 						<td>
-							<form name="frmfitxa" action="GestioPeliculesServlet" method="post">
 								<input type="Hidden" name="accio" value="detallNacionalitat" />
 								<input type="Hidden" name="idNacionalitat" value="<%= ""+ itObj.next() %>" />
 								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
-							</form>
 						</td>
+						</form>
 						<td><%= ""+itObj.next()%></td>
 					</tr>
 				<%

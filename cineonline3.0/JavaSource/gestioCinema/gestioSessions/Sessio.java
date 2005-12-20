@@ -204,4 +204,23 @@ public class Sessio {
 		data = args2[0] + ":" + args2[1];
 		return ""+data;
 	}
+	
+	public String donaDataJunta(){		
+		String amm = getDataHora();		
+		String args[] = amm.split(" ");
+		String data = args[0];
+		String args2[] = data.split("-");
+		data = args2[0] + args2[1] + args2[2];
+		return ""+data;
+	}
+	
+	public String generarCodi(){
+		//String codi = "se"+id+"d"+dataHora+"sa"+sala.getId()+"pe"+pelicula.getId();
+		String codi = ""+id+donaDataJunta();
+		return codi;
+	}
+	
+	public String toString(){
+		return ""+getValors();
+	}
 }

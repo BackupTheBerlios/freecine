@@ -2,9 +2,6 @@
 	<input type="Hidden" name="accio" value="llistarSessionsCartellera" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="cartellera">
 </form>
-<form name="frmmenu" action="entrades_taquilla.jsp" method="post" class="form_memu">
-	<input type="Submit" name="opcio_menu" class="boto_menu" value="entrades taquilla" />
-</form>
 <form name="frmmenu" action="entrades_online.jsp" method="post" class="form_memu">
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="entrades online" />
 </form>

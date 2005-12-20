@@ -1,15 +1,14 @@
 package gestioCompraReserva;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Vector;
-
-import gestioCinema.Controlador;
 import gestioCinema.ControladorException;
 import gestioCinema.gestioSessions.ButacaSessio;
 import gestioCinema.gestioSessions.ControladorSessions;
 import gestioCinema.gestioSessions.Sessio;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Vector;
 
 public class ControladorCompraReserva extends ControladorSessions{
 

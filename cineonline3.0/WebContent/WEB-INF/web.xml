@@ -41,6 +41,14 @@
 		<servlet-name>GestioClientServlet</servlet-name>
 		<servlet-class>servlets.GestioClientServlet</servlet-class>
 	</servlet>
+	<!-- SERVLETS CR -->
+	<servlet>
+		<description>
+		</description>
+		<display-name>GestioCompresReservesServlet</display-name>
+		<servlet-name>GestioCompresReservesServlet</servlet-name>
+		<servlet-class>servlets.GestioCompresReservesServlet</servlet-class>
+	</servlet>
 	
 	
 
@@ -70,6 +78,11 @@
 	<servlet-mapping>
 		<servlet-name>GestioClientServlet</servlet-name>
 		<url-pattern>/GestioClientServlet</url-pattern>
+	</servlet-mapping>
+	<!--  SERVLETS MAPPING CR -->
+	<servlet-mapping>
+		<servlet-name>GestioCompresReservesServlet</servlet-name>
+		<url-pattern>/intranet/GestioCompresReservesServlet</url-pattern>
 	</servlet-mapping>
 	
 	

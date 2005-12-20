@@ -7,10 +7,11 @@
 	</div>
 	<div id="center">
 		<%
-			String tipusVenda = request.getParameter("tipus_venda");
+			String tipusVenda = (String)session.getAttribute("tipusVenda");
+			String codi_clau = (String)session.getAttribute("codiClau");
 			String titol = "Acció denegada";
 			String explicacio = "No s'ha pogut relitzar l'acció";
-			String codi_clau = "";
+			
 			if (tipusVenda != null)
 			{
 				if (tipusVenda.compareTo("compra")==0)
@@ -23,9 +24,7 @@
 					if (tipusVenda.compareTo("reserva")==0)
 					{	
 						titol = "Reserva finalitzada";
-						explicacio =  "La reserva s'ha efectuat correctament.<br /><br />No descuidi presentar el codi clau a taquilla mitja hora abans de l'inici de la sessió. En cas contrari la reserva serà cancel·lada.";
-						codi_clau = "jdsk54378943jh";
-						
+						explicacio =  "La reserva s'ha efectuat correctament.<br /><br />No descuidi presentar el codi clau a taquilla mitja hora abans de l'inici de la sessió. En cas contrari la reserva serà cancel·lada.";						
 					}
 				}
 			}
@@ -49,8 +48,9 @@
 			}
 			%>
 			<center>
-				<form name="frmvendacartellera" action="cartellera.jsp" method="post">
-					<input type="Submit" name="opcio_menu" class="boto_enllac" value="cartellera" />
+				<form name="frmvendacartellera" action="GestioSessionsServlet" method="post">
+					<input type="Hidden" name="accio" value="llistarSessionsCartellera" />
+					<input type="Submit" name="opcio_menu" class="boto_enllac" value="cartellera">
 				</form>
 			</center>
 		</span>

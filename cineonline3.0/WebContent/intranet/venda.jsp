@@ -41,9 +41,9 @@
 			<br /><br />
 			Data: <%= data %>
 			<br /><br />
-			<form name="frmvenda" action="GestioCompraReserva" method="post">
+			<form name="frmvenda" action="GestioCompresReservesServlet" method="post">
 				<input type="Hidden" name="idSessio" value="<%= idsessio %>" />
-				<input type="Hidden" name="accio" value="confirmar" />
+				<input type="Hidden" name="accio" value="continuar venda" />
 				Vull fer una 
 				<select name="tipus_venda">
 					<option value="compra" /> compra

@@ -12,7 +12,7 @@
 	int numMaxColumnes = sessio.getSala().getNumMaxColumnes();
 	
 	String butaquesTaula= "";
-	butaquesTaula+= "<table cellspacing=0 cellpadding=0 border=0 style='width:auto;'>\n";
+	butaquesTaula+= "<table cellspacing=0 cellpadding=0 border=0 bgcolor=yellow>\n";
 	String tipusButaca = "butaca_disponible";	
 
 	while(itBut.hasNext())

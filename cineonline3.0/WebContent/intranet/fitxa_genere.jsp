@@ -24,6 +24,7 @@
 						Iterator itGenere = genere.iterator();
 						%>
 						<input type="Hidden" name="idGenere" value="<%=itGenere.next()%>" />
+						<input type="Hidden" name="accio" value="eliminar genere"/> 
 						gènere<br />
 						<input type="Text" name="nomGenere" value="<%=(String)itGenere.next()%>" />
 						<br /><br />
@@ -34,10 +35,11 @@
 					{
 					%>
 						<input type="Hidden" name="idGenere" value="-1" />
+						<input type="Hidden" name="accio" value="afegir genere"/> 
 						gènere<br />
 						<input type="Text" name="nomGenere" value="" />
 						<br /><br />
-						<input type="Submit" name="accio" value="afegir gènere" class="boto_accio" /> 
+						<input type="Submit" name="bt_accio" value="afegir gènere" class="boto_accio" /> 
 				<%
 					}
 				%>

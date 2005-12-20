@@ -7,7 +7,7 @@
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="sinòpsis" />
 </form>
 <form name="frmmenu" action="GestioClientServlet" method="post" class="form_memu">
-	<input type="Hidden" name="accio" value="goCartellera" />
+	<input type="Hidden" name="accio" value="llistarSessionsCartellera" />
 	<input type="Submit" name="opcio_menu" class="boto_menu" value="cartellera" />
 </form>
 <form name="frmmenu" action="GestioClientServlet" method="post" class="form_memu">
