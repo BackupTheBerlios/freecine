@@ -18,6 +18,7 @@
 		<servlet-name>GestioSalesServlet</servlet-name>
 		<servlet-class>servlets.GestioSalesServlet</servlet-class>
 	</servlet>
+	
 	<!--  SERVLETS SESSIONS--> 
 	<servlet>
   		<description>Gestiona les sessions de la base de dades</description> 
@@ -33,21 +34,29 @@
 		<servlet-name>GestioCinemaServlet</servlet-name>
 		<servlet-class>servlets.GestioCinemaServlet</servlet-class>
 	</servlet>
-	<!-- SERVLETS CLIENT -->
-	<servlet>
-		<description>
-		</description>
-		<display-name>GestioClientServlet</display-name>
-		<servlet-name>GestioClientServlet</servlet-name>
-		<servlet-class>servlets.GestioClientServlet</servlet-class>
-	</servlet>
+
 	<!-- SERVLETS CR -->
 	<servlet>
-		<description>
-		</description>
+		<description>		</description>
 		<display-name>GestioCompresReservesServlet</display-name>
 		<servlet-name>GestioCompresReservesServlet</servlet-name>
 		<servlet-class>servlets.GestioCompresReservesServlet</servlet-class>
+	</servlet>
+	
+	<!-- SERVLETS USUARI -->
+	<servlet>
+		<description>		</description>
+		<display-name>GestioUsuarisServlet</display-name>
+		<servlet-name>GestioUsuarisServlet</servlet-name>
+		<servlet-class>servlets.GestioUsuarisServlet</servlet-class>
+	</servlet>
+	
+		<!-- SERVLETS CLIENT -->
+	<servlet>
+		<description>		</description>
+		<display-name>GestioClientServlet</display-name>
+		<servlet-name>GestioClientServlet</servlet-name>
+		<servlet-class>servlets.GestioClientServlet</servlet-class>
 	</servlet>
 	
 	
@@ -74,16 +83,25 @@
 		<url-pattern>/intranet/GestioCinemaServlet</url-pattern>
 	</servlet-mapping>
 	
-	<!--  SERVLETS MAPPING CLIENT -->
-	<servlet-mapping>
-		<servlet-name>GestioClientServlet</servlet-name>
-		<url-pattern>/GestioClientServlet</url-pattern>
-	</servlet-mapping>
 	<!--  SERVLETS MAPPING CR -->
 	<servlet-mapping>
 		<servlet-name>GestioCompresReservesServlet</servlet-name>
 		<url-pattern>/intranet/GestioCompresReservesServlet</url-pattern>
 	</servlet-mapping>
+	
+	<!--  SERVLETS MAPPING USUARIS -->
+	<servlet-mapping>
+		<servlet-name>GestioUsuarisServlet</servlet-name>
+		<url-pattern>/intranet/GestioUsuarisServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--  SERVLETS MAPPING CLIENT -->
+	<servlet-mapping>
+		<servlet-name>GestioClientServlet</servlet-name>
+		<url-pattern>/GestioClientServlet</url-pattern>
+	</servlet-mapping>
+
+
 	
 	
 	<welcome-file-list>
