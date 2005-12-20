@@ -38,7 +38,7 @@ public class ControladorUsuaris extends Controlador{
 							"id, " +
 							"login, " +
 							"password, " +
-							"tipus, " +
+							"tipus " +
 						"FROM treballador " +
 						"ORDER BY login";
 		
@@ -49,6 +49,33 @@ public class ControladorUsuaris extends Controlador{
 			System.err.println("[ControladorUsuaris]:[getUsuaris] Error SQL:"+query+"\n"+e.getMessage());
 			throw new ControladorException("[ControladorUsuaris]:[getUsuaris] Error SQL:"+query+"\n"+e.getMessage());
 		}	
+	}
+	
+	public Usuari getUsuari(int id) throws ControladorException{
+		ResultSet rsUsuari;
+		String query = "SELECT " +
+							"id, " +
+							"login, " +
+							"password, " +
+							"tipus " +
+						"FROM treballador " +
+						"WHERE id =" + id;
+		
+		try {
+			rsUsuari = selectRS(query);
+			Vector usuaris = toVectorUsuaris(rsUsuari);
+			
+			if(usuaris!=null){
+				return (Usuari)usuaris.firstElement();
+			}else{
+				throw new ControladorException("Nom d'usuari o contrasenya incorrectes");
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
+			throw new ControladorException("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
+		}	
+		
 	}
 	
 	public Vector getUsuarisOrderRol() throws ControladorException{
@@ -149,5 +176,13 @@ public class ControladorUsuaris extends Controlador{
 			System.err.println("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
 			throw new ControladorException("[ControladorUsuaris]:[getUsuari(Usuari usuari)] Error SQL:"+query+"\n"+e.getMessage());
 		}	
+	}
+
+	public Vector getRols() {
+		Vector rols = new Vector();
+		rols.add("administrador");
+		rols.add("treballador");
+		rols.add("client");
+		return rols;
 	}		
 }

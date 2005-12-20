@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class for Servlet: GestioUsuarisServlet
@@ -49,6 +50,7 @@ import javax.servlet.http.HttpServletResponse;
 				if(accio.equals("accedir")) accedirAction();
 				else if(accio.equals("sortir")) sortirAction();
 				else if(accio.equals("llistar usuaris")) llistarUsuarisAction();
+				else if(accio.equals("detall usuari")) detallUsuarisAction();
 				else if(accio.equals("agegir usuari")) afegirUsuariAction();
 				else if(accio.equals("modificar usuari")) modificarUsuariAction();
 				else if(accio.equals("eliminar usuari")) eliminarUsuariAction();
@@ -65,6 +67,32 @@ import javax.servlet.http.HttpServletResponse;
 				rd = getServletContext().getRequestDispatcher(urlError+"?error=No es pot connectar a la base de dades");
 			}
 		}   	 
+
+		private void detallUsuarisAction() throws ServletException, IOException {
+			urlExit="/intranet/fitxa_usuari.jsp";
+			int idUsuari = Integer.parseInt(request.getParameter("idUsuari"));
+			try {
+				
+				HttpSession session = request.getSession();
+				
+				Usuari usuari = ctrl.getUsuari(idUsuari);
+				
+				session.setAttribute("usuari", usuari);
+				
+				Vector rols = ctrl.getRols();
+							
+				session.setAttribute("rols", rols);
+				
+				
+			    rd = getServletContext().getRequestDispatcher(urlExit);
+			    rd.forward(request, response);
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}
+			
+		}
 
 		private void eliminarUsuariAction() throws ServletException, IOException {
 			urlExit="/intranet/default.jsp";
@@ -210,44 +238,20 @@ import javax.servlet.http.HttpServletResponse;
 		}
 
 		private void llistarUsuarisAction() throws ServletException, IOException {
-			urlExit="/intranet/fitxa_usuari.jsp";
-			/* Atributs que agafo de la jsp per a fer l'accio
-			 * CAP
-			 */
 			
-			/*Ho agafo de sessio, no m'ho passa la jsp, pq el usuari ja tindria d'estar validat*/
-			String userLogin = (String) request.getSession().getAttribute("nomUsuari");
-			String userRol = (String) request.getSession().getAttribute("rol");
+			urlExit="/intranet/usuaris.jsp";
 			
-			userLogin = "aa";
-			userRol = ""+1; 
-			userLogin = "log";
-			if(userLogin!=null && userRol!=null && !userLogin.equals("") && !userRol.equals("")){
-				try {
-					Vector llistaUsuaris;
-					if(userRol.equals("0")){
-						llistaUsuaris = ctrl.getUsuaris();
-					}else{
-						/*llista només els de rol inferior*/
-						llistaUsuaris = ctrl.getUsuarisRolInf(Integer.parseInt(userRol));
-					}
-							
-					request.getSession().setAttribute("llistaUsuaris", llistaUsuaris);		
-					
-				    rd = getServletContext().getRequestDispatcher(urlExit);
-				    rd.forward(request, response);
-				    
-				} catch (ControladorException e) {
-				    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
-				    rd.forward(request, response);
-				}
-			}else{
-			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlErrorLog+" Cal que et loguegis per a fer aquesta acció");
+			try {
+				Vector llistaUsuaris = (Vector) ctrl.getUsuaris();		
+				request.getSession().setAttribute("llistaUsuaris", llistaUsuaris);		
+				
+			    rd = getServletContext().getRequestDispatcher(urlExit);
 			    rd.forward(request, response);
-			}
-			
-			
-			
+			    
+			} catch (ControladorException e) {
+			    RequestDispatcher rd = getServletContext().getRequestDispatcher(urlError+"?error="+e.getMessage());
+			    rd.forward(request, response);
+			}			
 		}
 
 		private void accedirAction() throws ServletException, IOException {
