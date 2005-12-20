@@ -130,6 +130,7 @@ public class Sala {
 		campsSala.add("descripcio");
 		return campsSala;
 	}
+	
 	public Vector getValors(){
 		Vector valorsSala;
 		valorsSala = new Vector();
@@ -259,7 +260,6 @@ public class Sala {
 			butaquesTaula+= "</tr>\n";
 		}
 		butaquesTaula+= "</table>\n";
-		//butaquesTaula = "hola manela";
 		
 		return butaquesTaula;
 	}
