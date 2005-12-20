@@ -52,7 +52,7 @@ public class ControladorUsuaris extends Controlador{
 		}	
 	}
 	
-	public Vector getUsuarisOrderRol(){
+	public Vector getUsuarisOrderRol() throws ControladorException{
 		ResultSet rsUsuari;
 		String query = "SELECT " +
 							"id, " +
@@ -69,7 +69,6 @@ public class ControladorUsuaris extends Controlador{
 			System.err.println("[ControladorUsuaris]:[getUsuaris] Error SQL:"+query+"\n"+e.getMessage());
 			throw new ControladorException("[ControladorUsuaris]:[getUsuaris] Error SQL:"+query+"\n"+e.getMessage());
 		}	
-	}
 	}
 	
 	public Vector getUsuarisRolInf(int rol) throws ControladorException{
