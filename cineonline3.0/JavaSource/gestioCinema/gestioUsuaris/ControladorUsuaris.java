@@ -1,12 +1,11 @@
 package gestioCinema.gestioUsuaris;
 
+import gestioCinema.Controlador;
+import gestioCinema.ControladorException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import gestioCinema.Controlador;
-import gestioCinema.ControladorException;
-import gestioCinema.gestioSales.Sala;
 
 public class ControladorUsuaris extends Controlador{
 

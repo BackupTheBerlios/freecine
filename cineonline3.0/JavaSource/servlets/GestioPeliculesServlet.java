@@ -4,7 +4,6 @@ import gestioCinema.ControladorException;
 import gestioCinema.gestioPelicules.ControladorPelicules;
 import gestioCinema.gestioPelicules.Pelicula;
 
-
 import java.io.IOException;
 import java.util.Vector;
 
