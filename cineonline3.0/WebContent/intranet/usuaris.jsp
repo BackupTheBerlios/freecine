@@ -21,6 +21,8 @@
 				{
 					Iterator it = llista.iterator();
 					int cont = 0;
+					if (it.hasNext())
+					{
 				%>
 					<table cellspacing="0">
 					<tr>
@@ -29,6 +31,13 @@
 						<td><strong>tipus</strong></td>
 					</tr>
 				<%
+					}
+					else
+					{
+						%>
+						No hi ha cap usuari.
+						<%
+					}
 					while(it.hasNext())
 					{
 						Usuari us = (Usuari)it.next();
@@ -46,8 +55,8 @@
 					<tr class="<%= estilfila %>">
 						<td>
 							<form name="frmfitxa" action="GestioUsuarisServlet" method="post" class="boto_horari">
-								<input type="Hidden" name="accio" value="detallUsuari" />
-								<input type="Hidden" name="idPelicula" value="<%= ""+us.getId() %>" />
+								<input type="Hidden" name="accio" value="detall usuari" />
+								<input type="Hidden" name="idUsuari" value="<%= ""+us.getId() %>" />
 								<input type="Submit" name="opcio_menu" class="boto_enllac" value="fitxa" />
 							</form>
 						</td>
