@@ -1,0 +1,65 @@
+/* RESERVADA */
+#butaca_reservada {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 12px;
+	height: 12px;
+	background: orange;
+}
+
+/* OCUPADA */
+#butaca_ocupada {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 12px;
+	height: 12px;
+	background: red;
+}
+
+
+/* NO OPERATIVA */
+#butaca_no_operativa {
+	visible: false;
+	width: 12px;
+	height: 12px;
+}
+
+/* DISPONIBLE */
+#butaca_disponible {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 12px;
+	height: 12px;
+	background: #F0F0F0;
+}
+
+/* PANTALLA */
+#pantalla {
+	display:block;
+	border: thick solid #C0C0C0;	
+	border-right-width: 1px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-bottom-width: 1px;
+	width: 250px;
+	height: 12px;
+	background: #7B7B7B;
+	text-align:center;
+	color:#FFFFFF;
+	text-decoration:bold;
+	font-family: verdana,arial,sans-serif;
+	font-size: 10px;
+	font-weight:bold;
+}

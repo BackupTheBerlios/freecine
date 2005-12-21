@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>cineonline</display-name>
+
+	<!-- SERVLETS -->
+
+	<!-- SERVLETS PELICULES-->
+	<servlet>
+		<description>Fa de controlador de la gestio de les pelicules</description>
+		<display-name>GestioPeliculesServlet</display-name>
+		<servlet-name>GestioPeliculesServlet</servlet-name>
+		<servlet-class>servlets.GestioPeliculesServlet</servlet-class>
+	</servlet>
+	
+	<!-- SERVLETS SALES-->
+	<servlet>
+		<description>Fa de controlador de la gestio de les sales</description>
+		<display-name>GestioSalesServlet</display-name>
+		<servlet-name>GestioSalesServlet</servlet-name>
+		<servlet-class>servlets.GestioSalesServlet</servlet-class>
+	</servlet>
+	
+	<!--  SERVLETS SESSIONS--> 
+	<servlet>
+  		<description>Gestiona les sessions de la base de dades</description> 
+  		<display-name>GestioSessionsServlet</display-name> 
+  		<servlet-name>GestioSessionsServlet</servlet-name> 
+  		<servlet-class>servlets.GestioSessionsServlet</servlet-class> 
+  	</servlet>
+	
+	<!-- SERVLETS CINEMA-->
+	<servlet>
+		<description>gestiona el cinema</description>
+		<display-name>GestioCinemaServlet</display-name>
+		<servlet-name>GestioCinemaServlet</servlet-name>
+		<servlet-class>servlets.GestioCinemaServlet</servlet-class>
+	</servlet>
+
+	<!-- SERVLETS CR -->
+	<servlet>
+		<description>		</description>
+		<display-name>GestioCompresReservesServlet</display-name>
+		<servlet-name>GestioCompresReservesServlet</servlet-name>
+		<servlet-class>servlets.GestioCompresReservesServlet</servlet-class>
+	</servlet>
+	
+	<!-- SERVLETS USUARI -->
+	<servlet>
+		<description>		</description>
+		<display-name>GestioUsuarisServlet</display-name>
+		<servlet-name>GestioUsuarisServlet</servlet-name>
+		<servlet-class>servlets.GestioUsuarisServlet</servlet-class>
+	</servlet>
+	
+		<!-- SERVLETS CLIENT -->
+	<servlet>
+		<description>		</description>
+		<display-name>GestioClientServlet</display-name>
+		<servlet-name>GestioClientServlet</servlet-name>
+		<servlet-class>servlets.GestioClientServlet</servlet-class>
+	</servlet>
+	
+	
+
+	<!-- SERVLETS MAPPING PELICULES-->
+	<servlet-mapping>
+		<servlet-name>GestioPeliculesServlet</servlet-name>
+		<url-pattern>/intranet/GestioPeliculesServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- SERVLETS MAPPING SALES-->
+	<servlet-mapping>
+		<servlet-name>GestioSalesServlet</servlet-name>
+		<url-pattern>/intranet/GestioSalesServlet</url-pattern>
+	</servlet-mapping>
+	<!-- SERVLETS MAPPING SESSIONS-->
+	<servlet-mapping>
+  		<servlet-name>GestioSessionsServlet</servlet-name> 
+  		<url-pattern>/intranet/GestioSessionsServlet</url-pattern> 
+	 </servlet-mapping>
+	<!-- SERVLETS MAPPING CINEMA-->
+	<servlet-mapping>
+		<servlet-name>GestioCinemaServlet</servlet-name>
+		<url-pattern>/intranet/GestioCinemaServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--  SERVLETS MAPPING CR -->
+	<servlet-mapping>
+		<servlet-name>GestioCompresReservesServlet</servlet-name>
+		<url-pattern>/intranet/GestioCompresReservesServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--  SERVLETS MAPPING USUARIS -->
+	<servlet-mapping>
+		<servlet-name>GestioUsuarisServlet</servlet-name>
+		<url-pattern>/intranet/GestioUsuarisServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--  SERVLETS MAPPING CLIENT -->
+	<servlet-mapping>
+		<servlet-name>GestioClientServlet</servlet-name>
+		<url-pattern>/GestioClientServlet</url-pattern>
+	</servlet-mapping>
+
+
+	
+	
+	<welcome-file-list>
+		<welcome-file>extranet/index.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
