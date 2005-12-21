@@ -1,7 +1,6 @@
 <%@ page import="java.util.Vector" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page import="gestioCinema.gestioSessions.Sessio" %>
-<%@ page import="gestioCinema.gestioSessions.ButacaSessio" %>
+
 <jsp:include page="esquelet_adm/header.jsp"/>
 	<div id="top">
 		<jsp:include page="esquelet_adm/top.jsp"/>		
